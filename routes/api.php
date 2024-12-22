@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\TestimonialController;
+use App\Http\Controllers\API\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('settings' , [SettingController::class,'index']);
 Route::get('testimonials' , [TestimonialController::class,'index']);
+Route::get('categories' , [CategoryController::class,'index']);
