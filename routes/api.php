@@ -34,5 +34,5 @@ Route::get('destinations' , [DestinationController::class,'index']);
 Route::get('tourevents' , [ToureventController::class,'index']);
 Route::get('partners' , [PartnerController::class,'index']);
 Route::get('steps' , [StepController::class,'index']);
-Route::get('posts' , [PostController::class,'index']);
+Route::apiResource('posts' , PostController::class);
 Route::post('subscribe' , [SubscribeController::class,'store']);
