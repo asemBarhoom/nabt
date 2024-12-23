@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Seeders\DestinationSeeder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 
@@ -17,4 +18,9 @@ class Category extends Model
         'image',
         'status',
     ];
+
+    public function destinations()
+    {
+        return $this->hasMany(DestinationSeeder::class);
+    }
 }

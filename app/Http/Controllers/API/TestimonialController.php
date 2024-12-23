@@ -12,7 +12,7 @@ class TestimonialController extends Controller
 {
     public function index(FilterRequest $request){
         try{
-            $testimonials = Testimonial::filter()->order()->paginate($request->per_page);
+            $testimonials = Testimonial::filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new TestimonialCollection($testimonials));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

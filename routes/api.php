@@ -3,6 +3,11 @@
 use App\Http\Controllers\API\SettingController;
 use App\Http\Controllers\API\TestimonialController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\DestinationController;
+use App\Http\Controllers\API\ToureventController;
+use App\Http\Controllers\API\PartnerController;
+use App\Http\Controllers\API\SubscribeController;
+use App\Http\Controllers\API\StepController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +29,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('settings' , [SettingController::class,'index']);
 Route::get('testimonials' , [TestimonialController::class,'index']);
 Route::get('categories' , [CategoryController::class,'index']);
+Route::get('destinations' , [DestinationController::class,'index']);
+Route::get('tourevents' , [ToureventController::class,'index']);
+Route::get('partners' , [PartnerController::class,'index']);
+Route::get('steps' , [StepController::class,'index']);
+Route::post('subscribe' , [SubscribeController::class,'store']);

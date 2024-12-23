@@ -12,7 +12,7 @@ class CategoryController extends Controller
 {
     public function index(FilterRequest $request){
         try{
-            $categoriess = Category::filter()->order()->paginate($request->per_page);
+            $categoriess = Category::filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new CategoryCollection($categoriess));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

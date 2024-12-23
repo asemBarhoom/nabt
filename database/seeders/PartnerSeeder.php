@@ -1,0 +1,83 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class PartnerSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $partners = [
+            [
+                'name' => json_encode(['ar' => 'شركة دليل العلا السياحية', 'en' => 'Al-Ula Guide Tourism Company']),
+                'body' => json_encode(['ar' => 'شركة سياحية تقدم خدمات متنوعة في مدينة العلا.', 'en' => 'A tourism company offering various services in Al-Ula.']),
+                'image' => 'partners/al_ula_guide_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة عصور للسياحة', 'en' => 'Aswar Tourism Company']),
+                'body' => json_encode(['ar' => 'شركة سياحية متخصصة في تنظيم رحلات داخل العلا.', 'en' => 'A tourism company specializing in organizing trips within Al-Ula.']),
+                'image' => 'partners/aswar_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة أسرار العلا', 'en' => 'Asrar Al-Ula Company']),
+                'body' => json_encode(['ar' => 'شركة تقدم خدمات سياحية ممتعة لاستكشاف معالم العلا.', 'en' => 'A company offering exciting tourism services to explore the landmarks of Al-Ula.']),
+                'image' => 'partners/asrar_al_ula.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة متعتنا للسياحة والسفر', 'en' => 'Matatna Tourism and Travel Company']),
+                'body' => json_encode(['ar' => 'تقدم الشركة رحلات سياحية متنوعة داخل العلا.', 'en' => 'The company offers various tourism trips within Al-Ula.']),
+                'image' => 'partners/matatna_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة العلا للمغامرات', 'en' => 'Al-Ula Adventures Company']),
+                'body' => json_encode(['ar' => 'تختص بتقديم مغامرات سياحية في العلا.', 'en' => 'Specializes in offering adventure tourism in Al-Ula.']),
+                'image' => 'partners/al_ula_adventures.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة الرواد للسياحة', 'en' => 'Al-Ruwad Tourism Company']),
+                'body' => json_encode(['ar' => 'تقدم الشركة خدمات سياحية عالية الجودة في العلا.', 'en' => 'The company offers high-quality tourism services in Al-Ula.']),
+                'image' => 'partners/al_ruwad_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة العلا للمرافق السياحية', 'en' => 'Al-Ula Tourist Facilities Company']),
+                'body' => json_encode(['ar' => 'شركة متخصصة في توفير المرافق السياحية الحديثة في العلا.', 'en' => 'A company specializing in providing modern tourism facilities in Al-Ula.']),
+                'image' => 'partners/al_ula_facilities.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة العلا للسياحة البيئية', 'en' => 'Al-Ula Eco-Tourism Company']),
+                'body' => json_encode(['ar' => 'شركة متخصصة في السياحة البيئية في العلا.', 'en' => 'A company specializing in eco-tourism in Al-Ula.']),
+                'image' => 'partners/al_ula_eco_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة السعودية للسياحة', 'en' => 'Saudi Arabia Tourism Company']),
+                'body' => json_encode(['ar' => 'تقدم الشركة رحلات سياحية فاخرة داخل العلا.', 'en' => 'The company offers luxurious tourism trips within Al-Ula.']),
+                'image' => 'partners/saudi_arabia_tourism.jpg',
+                'status' => true
+            ],
+            [
+                'name' => json_encode(['ar' => 'شركة الفخامة للسياحة', 'en' => 'Al-Fakhamah Tourism Company']),
+                'body' => json_encode(['ar' => 'شركة فاخرة تقدم جولات سياحية خاصة في العلا.', 'en' => 'A luxury company offering private tours in Al-Ula.']),
+                'image' => 'partners/al_fakhamah_tourism.jpg',
+                'status' => true
+            ],
+        ];
+
+        DB::table('partners')->insert($partners);
+    }
+}
