@@ -17,7 +17,7 @@ class SettingCollection extends ResourceCollection
     {
         return [
             'content' => SettingResource::collection($this->collection),
-            'pagination' => new PaginationResource($this->resource),
+//            'pagination' => new PaginationResource($this->resource),
         ];
     }
 }

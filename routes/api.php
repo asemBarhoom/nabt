@@ -9,6 +9,7 @@ use App\Http\Controllers\API\PartnerController;
 use App\Http\Controllers\API\SubscribeController;
 use App\Http\Controllers\API\StepController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\PageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -35,4 +36,5 @@ Route::get('tourevents' , [ToureventController::class,'index']);
 Route::get('partners' , [PartnerController::class,'index']);
 Route::get('steps' , [StepController::class,'index']);
 Route::apiResource('posts' , PostController::class);
+Route::apiResource('pages' , PageController::class);
 Route::post('subscribe' , [SubscribeController::class,'store']);

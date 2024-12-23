@@ -17,7 +17,7 @@ class SettingController extends Controller
      */
     public function index(FilterRequest $request){
         try{
-            $surveys = Setting::filter()->order()->paginate($request->header('perpage'));
+            $surveys = Setting::filter()->order()->get();
             return Response::respondSuccess(Response::SUCCESS, new SettingCollection($surveys));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
