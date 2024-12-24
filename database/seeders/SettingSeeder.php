@@ -112,6 +112,62 @@ class SettingSeeder extends Seeder
             ['key' => 'footer_social_twitter', 'value' => 'https://twitter.com'],
             ['key' => 'footer_social_instagram', 'value' => 'https://instagram.com'],
 
+            // About Us
+            ['key' => 'about_us_ar', 'value' => '<p class="text-justify">نحن شركة تهتم بتقديم أفضل الخدمات لعملائنا. نسعى جاهدين لتحقيق أعلى معايير الجودة والابتكار في جميع مشاريعنا.</p>'],
+            ['key' => 'about_us_en', 'value' => '<p class="text-justify">We are a company dedicated to providing the best services to our clients. We strive to achieve the highest standards of quality and innovation in all of our projects.</p>'],
+
+            // Vision
+            ['key' => 'vision_image', 'value' => 'path/to/vision-image.jpg'],
+            ['key' => 'vision_ar', 'value' => '<h2 class="text-center">رؤيتنا</h2><p>نطمح لأن نكون الرواد في مجالنا، من خلال تقديم حلول مبتكرة وفعّالة.</p>'],
+            ['key' => 'vision_en', 'value' => '<h2 class="text-center">Our Vision</h2><p>We aim to be the leaders in our field by providing innovative and effective solutions.</p>'],
+            ['key' => 'vision_body_ar', 'value' => '<p class="text-justify">من خلال التزامنا بالجودة والابتكار، نهدف إلى تحسين تجربة عملائنا وتحقيق نجاح مشترك.</p>'],
+            ['key' => 'vision_body_en', 'value' => '<p class="text-justify">Through our commitment to quality and innovation, we aim to enhance our clients\' experience and achieve mutual success.</p>'],
+
+            // Values
+            ['key' => 'values_image', 'value' => 'path/to/values-image.jpg'],
+            ['key' => 'values_ar', 'value' => '<h2 class="text-center">قيمنا</h2><p>نؤمن بأن الجودة والابتكار هما الأساس في جميع أعمالنا. نحن نؤمن بأهمية الشفافية والمسؤولية.</p>'],
+            ['key' => 'values_en', 'value' => '<h2 class="text-center">Our Values</h2><p>We believe that quality and innovation are the foundation of all our work. We value transparency and responsibility.</p>'],
+            ['key' => 'values_body_ar', 'value' => '<p class="text-justify">نلتزم بتقديم حلول تحقق نتائج ملموسة لعملائنا وتعزز نجاحهم في السوق.</p>'],
+            ['key' => 'values_body_en', 'value' => '<p class="text-justify">We are committed to delivering solutions that produce tangible results for our clients and enhance their success in the market.</p>'],
+
+            // Goals
+            ['key' => 'goals_image', 'value' => 'path/to/goals-image.jpg'],
+            ['key' => 'goals_ar', 'value' => '<h2 class="text-center">أهدافنا</h2><p>نهدف إلى توسيع نطاق خدماتنا والوصول إلى أسواق جديدة، مع الحفاظ على جودة عالية وابتكار مستمر.</p>'],
+            ['key' => 'goals_en', 'value' => '<h2 class="text-center">Our Goals</h2><p>We aim to expand our services and reach new markets, while maintaining high quality and continuous innovation.</p>'],
+            ['key' => 'goals_body_ar', 'value' => '<p class="text-justify">نحن نعمل بجد لتحقيق أهدافنا من خلال تحسين العمليات الداخلية وبناء شراكات استراتيجية قوية.</p>'],
+            ['key' => 'goals_body_en', 'value' => '<p class="text-justify">We are working hard to achieve our goals by improving internal processes and building strong strategic partnerships.</p>'],
+
+            // About Us Footer
+            ['key' => 'about_us_footer_ar', 'value' => '<p class="text-center text-muted">حقوق الطبع والنشر © 2024 جميع الحقوق محفوظة</p>'],
+            ['key' => 'about_us_footer_en', 'value' => '<p class="text-center text-muted">Copyright © 2024 All Rights Reserved</p>'],
+
+
+            ['key' => 'contact_us_en', 'value' => 'Contact Us'],
+            ['key' => 'contact_us_ar', 'value' => 'اتصل بنا'],
+
+
+
+            ['key' => 'instagram', 'value' => 'Instagram'],
+
+            ['key' => 'twitter', 'value' => 'Twitter'],
+
+            ['key' => 'tikTok', 'value' => 'TikTok'],
+
+            ['key' => 'linkedIn', 'value' => 'LinkedIn'],
+
+            ['key' => 'snapchat', 'value' => 'Snapchat'],
+
+            ['key' => 'youTube', 'value' => 'YouTube'],
+
+            ['key' => 'whatsApp', 'value' => 'WhatsApp'],
+
+            ['key' => 'email', 'value' => 'Email'],
+
+            ['key' => 'contact_us_footer_en', 'value' => 'Contact us at the footer'],
+            ['key' => 'contact_us_footer_ar', 'value' => 'اتصل بنا في التذييل'],
+            ['key' => 'lat', 'value' => '23.8859'], // Latitude for Saudi Arabia
+            ['key' => 'lng', 'value' => '45.0792'], // Longitude for Saudi Arabia
+
 
         ];
 

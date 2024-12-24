@@ -13,4 +13,17 @@ class Setting extends Model
         'key',
         'value',
     ];
+
+    public function key($type)
+    {
+        return $this->where('key', $type)->first();
+    }
+
+    public function valueOf($type)
+    {
+        $this->updateOrCreate(['key'=>$type],[
+            'key'=>$type
+        ]);
+        return (isset($this->key($type)->value)) ? $this->key($type)->value : '';
+    }
 }

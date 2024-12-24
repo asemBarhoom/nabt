@@ -4,9 +4,12 @@ namespace App\Http\Controllers\API;
 
 use App\Helpers\Response;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Page\AboutUsResource;
+use App\Http\Resources\Page\ContactUsResource;
 use App\Http\Resources\Page\PageCollection;
 use App\Http\Resources\Page\PageResource;
 use App\Models\Page;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -38,6 +41,26 @@ class PageController extends Controller
     {
         try{
             return Response::respondSuccess(Response::SUCCESS, new PageResource($page));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+    }
+
+    public function aboutUs()
+    {
+        $setting = Setting::first();
+        try{
+            return Response::respondSuccess(Response::SUCCESS, new AboutUsResource($setting));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+    }
+
+    public function contactUs()
+    {
+        $setting = Setting::first();
+        try{
+            return Response::respondSuccess(Response::SUCCESS, new ContactUsResource($setting));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }

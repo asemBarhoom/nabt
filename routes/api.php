@@ -10,6 +10,7 @@ use App\Http\Controllers\API\SubscribeController;
 use App\Http\Controllers\API\StepController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\PageController;
+use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,3 +39,17 @@ Route::get('steps' , [StepController::class,'index']);
 Route::apiResource('posts' , PostController::class);
 Route::apiResource('pages' , PageController::class);
 Route::post('subscribe' , [SubscribeController::class,'store']);
+Route::get('about_us' , [PageController::class,'aboutUs']);
+Route::get('contact_us' , [PageController::class,'contactUs']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::group([
+    'middleware' => ['auth:api'],
+], function () {
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logoutFromAllDevices', [AuthController::class, 'logoutFromAllDevices']);
+    Route::get('profile', [AuthController::class, 'profile']);
+    Route::post('profile', [AuthController::class, 'updateProfile']);
+
+
+});
