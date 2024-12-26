@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Auth;
 
+use App\Http\Resources\Country\CountryResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserProfileResource extends JsonResource
@@ -21,6 +22,10 @@ class UserProfileResource extends JsonResource
             'name'              => $this->name,
             'phone'              => $this->phone,
             'age'              => $this->age,
+            'country_id'              => $this->country_id,
+            'city_id'              => $this->city_id,
+            'country'              => CountryResource::make($this->country),
+            'city'              => CountryResource::make($this->city),
             'address'              => $this->address,
             'job'              => $this->job,
             'image'             => $this->image,

@@ -6,6 +6,7 @@ use App\Helpers\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Auth\LoginRequest;
 use App\Http\Requests\API\Auth\UpdateProfileRequest;
+use App\Http\Requests\API\Auth\UpdateAddressRequest;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Models\User;
@@ -66,6 +67,28 @@ class AuthController extends Controller
     {
         try {
             $user = auth()->user();
+            $user->update([
+                'phone'=>$request->phone ,
+                'email'=>$request->email ,
+                'dob'=>$request->dob ,
+                'job'=>$request->job ,
+                'name'=>$request->name ,
+            ]);
+            return Response::respondSuccess(Response::SUCCESS, new UserProfileResource($user));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+    }
+
+    public function update_address(UpdateAddressRequest $request)
+    {
+        try {
+            $user = auth()->user();
+            $user->update([
+                'country_id'=>$request->country_id ,
+                'city_id'=>$request->country_id ,
+                'address'=>$request->address
+            ]);
             return Response::respondSuccess(Response::SUCCESS, new UserProfileResource($user));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
