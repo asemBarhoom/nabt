@@ -169,6 +169,12 @@ class SettingSeeder extends Seeder
             ['key' => 'lng', 'value' => '45.0792'], // Longitude for Saudi Arabia
 
 
+            ['key' => 'promotional_message_ar', 'value' => 'انطلق معنا في رحلة سياحية تأخذك بعيدًا عن ضغوط الحياة ودونيتها اليومية، إلى عالم ساحر مليء باللحظات الجميلة وسط الطبيعة الخلابة والعالم الأثرية المدهشة. اكتشف تجربة لا تُنسى.'],
+            ['key' => 'promotional_message_en', 'value' => 'Embark with us on a touristic journey that takes you away from the pressures and daily humiliation of life, to a magical world full of beautiful moments amidst the picturesque nature and the amazing archaeological world. Discover an unforgettable experience.'],
+            ['key' => 'hero_image', 'value' => 'hero.png'],
+            ['key' => 'hero_video_link', 'value' => 'https://www.youtube.com/embed/XrM5Y5ghEHQ']
+
+
         ];
 
         foreach ($settings as $setting) {
