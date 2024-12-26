@@ -17,6 +17,7 @@ class ContactUsResource extends JsonResource
         $lang = app()->getLocale();
         return [
             'title' => $this->valueOf('contact_us_'.$lang),
+            'address' => $this->valueOf('contact_address_'.$lang),
             'phone' => $this->valueOf('contact_phone'),
             'instagram' => $this->valueOf('instagram'),
             'twitter' => $this->valueOf('twitter'),
