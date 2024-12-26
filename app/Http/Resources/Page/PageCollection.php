@@ -17,7 +17,7 @@ class PageCollection extends ResourceCollection
     {
         return [
             'content' => PageResource::collection($this->collection),
-            'pagination' => new PaginationResource($this->resource),
+//            'pagination' => new PaginationResource($this->resource),
         ];
     }
 }

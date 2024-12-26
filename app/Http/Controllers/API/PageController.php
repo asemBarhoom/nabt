@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Page\AboutUsResource;
 use App\Http\Resources\Page\ContactUsResource;
 use App\Http\Resources\Page\PageCollection;
+use App\Http\Resources\Page\PageInfoResource;
 use App\Http\Resources\Page\PageResource;
 use App\Models\Page;
 use App\Models\Setting;
@@ -22,7 +23,7 @@ class PageController extends Controller
     public function index(Request $request)
     {
         try{
-            $pages = Page::filter()->order()->paginate($request->header('perpage'));
+            $pages = Page::filter()->order()->get();
             return Response::respondSuccess(Response::SUCCESS, new PageCollection($pages));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
@@ -40,7 +41,7 @@ class PageController extends Controller
     public function show(Page $page)
     {
         try{
-            return Response::respondSuccess(Response::SUCCESS, new PageResource($page));
+            return Response::respondSuccess(Response::SUCCESS, new PageInfoResource($page));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }
