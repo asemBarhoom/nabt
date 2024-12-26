@@ -6,6 +6,7 @@ use App\Helpers\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Page\AboutUsResource;
 use App\Http\Resources\Page\ContactUsResource;
+use App\Http\Resources\Page\HomePageAboutUsSectionSectionResource;
 use App\Http\Resources\Page\HomePageHeroSectionResource;
 use App\Http\Resources\Page\PageCollection;
 use App\Http\Resources\Page\PageInfoResource;
@@ -73,6 +74,15 @@ class PageController extends Controller
         $setting = Setting::first();
         try{
             return Response::respondSuccess(Response::SUCCESS, new HomePageHeroSectionResource($setting));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+    }
+    public function AboutUsSection()
+    {
+        $setting = Setting::first();
+        try{
+            return Response::respondSuccess(Response::SUCCESS, new HomePageAboutUsSectionSectionResource($setting));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }

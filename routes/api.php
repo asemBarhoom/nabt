@@ -40,6 +40,7 @@ Route::apiResource('posts' , PostController::class);
 Route::apiResource('pages' , PageController::class);
 Route::post('subscribe' , [SubscribeController::class,'store']);
 Route::get('home_page_hero_section' , [PageController::class,'heroSection']);
+Route::get('home_page_aboutUs_section' , [PageController::class,'AboutUsSection']);
 Route::get('about_us' , [PageController::class,'aboutUs']);
 Route::get('contact_us' , [PageController::class,'contactUs']);
 Route::post('login', [AuthController::class, 'login']);

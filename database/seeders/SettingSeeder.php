@@ -172,7 +172,56 @@ class SettingSeeder extends Seeder
             ['key' => 'promotional_message_ar', 'value' => 'انطلق معنا في رحلة سياحية تأخذك بعيدًا عن ضغوط الحياة ودونيتها اليومية، إلى عالم ساحر مليء باللحظات الجميلة وسط الطبيعة الخلابة والعالم الأثرية المدهشة. اكتشف تجربة لا تُنسى.'],
             ['key' => 'promotional_message_en', 'value' => 'Embark with us on a touristic journey that takes you away from the pressures and daily humiliation of life, to a magical world full of beautiful moments amidst the picturesque nature and the amazing archaeological world. Discover an unforgettable experience.'],
             ['key' => 'hero_image', 'value' => 'hero.png'],
-            ['key' => 'hero_video_link', 'value' => 'https://www.youtube.com/embed/XrM5Y5ghEHQ']
+            ['key' => 'hero_video_link', 'value' => 'https://www.youtube.com/embed/XrM5Y5ghEHQ'],
+
+            ['key' => 'about_image', 'value' => 'about.png'],
+            ['key' => 'about_section_title_ar', 'value' => 'تعرف علينا'],
+            ['key' => 'about_section_title_en', 'value' => 'About Us'],
+            ['key' => 'about_section_body_ar', 'value' => '<p dir="rtl">
+  عن الشركة<br>
+  شركة نبط للسياحة والسفر هي وجهتك المثالية لتجارب سفر مميزة وخدمات سياحية متكاملة. نسعى لتوفير أفضل العروض وخطط السفر المصممة خصيصاً لتلبية احتياجات عملائنا، سواء للسياحة الداخلية أو الخارجية، مع التركيز على الجودة والراحة والاحترافية. نؤمن بأن السفر هو مفتاح اكتشاف العالم، ونسعى لجعل كل رحلة تجربة لا تنسى.<br>
+  <br>
+  ماذا سنقدم لك<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lightbulb">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M9.09 9a3 3 0 0 1 3 3M4 12a8 8 0 0 1 8 8"></path>
+  </svg> نقدم تجربة سفر متكاملة تشمل الحجوزات، الأنشطة، والدعم المستمر لضمان رحلة مريحة وذكريات مميزة.<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="2" y1="12" x2="22" y2="12"></line>
+    <path d="M12 2a15 15 0 0 0-5 18c0 5 10 8 10 8s10-3 10-8a15 15 0 0 0-5-18"></path>
+  </svg> نضمن تخطيطا شاملا للرحلة من الحجوزات إلى الأنشطة، مع تلبية الاحتياجات وتوفير إرشاد ودعم مستمر لتجربة مريحة وممتعة.<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rocket">
+    <path d="M12 18l-6-5v11l6-5z"></path>
+    <path d="M17.5 10a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
+  </svg> نقدم سرعة الحجز وسهولة الاختيار لضمان رحلة مريحة وممتعة.<br>
+</p>'],
+            ['key' => 'about_section_body_en', 'value' => '<p dir="ltr">
+  About the Company<br>
+  Nabt Travel and Tourism is your ideal destination for unique travel experiences and comprehensive tourism services. We strive to provide the best offers and travel plans specifically designed to meet the needs of our clients, whether for domestic or international tourism, with a focus on quality, comfort, and professionalism. We believe that travel is the key to discovering the world, and we aim to make every journey an unforgettable experience.<br>
+  <br>
+  What We Will Offer You<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lightbulb">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M9.09 9a3 3 0 0 1 3 3M4 12a8 8 0 0 1 8 8"></path>
+  </svg> We offer a complete travel experience including bookings, activities, and continuous support to ensure a comfortable trip and memorable experiences.<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="2" y1="12" x2="22" y2="12"></line>
+    <path d="M12 2a15 15 0 0 0-5 18c0 5 10 8 10 8s10-3 10-8a15 15 0 0 0-5-18"></path>
+  </svg> We ensure comprehensive trip planning from bookings to activities, meeting needs and providing guidance and continuous support for a comfortable and enjoyable experience.<br>
+
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rocket">
+    <path d="M12 18l-6-5v11l6-5z"></path>
+    <path d="M17.5 10a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"></path>
+  </svg> We provide fast booking and easy selection to ensure a comfortable and enjoyable trip.<br>
+</p>
+'],
 
 
         ];
