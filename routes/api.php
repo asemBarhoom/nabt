@@ -12,6 +12,7 @@ use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\API\PageController;
 use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\AccommodationController;
+use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -58,6 +59,7 @@ Route::group([
     Route::post('profile', [AuthController::class, 'updateProfile']);
     Route::post('profile/image', [AuthController::class, 'updateImage']);
     Route::post('update_user_address', [AuthController::class, 'update_address']);
+    Route::apiResource('bookings' , BookingController::class);
 
 
 

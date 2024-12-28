@@ -20,4 +20,18 @@ class General
         $text = preg_replace("/^$bom/", '', $text);
         return $text;
     }
+
+    /**
+     * Generate a unique reservation number.
+     *
+     * @return string
+     */
+    public static function generateReservationNumber(): string
+    {
+        $prefix = 'ULA2030'; // Prefix representing AlUla and Vision 2030
+        $uniqueId = strtoupper(uniqid()); // Generate a unique identifier
+        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT); // Generate a random 4-digit number
+
+        return $prefix . '-' . $randomNumber . '-' . substr($uniqueId, -5); // Combine all parts
+    }
 }
