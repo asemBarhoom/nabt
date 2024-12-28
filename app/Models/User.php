@@ -23,6 +23,7 @@ class User extends Authenticatable
         'city_id',
         'email',
         'password',
+        'image'
     ];
 
     /**

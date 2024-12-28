@@ -56,7 +56,9 @@ Route::group([
     Route::post('logoutFromAllDevices', [AuthController::class, 'logoutFromAllDevices']);
     Route::get('profile', [AuthController::class, 'profile']);
     Route::post('profile', [AuthController::class, 'updateProfile']);
+    Route::post('profile/image', [AuthController::class, 'updateImage']);
     Route::post('update_user_address', [AuthController::class, 'update_address']);
+
 
 
 });

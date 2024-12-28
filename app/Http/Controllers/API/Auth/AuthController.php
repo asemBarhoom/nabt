@@ -7,11 +7,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Auth\LoginRequest;
 use App\Http\Requests\API\Auth\UpdateProfileRequest;
 use App\Http\Requests\API\Auth\UpdateAddressRequest;
+use App\Http\Requests\API\Auth\UpdateUserImageRequest;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Helpers\FileHelper;
 
 class AuthController extends Controller
 {
@@ -78,6 +80,27 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }
+    }
+
+
+    public function updateImage(UpdateUserImageRequest $request)
+    {
+        try {
+            $data = $request->validated();
+            $User = auth()->user();
+            if ($request->hasFile('image')) {
+                $image = FileHelper::uploadFile($data['image'], 'public/users');
+                $data['image'] = str_replace('public/','storage/',$image);
+            } else {
+                unset($data['image']);
+            }
+            $User->update($data);
+
+            return Response::respondSuccess(Response::SUCCESS, new UserProfileResource($User));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+
     }
 
     public function update_address(UpdateAddressRequest $request)
