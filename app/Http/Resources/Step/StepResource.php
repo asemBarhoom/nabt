@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Step;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Page\StepsSectionResource;
+use App\Models\Setting;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class StepResource extends JsonResource

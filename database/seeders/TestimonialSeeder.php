@@ -26,11 +26,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'أفضل تجربة سفر مررت بها. أوصي بها بشدة لكل عشاق المغامرات.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'The best travel experience I have ever had. Highly recommended for adventure lovers.'
                 ],
                 'rating' => 4.8,
-                'image' => 'testimonials/abdullah.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -43,11 +43,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Tourist'
                 ],
                 'body' => [
-                    'ar' => 'كانت الرحلة مذهلة ومليئة بالتجارب الجديدة.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'The trip was amazing and full of new experiences.'
                 ],
                 'rating' => 4.7,
-                'image' => 'testimonials/fatima.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -60,11 +60,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'مغامرة لا تُنسى وسط الصحراء الخلابة.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'An unforgettable adventure in the breathtaking desert.'
                 ],
                 'rating' => 4.9,
-                'image' => 'testimonials/ahmed.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -77,11 +77,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'استمتعت بجمال الطبيعة والضيافة الرائعة.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'I enjoyed the beauty of nature and the wonderful hospitality.'
                 ],
                 'rating' => 5.0,
-                'image' => 'testimonials/salma.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -94,11 +94,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Tourist'
                 ],
                 'body' => [
-                    'ar' => 'خدمة ممتازة ورحلة تفوق التوقعات.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'Excellent service and a trip beyond expectations.'
                 ],
                 'rating' => 4.6,
-                'image' => 'testimonials/mohammed.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -111,11 +111,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'كل شيء كان مرتبًا واحترافيًا للغاية.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'Everything was organized and very professional.'
                 ],
                 'rating' => 4.8,
-                'image' => 'testimonials/noura.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -128,11 +128,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'تجربة مميزة وخدمات على أعلى مستوى.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'A unique experience with top-notch services.'
                 ],
                 'rating' => 4.9,
-                'image' => 'testimonials/abdulrahman.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -145,11 +145,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'أحببت كل التفاصيل الصغيرة في الرحلة.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'I loved every small detail of the trip.'
                 ],
                 'rating' => 4.7,
-                'image' => 'testimonials/layla.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -162,11 +162,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Traveler'
                 ],
                 'body' => [
-                    'ar' => 'أفضل تجربة سفر لي ولعائلتي.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'The best travel experience for me and my family.'
                 ],
                 'rating' => 5.0,
-                'image' => 'testimonials/abdulaziz.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ],
             [
@@ -179,11 +179,11 @@ class TestimonialSeeder extends Seeder
                     'en' => 'Tourist'
                 ],
                 'body' => [
-                    'ar' => 'مزيج رائع بين الراحة والمغامرة.',
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
                     'en' => 'A great mix of comfort and adventure.'
                 ],
                 'rating' => 4.9,
-                'image' => 'testimonials/reem.jpg',
+                'image' => 'testimonials.png',
                 'status' => true,
             ]
         ];

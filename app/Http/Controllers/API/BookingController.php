@@ -52,7 +52,9 @@ class BookingController extends Controller
             $data = $request->all();
             $data['user_id'] = $user;
             $data['reservation_number'] = General::generateReservationNumber();
+            unset($data['events']);
             $booking = Booking::create($data);
+            $booking->events()->sync($request->events);
             return Response::respondSuccess(Response::SUCCESS, new BookingInfoResource($booking));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

@@ -43,6 +43,11 @@ class StoreBookingRequest extends FormRequest
             'vehicle_type' => ['required',Rule::in(VehicleType::all())],
             'food_allergies' => 'required|boolean',
             'vehicle_description' => 'nullable|string|max:255',
-        ];
+            'events' => [
+                'nullable',
+                'array',
+                Rule::exists('events', 'id'),
+            ],
+            ];
     }
 }

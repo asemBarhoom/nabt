@@ -13,4 +13,9 @@ class Event extends Model
     protected $fillable = [
         'title',
     ];
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_events');
+    }
 }

@@ -56,4 +56,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Accommodation::class);
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'booking_events');
+    }
 }

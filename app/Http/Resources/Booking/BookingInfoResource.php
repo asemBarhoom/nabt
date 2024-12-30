@@ -4,6 +4,7 @@ namespace App\Http\Resources\Booking;
 
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Http\Resources\Destination\DestinationResource;
+use App\Http\Resources\Event\EventCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookingInfoResource extends JsonResource
@@ -22,6 +23,7 @@ class BookingInfoResource extends JsonResource
             'user' => UserProfileResource::make($this->user),
             'destination' => DestinationResource::make($this->destination),
             'accommodation' => DestinationResource::make($this->accommodation),
+            'events' => EventCollection::make($this->events),
             'booking_date' => $this->booking_date,
             'arrival_time' => $this->arrival_time,
             'num_adults' => $this->num_adults,
