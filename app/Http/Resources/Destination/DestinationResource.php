@@ -22,6 +22,7 @@ class DestinationResource extends JsonResource
             'body' => object_get($this,'body'),
             'rating' => object_get($this,'rating'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'isFavorited' => $this->isFavoritedBy(auth()->user()),
         ];
     }
 }

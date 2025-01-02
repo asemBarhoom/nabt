@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Favorable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 
 class Destination extends Model
 {
-    use HasFactory;
+    use HasFactory,Favorable;
     public array $translatable = ['name', 'position', 'body'];
 
     protected $fillable = [

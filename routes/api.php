@@ -14,6 +14,7 @@ use App\Http\Controllers\API\CountryController;
 use App\Http\Controllers\API\AccommodationController;
 use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\EventController;
+use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,6 +64,11 @@ Route::group([
     Route::post('profile/image', [AuthController::class, 'updateImage']);
     Route::post('update_user_address', [AuthController::class, 'update_address']);
     Route::apiResource('bookings' , BookingController::class);
+
+    Route::get('/favorites', [FavoriteController::class, 'index']);       // favorites
+    Route::post('/favorites', [FavoriteController::class, 'store']);       // Add favorite
+    Route::delete('/favorites', [FavoriteController::class, 'destroy']);  // Remove favorite
+
 
 
 
