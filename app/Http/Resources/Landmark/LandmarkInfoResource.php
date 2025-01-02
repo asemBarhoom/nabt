@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Landmark;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Image\ImageCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class LandmarkInfoResource extends JsonResource
@@ -20,6 +21,7 @@ class LandmarkInfoResource extends JsonResource
             'title' => object_get($this,'title'),
             'body' => object_get($this,'body'),
             'image' => object_get($this , 'image'),
+            'images' => ImageCollection::make($this->images),
 //            'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
         ];
     }
