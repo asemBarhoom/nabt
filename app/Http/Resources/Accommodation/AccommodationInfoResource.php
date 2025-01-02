@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Accommodation;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Image\ImageCollection;
+use App\Http\Resources\Testimonial\TestimonialCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class AccommodationInfoResource extends JsonResource
@@ -27,6 +29,9 @@ class AccommodationInfoResource extends JsonResource
             'cafes' => object_get($this,'cafes'),
             'wifi' => object_get($this,'wifi'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'images' => ImageCollection::make($this->images),
+            'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),
+
         ];
     }
 }

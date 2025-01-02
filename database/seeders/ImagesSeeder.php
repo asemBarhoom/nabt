@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Accommodation;
 use App\Models\Image;
 use App\Models\Landmark;
 use Faker\Factory as Faker;
@@ -48,6 +49,17 @@ class ImagesSeeder extends Seeder
             Image::create([
                 'imageable_id' => 1, // ID of the related model
                 'imageable_type' => 'App\Models\Landmark', // Related model's class
+                'image_path' => 'post1.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+
+        for ($i = 0; $i < 10; $i++) {
+            Image::create([
+                'imageable_id' => 1, // ID of the related model
+                'imageable_type' => 'App\Models\Accommodation', // Related model's class
                 'image_path' => 'post1.png',
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -35,6 +35,7 @@ class TestimonialSeeder extends Seeder
                 'testimonialsable_id' => 1, // ID of the related model
                 'testimonialsable_type' => 'App\Models\Destination', // Related model's class
 
+
             ],
             [
                 'name' => [
@@ -156,6 +157,8 @@ class TestimonialSeeder extends Seeder
                 'rating' => 4.7,
                 'image' => 'testimonials.png',
                 'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Accommodation', // Related model's class
             ],
             [
                 'name' => [
@@ -173,6 +176,8 @@ class TestimonialSeeder extends Seeder
                 'rating' => 5.0,
                 'image' => 'testimonials.png',
                 'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Accommodation', // Related model's class
             ],
             [
                 'name' => [
@@ -190,6 +195,8 @@ class TestimonialSeeder extends Seeder
                 'rating' => 4.9,
                 'image' => 'testimonials.png',
                 'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Accommodation', // Related model's class
             ]
         ];
 
