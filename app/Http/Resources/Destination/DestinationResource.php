@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Destination;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Category\CategoryResource;
 use App\Http\Resources\Image\ImageCollection;
 use App\Http\Resources\Testimonial\TestimonialCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -19,10 +20,18 @@ class DestinationResource extends JsonResource
     {
         return [
             'id' => object_get($this,'id'),
+            'slug' => object_get($this,'slug'),
             'name' => object_get($this,'name'),
-            'position' => object_get($this,'position'),
             'body' => object_get($this,'body'),
+            'description' => object_get($this,'description'),
+            'weather_description' => object_get($this,'weather_description'),
+            'amenities' => object_get($this,'amenities'),
+            'recommended_visit_season' => object_get($this,'recommended_visit_season'),
+            'category' => CategoryResource::make($this->category),
+            'annual_visitors_min' => object_get($this,'annual_visitors_min'),
+            'annual_visitors_max' => object_get($this,'annual_visitors_max'),
             'rating' => object_get($this,'rating'),
+            'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'images' => ImageCollection::make($this->images),
             'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),

@@ -11,18 +11,41 @@ use App\Models\BaseModel as Model;
 class Destination extends Model
 {
     use HasFactory,Favorable,Imageable,Testimonialsable;
-    public array $translatable = ['name', 'position', 'body'];
+    public array $translatable = [
+        'name',
+        'body',
+        'description',
+        'weather_description',
+        'amenities',
+        'recommended_visit_season',
+    ];
 
     protected $fillable = [
         'name',
         'body',
-        'rating',
+        'description',
+        'slug',
         'image',
+        'cover_image',
+        'weather_description',
+        'amenities',
+        'recommended_visit_season',
+        'category_id',
+        'annual_visitors_min',
+        'annual_visitors_max',
         'status',
     ];
+
+    protected $appends = ['rating'];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // Accessor to calculate average rating
+    public function getRatingAttribute()
+    {
+        return $this->testimonials()->avg('rating') ?: 0; // Return 0 if no testimonials
     }
 }

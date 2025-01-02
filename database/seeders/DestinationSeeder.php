@@ -18,148 +18,113 @@ class DestinationSeeder extends Seeder
     public function run()
     {
         $destinations = [
+
             [
-                'name' => ['ar' => 'مدائن صالح', 'en' => 'Madain Saleh'],
-                'body' => ['ar' => 'اكتشف المعالم التاريخية الفريدة في مدائن صالح.', 'en' => 'Explore the unique historical landmarks of Madain Saleh.'],
-                'rating' => 4.9,
+                'name' => ['ar' => 'جبل القارة', 'en' => 'Jabal Al Qarah'],
+                'body' => ['ar' => 'مكان طبيعي ساحر.', 'en' => 'A breathtaking natural site.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن جبل القارة باللغة العربية.</div>',
+                    'en' => '<div>Details about Jabal Al Qarah in English.</div>'
+                ],
+                'slug' => 'jabal-al-qarah',
                 'image' => 'destionation.png',
-                'category_id' => 1,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'جبل الفيل', 'en' => 'Elephant Rock'],
-                'body' => ['ar' => 'استمتع بمشاهد جبل الفيل المدهش في العلا.', 'en' => 'Enjoy the stunning views of Elephant Rock in Al-Ula.'],
-                'rating' => 4.8,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'قصر المورو', 'en' => 'Al-Murooj Palace'],
-                'body' => ['ar' => 'تعرف على تاريخ قصر المورو الرائع.', 'en' => 'Learn about the rich history of Al-Murooj Palace.'],
-                'rating' => 4.7,
-                'image' => 'destionation.png',
-                'category_id' => 1,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'واحة العلا', 'en' => 'Al-Ula Oasis'],
-                'body' => ['ar' => 'تمتع بجمال الواحة الخلابة في العلا.', 'en' => 'Enjoy the breathtaking beauty of Al-Ula Oasis.'],
-                'rating' => 4.6,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'موقع الديسة', 'en' => 'Al-Disah Valley'],
-                'body' => ['ar' => 'اكتشف جمال وادي الديسة الفريد.', 'en' => 'Discover the unique beauty of Al-Disah Valley.'],
-                'rating' => 4.9,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'متحف العلا', 'en' => 'Al-Ula Museum'],
-                'body' => ['ar' => 'اكتشف المعروضات الثقافية في متحف العلا.', 'en' => 'Explore the cultural exhibits at the Al-Ula Museum.'],
-                'rating' => 4.5,
-                'image' => 'destionation.png',
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس بارد في الشتاء', 'en' => 'Cold weather in winter'],
+                'amenities' => ['ar' => 'مرشدين سياحيين', 'en' => 'Tour guides'],
+                'recommended_visit_season' => ['ar' => 'الصيف (يونيو - أغسطس)', 'en' => 'Summer (June - August)'],
                 'category_id' => 3,
+                'annual_visitors_min' => 30000,
+                'annual_visitors_max' => 70000,
                 'status' => true
             ],
             [
-                'name' => ['ar' => 'جبل عكمة', 'en' => 'Jabal Ikmah'],
-                'body' => ['ar' => 'اكتشف النقوش القديمة في جبل عكمة.', 'en' => 'Discover the ancient inscriptions at Jabal Ikmah.'],
-                'rating' => 4.7,
+                'name' => ['ar' => 'وادي الديسة', 'en' => 'Wadi Al Disah'],
+                'body' => ['ar' => 'وجهة طبيعية خلابة.', 'en' => 'A stunning natural destination.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن وادي الديسة باللغة العربية.</div>',
+                    'en' => '<div>Details about Wadi Al Disah in English.</div>'
+                ],
+                'slug' => 'wadi-al-disah',
                 'image' => 'destionation.png',
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس معتدل في الشتاء', 'en' => 'Mild weather in winter'],
+                'amenities' => ['ar' => 'أماكن للتخييم', 'en' => 'Camping areas'],
+                'recommended_visit_season' => ['ar' => 'الربيع (مارس - مايو)', 'en' => 'Spring (March - May)'],
                 'category_id' => 1,
+                'annual_visitors_min' => 40000,
+                'annual_visitors_max' => 90000,
                 'status' => true
             ],
             [
-                'name' => ['ar' => 'الدرعية القديمة', 'en' => 'Old Diriyah'],
-                'body' => ['ar' => 'استمتع بتاريخ الدرعية القديمة في العلا.', 'en' => 'Enjoy the rich history of Old Diriyah in Al-Ula.'],
-                'rating' => 4.6,
+                'name' => ['ar' => 'شاطئ أملج', 'en' => 'Umluj Beach'],
+                'body' => ['ar' => 'شاطئ رائع للاستجمام.', 'en' => 'A great beach for relaxation.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن شاطئ أملج باللغة العربية.</div>',
+                    'en' => '<div>Details about Umluj Beach in English.</div>'
+                ],
+                'slug' => 'umluj-beach',
                 'image' => 'destionation.png',
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس دافئ', 'en' => 'Warm weather'],
+                'amenities' => ['ar' => 'رياضات مائية', 'en' => 'Water sports'],
+                'recommended_visit_season' => ['ar' => 'الصيف (يونيو - أغسطس)', 'en' => 'Summer (June - August)'],
+                'category_id' => 2,
+                'annual_visitors_min' => 20000,
+                'annual_visitors_max' => 60000,
+                'status' => true
+            ],
+            [
+                'name' => ['ar' => 'الرياض القديمة', 'en' => 'Old Riyadh'],
+                'body' => ['ar' => 'وجهة تاريخية مليئة بالتراث.', 'en' => 'A historic destination full of heritage.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن الرياض القديمة باللغة العربية.</div>',
+                    'en' => '<div>Details about Old Riyadh in English.</div>'
+                ],
+                'slug' => 'old-riyadh',
+                'image' => 'destionation.png',
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس حار في الصيف', 'en' => 'Hot weather in summer'],
+                'amenities' => ['ar' => 'مطاعم، متاحف', 'en' => 'Restaurants, Museums'],
+                'recommended_visit_season' => ['ar' => 'الشتاء (ديسمبر - فبراير)', 'en' => 'Winter (December - February)'],
                 'category_id' => 3,
+                'annual_visitors_min' => 70000,
+                'annual_visitors_max' => 150000,
                 'status' => true
             ],
             [
-                'name' => ['ar' => 'موقع العلا للأنشطة الرياضية', 'en' => 'Al-Ula Sports Complex'],
-                'body' => ['ar' => 'استمتع بمرافق الأنشطة الرياضية في العلا.', 'en' => 'Enjoy sports activities at the Al-Ula Sports Complex.'],
-                'rating' => 4.4,
+                'name' => ['ar' => 'جبال فيفاء', 'en' => 'Jabal Fayfa'],
+                'body' => ['ar' => 'وجهة مثالية لعشاق الطبيعة.', 'en' => 'An ideal destination for nature lovers.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن جبال فيفاء باللغة العربية.</div>',
+                    'en' => '<div>Details about Jabal Fayfa in English.</div>'
+                ],
+                'slug' => 'jabal-fayfa',
                 'image' => 'destionation.png',
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس ضبابي', 'en' => 'Foggy weather'],
+                'amenities' => ['ar' => 'تسلق الجبال', 'en' => 'Mountain climbing'],
+                'recommended_visit_season' => ['ar' => 'الخريف (سبتمبر - نوفمبر)', 'en' => 'Autumn (September - November)'],
                 'category_id' => 4,
+                'annual_visitors_min' => 10000,
+                'annual_visitors_max' => 50000,
                 'status' => true
             ],
             [
-                'name' => ['ar' => 'منطقة الحجر', 'en' => 'Hegra Archaeological Site'],
-                'body' => ['ar' => 'اكتشف موقع الحجر الأثري في العلا.', 'en' => 'Explore the archaeological site of Hegra in Al-Ula.'],
-                'rating' => 4.9,
+                'name' => ['ar' => 'الكثبان الرملية', 'en' => 'Sand Dunes'],
+                'body' => ['ar' => 'مغامرات مثيرة في الصحراء.', 'en' => 'Exciting adventures in the desert.'],
+                'description' => [
+                    'ar' => '<div>تفاصيل عن الكثبان الرملية باللغة العربية.</div>',
+                    'en' => '<div>Details about the Sand Dunes in English.</div>'
+                ],
+                'slug' => 'sand-dunes',
                 'image' => 'destionation.png',
-                'category_id' => 1,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'البلدة القديمة', 'en' => 'Old Town'],
-                'body' => ['ar' => 'استمتع بزيارة البلدة القديمة في العلا.', 'en' => 'Enjoy visiting the old town of Al-Ula.'],
-                'rating' => 4.7,
-                'image' => 'destionation.png',
-                'category_id' => 3,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'موقع جبل الفتاة', 'en' => 'Jabal Al-Fata'],
-                'body' => ['ar' => 'اكتشف جبل الفتاة مع مناظره الخلابة.', 'en' => 'Discover Jabal Al-Fata with its scenic views.'],
-                'rating' => 4.8,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'موقع القريه القديمة', 'en' => 'The Old Village'],
-                'body' => ['ar' => 'استمتع بمشاهدة القريه القديمة في العلا.', 'en' => 'Enjoy the view of the old village in Al-Ula.'],
-                'rating' => 4.5,
-                'image' => 'destionation.png',
-                'category_id' => 3,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'وادي الطيب', 'en' => 'Wadi Al-Tayeb'],
-                'body' => ['ar' => 'استمتع بمنظر وادي الطيب الخلاب.', 'en' => 'Enjoy the breathtaking views of Wadi Al-Tayeb.'],
-                'rating' => 4.8,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'متحف العلا للطبيعة', 'en' => 'Al-Ula Nature Museum'],
-                'body' => ['ar' => 'اكتشف تنوع الطبيعة في متحف العلا.', 'en' => 'Explore the diversity of nature at the Al-Ula Nature Museum.'],
-                'rating' => 4.6,
-                'image' => 'destionation.png',
-                'category_id' => 3,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'منتزه وادي القرى', 'en' => 'Wadi Al-Qura Park'],
-                'body' => ['ar' => 'تمتع بالمشي في منتزه وادي القرى الرائع.', 'en' => 'Enjoy walking in the beautiful Wadi Al-Qura Park.'],
-                'rating' => 4.7,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'جبل الحرات', 'en' => 'Harrat Mountain'],
-                'body' => ['ar' => 'استمتع بمشاهد جبل الحرات الرائع في العلا.', 'en' => 'Enjoy the amazing views of Harrat Mountain in Al-Ula.'],
-                'rating' => 4.8,
-                'image' => 'destionation.png',
-                'category_id' => 2,
-                'status' => true
-            ],
-            [
-                'name' => ['ar' => 'موقع عيون الماء', 'en' => 'Water Springs'],
-                'body' => ['ar' => 'استمتع بالمشي على طول عيون الماء في العلا.', 'en' => 'Enjoy walking along the water springs of Al-Ula.'],
-                'rating' => 4.5,
-                'image' => 'destionation.png',
-                'category_id' => 2,
+                'cover_image' => 'destionation.png',
+                'weather_description' => ['ar' => 'الطقس مشمس', 'en' => 'Sunny weather'],
+                'amenities' => ['ar' => 'تأجير سيارات دفع رباعي', 'en' => '4x4 Rentals'],
+                'recommended_visit_season' => ['ar' => 'الشتاء (نوفمبر - فبراير)', 'en' => 'Winter (November - February)'],
+                'category_id' => 5,
+                'annual_visitors_min' => 5000,
+                'annual_visitors_max' => 20000,
                 'status' => true
             ]
         ];

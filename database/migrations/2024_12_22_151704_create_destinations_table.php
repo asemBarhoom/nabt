@@ -15,13 +15,19 @@ return new class extends Migration
     {
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->nullable();
-            $table->json('body')->nullable();
-            $table->float('rating', 2, 1)->default(0);
+            $table->json('name');
+            $table->json('body');
+            $table->json('description');
+            $table->string('slug')->unique();
             $table->string('image')->nullable();
+            $table->string('cover_image')->nullable();
             $table->boolean('status')->default(true);
             $table->unsignedBigInteger('category_id')->nullable();
-
+            $table->json('weather_description')->nullable();
+            $table->json('amenities')->nullable();
+            $table->integer('annual_visitors_min')->nullable();
+            $table->integer('annual_visitors_max')->nullable();
+            $table->json('recommended_visit_season')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
@@ -30,6 +36,7 @@ return new class extends Migration
                 ->on('categories')
                 ->cascadeOnDelete();
         });
+
     }
 
     /**
