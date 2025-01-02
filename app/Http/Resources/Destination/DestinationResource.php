@@ -23,6 +23,8 @@ class DestinationResource extends JsonResource
             'slug' => object_get($this,'slug'),
             'name' => object_get($this,'name'),
             'body' => object_get($this,'body'),
+            'lat' => object_get($this,'lat'),
+            'lng' => object_get($this,'lng'),
             'description' => object_get($this,'description'),
             'weather_description' => object_get($this,'weather_description'),
             'amenities' => object_get($this,'amenities'),

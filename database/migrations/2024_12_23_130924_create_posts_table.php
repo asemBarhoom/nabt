@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->json('title')->nullable();
             $table->json('body')->nullable();
+            $table->string('cover_image')->nullable();
             $table->string('image')->nullable();
             $table->boolean('status')->default(true);
             $table->softDeletes();

@@ -28,6 +28,8 @@ return new class extends Migration
             $table->integer('annual_visitors_min')->nullable();
             $table->integer('annual_visitors_max')->nullable();
             $table->json('recommended_visit_season')->nullable();
+            $table->boolean('lat')->nullable();
+            $table->boolean('lng')->nullable();
             $table->softDeletes();
             $table->timestamps();
 

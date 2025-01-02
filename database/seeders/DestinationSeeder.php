@@ -35,7 +35,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 3,
                 'annual_visitors_min' => 30000,
                 'annual_visitors_max' => 70000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ],
             [
                 'name' => ['ar' => 'وادي الديسة', 'en' => 'Wadi Al Disah'],
@@ -53,7 +55,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 1,
                 'annual_visitors_min' => 40000,
                 'annual_visitors_max' => 90000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ],
             [
                 'name' => ['ar' => 'شاطئ أملج', 'en' => 'Umluj Beach'],
@@ -71,7 +75,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 2,
                 'annual_visitors_min' => 20000,
                 'annual_visitors_max' => 60000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ],
             [
                 'name' => ['ar' => 'الرياض القديمة', 'en' => 'Old Riyadh'],
@@ -89,7 +95,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 3,
                 'annual_visitors_min' => 70000,
                 'annual_visitors_max' => 150000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ],
             [
                 'name' => ['ar' => 'جبال فيفاء', 'en' => 'Jabal Fayfa'],
@@ -107,7 +115,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 4,
                 'annual_visitors_min' => 10000,
                 'annual_visitors_max' => 50000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ],
             [
                 'name' => ['ar' => 'الكثبان الرملية', 'en' => 'Sand Dunes'],
@@ -125,7 +135,9 @@ class DestinationSeeder extends Seeder
                 'category_id' => 5,
                 'annual_visitors_min' => 5000,
                 'annual_visitors_max' => 20000,
-                'status' => true
+                'status' => true,
+                'lat' => 26.60853000,
+                'lng' => 37.92316000
             ]
         ];
 

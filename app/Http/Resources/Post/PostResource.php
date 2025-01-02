@@ -21,6 +21,7 @@ class PostResource extends JsonResource
             'body_text' => strip_tags(object_get($this,'body')),
             'body' => object_get($this,'body'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
         ];
     }
 }
