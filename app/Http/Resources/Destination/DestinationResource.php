@@ -3,6 +3,7 @@
 namespace App\Http\Resources\Destination;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Image\ImageCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DestinationResource extends JsonResource
@@ -22,6 +23,7 @@ class DestinationResource extends JsonResource
             'body' => object_get($this,'body'),
             'rating' => object_get($this,'rating'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'images' => ImageCollection::make($this->images),
             'isFavorited' => $this->isFavoritedBy(auth()->user()),
         ];
     }
