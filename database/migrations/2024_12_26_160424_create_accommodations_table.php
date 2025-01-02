@@ -19,9 +19,12 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->json('title');
             $table->enum('type', AccommodationTypes::all());
-            $table->decimal('rating', 2, 1)->nullable();
             $table->json('body')->nullable();
             $table->decimal('price', 8, 2)->nullable();
+            $table->integer('rooms');
+            $table->integer('restaurants');
+            $table->integer('cafes');
+            $table->boolean('wifi')->default(false);
             $table->timestamps();
         });
     }

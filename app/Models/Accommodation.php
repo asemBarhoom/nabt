@@ -14,9 +14,13 @@ class Accommodation extends Model
         'image',
         'title',
         'type',
-        'rating',
         'body',
         'price',
+        'rooms',
+        'restaurants',
+        'cafes',
+        'wifi',
+
     ];
 
 }

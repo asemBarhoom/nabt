@@ -22,6 +22,10 @@ class AccommodationResource extends JsonResource
             'body' => object_get($this,'body'),
             'rating' => object_get($this,'rating'),
             'price' => object_get($this,'price'),
+            'rooms' => object_get($this,'rooms'),
+            'restaurants' => object_get($this,'restaurants'),
+            'cafes' => object_get($this,'cafes'),
+            'wifi' => object_get($this,'wifi'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
         ];
     }
