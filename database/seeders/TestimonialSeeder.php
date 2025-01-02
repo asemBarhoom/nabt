@@ -32,6 +32,9 @@ class TestimonialSeeder extends Seeder
                 'rating' => 4.8,
                 'image' => 'testimonials.png',
                 'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Destination', // Related model's class
+
             ],
             [
                 'name' => [
@@ -66,6 +69,8 @@ class TestimonialSeeder extends Seeder
                 'rating' => 4.9,
                 'image' => 'testimonials.png',
                 'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Destination', // Related model's class
             ],
             [
                 'name' => [

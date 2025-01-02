@@ -21,6 +21,12 @@ return new class extends Migration
             $table->float('rating', 2, 1)->default(0);
             $table->string('image')->nullable();
             $table->boolean('status')->default(true);
+
+            // Polymorphic relation fields
+            // Manually define nullable polymorphic relationship fields
+            $table->unsignedBigInteger('testimonialsable_id')->nullable();  // Make the ID nullable
+            $table->string('testimonialsable_type')->nullable();            // Make the type nullable
+
             $table->softDeletes();
             $table->timestamps();
         });

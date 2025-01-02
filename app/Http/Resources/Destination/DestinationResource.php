@@ -4,6 +4,7 @@ namespace App\Http\Resources\Destination;
 
 use App\Helpers\FileHelper;
 use App\Http\Resources\Image\ImageCollection;
+use App\Http\Resources\Testimonial\TestimonialCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class DestinationResource extends JsonResource
@@ -24,6 +25,7 @@ class DestinationResource extends JsonResource
             'rating' => object_get($this,'rating'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'images' => ImageCollection::make($this->images),
+            'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),
             'isFavorited' => $this->isFavoritedBy(auth()->user()),
         ];
     }
