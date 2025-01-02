@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use App\Models\Traits\Favorable;
+use App\Models\Traits\Imageable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 
 class Destination extends Model
 {
-    use HasFactory,Favorable;
+    use HasFactory,Favorable,Imageable;
     public array $translatable = ['name', 'position', 'body'];
 
     protected $fillable = [
