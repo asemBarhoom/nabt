@@ -24,21 +24,42 @@ class ImagesSeeder extends Seeder
             [
                 'imageable_id' => 1, // ID of the related model
                 'imageable_type' => 'App\Models\Destination', // Related model's class
-                'image_path' => 'images/posts/image1.jpg',
+                'image_path' => 'post1.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'imageable_id' => 2, // ID of the related model
+                'imageable_id' => 1, // ID of the related model
                 'imageable_type' => 'App\Models\Destination', // Related model's class
-                'image_path' => 'images/users/profile1.jpg',
+                'image_path' => 'post2.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'imageable_id' => 3, // ID of the related model
+                'imageable_id' => 1, // ID of the related model
                 'imageable_type' => 'App\Models\Destination', // Related model's class
-                'image_path' => 'images/products/product1.jpg',
+                'image_path' => 'destionation.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'imageable_id' => 1, // ID of the related model
+                'imageable_type' => 'App\Models\Destination', // Related model's class
+                'image_path' => 'accommodation.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'imageable_id' => 1, // ID of the related model
+                'imageable_type' => 'App\Models\Destination', // Related model's class
+                'image_path' => 'destionation.png',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'imageable_id' => 1, // ID of the related model
+                'imageable_type' => 'App\Models\Destination', // Related model's class
+                'image_path' => 'accommodation.png',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
