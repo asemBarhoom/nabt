@@ -22,7 +22,7 @@ class ToureventResource extends JsonResource
             'at' => object_get($this,'at'),
             'body' => object_get($this,'body'),
             'description' => object_get($this,'description'),
-            'rating' => object_get($this,'rating'),
+            'rating' => number_format(object_get($this, 'rating'), 2),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
         ];

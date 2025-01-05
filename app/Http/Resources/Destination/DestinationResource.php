@@ -32,7 +32,7 @@ class DestinationResource extends JsonResource
             'category' => CategoryResource::make($this->category),
             'annual_visitors_min' => object_get($this,'annual_visitors_min'),
             'annual_visitors_max' => object_get($this,'annual_visitors_max'),
-            'rating' => object_get($this,'rating'),
+            'rating' => number_format(object_get($this, 'rating'), 2),
             'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'images' => ImageCollection::make($this->images),
