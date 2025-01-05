@@ -16,12 +16,15 @@ return new class extends Migration
         Schema::create('tourevents', function (Blueprint $table) {
             $table->id();
             $table->json('name')->nullable();
+            $table->json('position')->nullable();
             $table->json('body')->nullable();
+            $table->json('description')->nullable();
+            $table->date('at')->nullable();
             $table->float('rating', 2, 1)->default(0);
             $table->string('image')->nullable();
+            $table->string('cover_image')->nullable();
             $table->boolean('status')->default(true);
             $table->unsignedBigInteger('category_id')->nullable();
-
             $table->softDeletes();
             $table->timestamps();
 

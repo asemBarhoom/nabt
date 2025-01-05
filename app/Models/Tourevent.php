@@ -8,13 +8,17 @@ use App\Models\BaseModel as Model;
 class Tourevent extends Model
 {
     use HasFactory;
-    public array $translatable = ['name', 'position', 'body'];
+    public array $translatable = ['name', 'position', 'body','description'];
 
     protected $fillable = [
         'name',
+        'position',
         'body',
+        'description',
         'rating',
         'image',
+        'cover_image',
+        'at',
         'status',
     ];
 

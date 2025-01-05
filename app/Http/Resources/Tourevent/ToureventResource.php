@@ -19,9 +19,12 @@ class ToureventResource extends JsonResource
             'id' => object_get($this,'id'),
             'name' => object_get($this,'name'),
             'position' => object_get($this,'position'),
+            'at' => object_get($this,'at'),
             'body' => object_get($this,'body'),
+            'description' => object_get($this,'description'),
             'rating' => object_get($this,'rating'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
         ];
     }
 }
