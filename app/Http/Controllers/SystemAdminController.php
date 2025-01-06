@@ -25,6 +25,7 @@ use App\Models\Shipment;
 use App\Models\Shop;
 use App\Models\Size;
 use App\Models\SizeOrder;
+use App\Models\SystemAdmin;
 use App\Models\Testimonial;
 use App\Models\TextileType;
 use App\Models\Trademark;
@@ -68,7 +69,13 @@ class SystemAdminController extends Controller
 
 
         $counts = [
-
+            [
+                'url' => route('system.admin.index'),
+                'text' => t('shipments'), // Localized "Shipments"
+                'icon' => 'fas fa-box',
+                'count' => SystemAdmin::count(),
+                'count_text' => '',
+            ],
         ];
 
 
