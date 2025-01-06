@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'system_admin' => [
+            'driver' => 'session',
+            'provider' => 'system_admins'
+        ],
         'api' => [
             'driver'   => 'sanctum',
             'provider' => 'users',
@@ -67,6 +71,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'system_admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\SystemAdmin::class,
         ],
 
         // 'users' => [
@@ -96,6 +104,11 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'system_admin' => [
+            'provider' => 'system_admins',
+            'table' => 'password_resets',
+            'expire' => 60,
         ],
     ],
 

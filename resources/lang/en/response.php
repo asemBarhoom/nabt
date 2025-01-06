@@ -1,0 +1,33 @@
+<?php
+
+return [
+    'added_successfully'    => 'Record has been added successfully',
+    'updated_successfully'  => 'Record has been updated successfully',
+    'deleted_successfully'  => 'Record has been deleted successfully',
+    'trashed_successfully'  => 'Record has been trashed successfully',
+    'restored_successfully' => 'Record has been restored successfully',
+    'not_allowed'           => 'Method not allowed',
+    'not_authorized'        => 'Action not authorized',
+    'not_enabled'           => 'This account is not active.',
+    'not_joined'            => 'You should join the meeting before doing this action',
+    'not_authenticated'     => 'You are not authenticated',
+    'not_verified'          => 'your account has not been verified',
+    'not_found'             => 'Record not found',
+    'user_not_found'        => 'User not found',
+    'wrong_password'        => 'Invalid password',
+    'success'               => 'Success',
+    'failed'                => 'Failed',
+    'code_failed'           => 'Invalid code provided, please request a code again',
+    'login_successfully'    => 'Logged in successfully',
+    'logout_successfully'   => 'Logout successfully',
+    'login_failed'          => 'Login failed!',
+    'must_login'            => 'You must sign in before',
+    'wrong_answers_numbers' => 'All the questions are required.',
+    'edited'                => 'Edited',
+    'you_cannot_apply_actions_because_you_have_been_sent_notification_to_the_recipients' => 'you cannot apply actions because you have been sent notification to the recipients',
+    'audience_role_already_assigned' => 'audience role already assigned',
+    'feedback_was_sent' => 'feedback was sent',
+    'prgram_presentaion_not_finished_yet' => 'Prgram presentaion not finished yet.',
+    'the_total_weight_for_child_objectives_should_not_exceed_100' => 'the total weight for child objectives should not exceed 100',
+    'your_request_will_processing' => 'your request will processing.'
+];

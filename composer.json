@@ -27,7 +27,11 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/Helpers/system.php",
+            "app/Classes/Theme/Metronic.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

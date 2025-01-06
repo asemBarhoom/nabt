@@ -1,0 +1,474 @@
+<?php
+// Header menu
+return [
+
+    'items' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ]
+    ],
+
+    'admins' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('admin_management'),
+            'root' => true,
+            'route' => 'system.admin.index',
+            'new-tab' => false,
+            'module_name' => 'admins',
+        ]
+    ],
+
+
+
+    'areas' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('cities_and_governorates'),
+            'root' => true,
+            'route' => 'system.areas.index',
+            'new-tab' => false,
+            'module_name' => 'areas',
+        ],
+        [
+            'title' => t('add_city_or_governorate'),
+            'root' => true,
+            'route' => 'system.areas.create',
+            'new-tab' => false,
+            'module_name' => 'areas',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'categories' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('categories'),
+            'root' => true,
+            'route' => 'system.categories.index',
+            'new-tab' => false,
+            'module_name' => 'categories',
+        ],
+        [
+            'title' => t('add_category'),
+            'root' => true,
+            'route' => 'system.categories.create',
+            'new-tab' => false,
+            'module_name' => 'categories',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'services' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('services'),
+            'root' => true,
+            'route' => 'system.services.index',
+            'new-tab' => false,
+            'module_name' => 'services',
+        ]
+    ],
+    'testimonials' => [
+        [
+            'title' => t('Our Clients'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('testimonials'),
+            'root' => true,
+            'route' => 'system.testimonials.index',
+            'new-tab' => false,
+            'module_name' => 'testimonials',
+        ]
+    ],
+    'partners' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('partners'),
+            'root' => true,
+            'route' => 'system.partners.index',
+            'new-tab' => false,
+            'module_name' => 'partners',
+        ]
+    ],
+
+
+    'notifications' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('notifications'),
+            'root' => true,
+            'route' => 'system.notifications.index',
+            'new-tab' => false,
+            'module_name' => 'notifications',
+        ],
+        [
+            'title' => t('add_notification'),
+            'root' => true,
+            'route' => 'system.notifications.create',
+            'new-tab' => false,
+            'module_name' => 'notifications',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'users' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('users'),
+            'root' => true,
+            'route' => 'system.users.index',
+            'new-tab' => false,
+            'module_name' => 'users',
+        ],
+    ],
+
+    'products' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('stores'),
+            'root' => true,
+            'route' => 'system.products.index',
+            'new-tab' => false,
+            'module_name' => 'products',
+        ],
+        [
+            'title' => t('store'),
+            'root' => true,
+            'route' => 'system.products.create',
+            'new-tab' => false,
+            'module_name' => 'products',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'products2' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('products'),
+            'root' => true,
+            'route' => 'system.products2.index',
+            'new-tab' => false,
+            'module_name' => 'products2',
+        ],
+        [
+            'title' => t('product'),
+            'root' => true,
+            'route' => 'system.products2.create',
+            'new-tab' => false,
+            'module_name' => 'products2',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'refunds' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('refund_requests'),
+            'root' => true,
+            'route' => 'system.refunds.index',
+            'new-tab' => false,
+            'module_name' => 'refunds',
+        ]
+    ],
+
+    'sizes' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('sizes'),
+            'root' => true,
+            'route' => 'system.sizes.index',
+            'new-tab' => false,
+            'module_name' => 'sizes',
+        ]
+    ],
+
+    'sections' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('categories'),
+            'root' => true,
+            'route' => 'system.sections.index',
+            'new-tab' => false,
+            'module_name' => 'sections',
+        ]
+    ],
+
+    'cruds' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('cruds'),
+            'root' => true,
+            'route' => 'system.cruds.index',
+            'new-tab' => false,
+            'module_name' => 'cruds',
+        ],
+        [
+            'title' => t('add_crud'),
+            'root' => true,
+            'route' => 'system.cruds.create',
+            'new-tab' => false,
+            'module_name' => 'cruds',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'coupons' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('discount_coupons'),
+            'root' => true,
+            'route' => 'system.coupons.index',
+            'new-tab' => false,
+            'module_name' => 'coupons',
+        ]
+    ],
+
+    'branches' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('branch_management'),
+            'root' => true,
+            'route' => 'system.branches.index',
+            'new-tab' => false,
+            'module_name' => 'branches',
+        ],
+    ],
+    'countries' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('countries_management'),
+            'root' => true,
+            'route' => 'system.countries.index',
+            'new-tab' => false,
+            'module_name' => 'countries',
+        ],
+    ],
+
+    'containers' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('containers_management'),
+            'root' => true,
+            'route' => 'system.containers.index',
+            'new-tab' => false,
+            'module_name' => 'containers',
+        ],
+    ],
+    'beneficiaries' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('beneficiaries_management'),
+            'root' => true,
+            'route' => 'system.beneficiaries.index',
+            'new-tab' => false,
+            'module_name' => 'beneficiaries',
+        ],
+    ],
+    'shipments' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('shipments_management'),
+            'root' => true,
+            'route' => 'system.shipments.index',
+            'new-tab' => false,
+            'module_name' => 'shipments',
+        ],
+    ],
+
+    'offers' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('offers'),
+            'root' => true,
+            'route' => 'system.offers.index',
+            'new-tab' => false,
+            'module_name' => 'offers',
+        ]
+    ],
+
+    'shops' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('stores'),
+            'root' => true,
+            'route' => 'system.shops.index',
+            'new-tab' => false,
+            'module_name' => 'shops',
+        ]
+    ],
+
+    'posts' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('blog'),
+            'root' => true,
+            'route' => 'system.posts.index',
+            'new-tab' => false,
+            'module_name' => 'posts',
+        ]
+    ],
+
+    'colors' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('colors'),
+            'root' => true,
+            'route' => 'system.colors.index',
+            'new-tab' => false,
+            'module_name' => 'colors',
+        ]
+    ],
+
+    'shipping' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('shipping_method'),
+            'root' => true,
+            'route' => 'system.shipping.index',
+            'new-tab' => false,
+            'module_name' => 'shipping',
+        ]
+    ],
+    'flight_cargos' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('flight_cargos'),
+            'root' => true,
+            'route' => 'system.flight_cargos.index',
+            'new-tab' => false,
+            'module_name' => 'flight_cargos',
+        ]
+    ],
+];

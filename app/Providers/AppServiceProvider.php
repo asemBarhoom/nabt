@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +24,92 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Blade::directive('old', function ($name,$def='') {
+            return '<?php
+
+                  echo old('.$name.' ,"'.$def.'");
+
+
+                 ?>';
+        });
+        Blade::directive('cando',function($text){
+            return '<?php
+
+                  if(\Auth::guard("system_admin")->user()->hasRole('.$text.')):
+
+                 ?>';
+        });
+        Blade::directive('elsecando', function () {
+            return '<?php else: ?>';
+        });
+        Blade::directive('endcando', function () {
+            return '<?php endif ?>';
+        });
+        Blade::directive('show_error', function ($name='',$bag='') {
+
+            if($bag){
+                return '
+            <?php
+
+
+                if ($errors->'.$bag.'->has('.$name.')){
+                    echo \'<span class="help-block has-error"> <strong>\'.$errors->'.$bag.'->first('.$name.').\'</strong></span>\'  ;
+                }
+
+
+            ?>';
+
+            }else{
+                return '
+            <?php
+
+
+                if ($errors->has('.$name.')){
+                    echo \'<span class="help-block has-error"> <strong>\'.$errors->first('.$name.').\'</strong></span>\'  ;
+                }
+
+
+            ?>';
+            }
+
+
+        });
+        Blade::directive('has_error', function ($name='',$bag='') {
+            if($bag){
+                return '
+            <?php
+
+                if ($errors->'.$bag.'->has('.$name.')){
+                   echo "has_error"  ;
+                }
+            ?>';
+
+            }else{
+
+                return '
+            <?php
+
+
+                if ($errors->has('.$name.')){
+                    echo "has_error"  ;
+                }
+
+
+            ?>';
+            }
+
+        });
+
+
+        Blade::include('components.input', 'input');
+        Blade::include('components.area', 'area');
+        Blade::include('components.area_editor', 'area_editor');
+        Blade::include('components.multiupload_create', 'multiupload_create');
+        Blade::include('components.multiupload_update', 'multiupload_update');
+        Blade::include('components.select', 'select');
+        Blade::include('components.selectArr', 'selectArr');
+        Blade::include('components.switch', 'switch');
+        Blade::include('components.upload_image', 'upload');
+
     }
 }
