@@ -37,7 +37,7 @@ class DestinationResource extends JsonResource
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'images' => ImageCollection::make($this->images),
             'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),
-            'isFavorited' => $this->isFavoritedBy(auth()->user()),
+            'isFavorited' => $this->resource->isFavoritedBy(auth()->user()),
         ];
     }
 }

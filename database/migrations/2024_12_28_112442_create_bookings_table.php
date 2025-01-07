@@ -22,6 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('destination_id')->nullable();
             $table->unsignedBigInteger('accommodation_id')->nullable();
+            $table->unsignedBigInteger('tourevent_id')->nullable();
             $table->date('booking_date');
             $table->time('arrival_time');
             $table->integer('num_adults');
@@ -48,6 +49,11 @@ return new class extends Migration
             $table->foreign('accommodation_id')
                 ->references('id')
                 ->on('accommodations')
+                ->cascadeOnDelete();
+
+            $table->foreign('tourevent_id')
+                ->references('id')
+                ->on('tourevents')
                 ->cascadeOnDelete();
 
             $table->timestamps();

@@ -17,6 +17,7 @@ class Booking extends Model
         'user_id',
         'destination_id',
         'accommodation_id',
+        'tourevent_id',
         'booking_date',
         'arrival_time',
         'num_adults',
@@ -60,5 +61,13 @@ class Booking extends Model
     public function events()
     {
         return $this->belongsToMany(Event::class, 'booking_events');
+    }
+
+    /**
+     * Get the tourevent associated with the booking.
+     */
+    public function tourevent(): BelongsTo
+    {
+        return $this->belongsTo(Tourevent::class);
     }
 }

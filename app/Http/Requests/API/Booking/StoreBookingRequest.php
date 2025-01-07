@@ -31,6 +31,7 @@ class StoreBookingRequest extends FormRequest
         return [
             'destination_id' => 'required|exists:destinations,id',
             'accommodation_id' => 'required|exists:accommodations,id',
+            'tourevent_id' => 'required|exists:tourevents,id',
             'booking_date' => 'required|date|after_or_equal:' . now()->addDays(7)->toDateString(),
             'arrival_time' => 'required|date_format:H:i:s',
             'num_adults' => 'required|integer|min:1',
