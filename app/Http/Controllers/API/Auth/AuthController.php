@@ -109,7 +109,7 @@ class AuthController extends Controller
             $user = auth()->user();
             $user->update([
                 'country_id'=>$request->country_id ,
-                'city_id'=>$request->country_id ,
+                'city_id'=>$request->city_id ,
                 'address'=>$request->address
             ]);
             return Response::respondSuccess(Response::SUCCESS, new UserProfileResource($user));
