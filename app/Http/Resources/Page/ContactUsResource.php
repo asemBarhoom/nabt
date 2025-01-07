@@ -30,6 +30,7 @@ class ContactUsResource extends JsonResource
             'lat' => $this->valueOf('lat'),
             'lng' => $this->valueOf('lng'),
             'footer' => $this->valueOf('contact_us_footer_'.$lang),
+            'footer_body' => $this->valueOf('contact_us_body_footer_'.$lang),
 
         ];    }
 }
