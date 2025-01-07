@@ -12,20 +12,23 @@
 */
 
 
+use App\Http\Controllers\Auth\SystemAdminLoginController;
 use App\Http\Controllers\SystemAdminController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\MediaController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 //======================================================================================================
 //                   Others ROUTES
 //======================================================================================================
-Route::post('uploadFile', "MediaController@saveFileJson");
-Route::post('uploadVideo', "MediaController@saveVideoJson");
-Route::post('uploadFiles', "MediaController@saveMultiFileJson");
-Route::post('uploadFilesNew', "MediaController@saveMultiFileJsonNew");
+Route::post('uploadFile', [MediaController::class,'saveFileJson']);
+Route::post('uploadFile', [MediaController::class,'saveVideoJson']);
+Route::post('uploadFile', [MediaController::class,'saveMultiFileJson']);
+Route::post('uploadFile', [MediaController::class,'saveMultiFileJsonNew']);
 
 
 Route::get('/lang/', [WebsiteController::class,'setLanguage'])->name('setLanguage');
@@ -62,9 +65,9 @@ Route::group([
 //                 SYSTEM ADMIN ROUTES
 //===============================================================
         Route::prefix('admin/system')->group(function () {
-            Route::get('/login', 'Auth\SystemAdminLoginController@showLoginForm')->middleware(['guest:system_admin'])->name('system_admin.showLogin');
-            Route::post('/login', 'Auth\SystemAdminLoginController@login')->middleware(['guest:system_admin'])->name('system_admin.login');
-            Route::get('/logout', 'Auth\SystemAdminLoginController@logout')->middleware(['auth:system_admin', 'active','delete_temp'])->name('system_admin.logout');
+            Route::get('/login', [SystemAdminLoginController::class,'showLoginForm'])->middleware(['guest:system_admin'])->name('system_admin.showLogin');
+            Route::post('/login', [SystemAdminLoginController::class,'login'])->middleware(['guest:system_admin'])->name('system_admin.login');
+            Route::get('/logout', [SystemAdminLoginController::class,'logout'])->middleware(['auth:system_admin', 'active','delete_temp'])->name('system_admin.logout');
         });
 
         Route::prefix('admin/system')->middleware(['auth:system_admin'])->group(function () {
@@ -118,6 +121,20 @@ Route::group([
                 Route::post('do_update', 'AdminsController@profile')->name('system.admin.do.profile');
 
             });
+
+    //======================================================================================================
+
+    Route::prefix('categories/')->middleware(['checkRule:view,categories'])->group(function () {
+        Route::get('', [CategoryController::class,'index'])->name('system.categories.index');
+        Route::get('create', [CategoryController::class,'create'])->name('system.categories.create')->middleware(['checkRule:add,categories']);
+        Route::post('store', [CategoryController::class,'store'])->name('system.categories.store')->middleware(['checkRule:add,categories']);//
+        Route::get('/{id}/edit', [CategoryController::class,'edit'])->name('system.categories.edit')->middleware(['checkRule:edit,categories']);
+        Route::post('update/{id}', [CategoryController::class,'update'])->name('system.categories.update')->middleware(['checkRule:edit,categories']);
+        Route::post('delete', [CategoryController::class,'delete'])->name('system.categories.delete')->middleware(['checkRule:delete,categories']);
+        Route::post('createJson', [CategoryController::class,'createJson'])->name('system.categories.createJson')->middleware(['checkRule:add,categories']);//
+        Route::post('activate', [CategoryController::class,'activate'])->name('system.categories.activate')->middleware(['checkRule:activate,categories']);
+        Route::post('deactivate', [CategoryController::class,'deactivate'])->name('system.categories.deactivate')->middleware(['checkRule:activate,categories']);
+    });
 
 
 

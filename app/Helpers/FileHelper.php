@@ -82,7 +82,9 @@ class FileHelper
 
     public static function getFullPathSingleAsset($file)
     {
-        return url('storage/' . $file);
+        return Storage::exists('public/'.$file)
+            ? url('storage/' . $file)
+            : url('avatar.png');
     }
 
 

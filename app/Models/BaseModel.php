@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 class BaseModel extends Model
 {
     use HasTranslations,SharedTrait;
+    protected $appends = ['can_del'];
 
 
 
@@ -31,6 +32,11 @@ class BaseModel extends Model
         return Attribute::make(
             get: fn($value) => Carbon::parse($value)->format(Constant::RESPONSE_DATE_FORMAT),
         );
+    }
+
+    public function getCanDelAttribute()
+    {
+        return true;
     }
 
 }
