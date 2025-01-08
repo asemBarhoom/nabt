@@ -76,6 +76,101 @@ return [
             'module_action' => 'add',
         ],
     ],
+    'destinations' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('destinations'),
+            'root' => true,
+            'route' => 'system.destinations.index',
+            'new-tab' => false,
+            'module_name' => 'destinations',
+        ],
+        [
+            'title' => t('add_destination'),
+            'root' => true,
+            'route' => 'system.destinations.create',
+            'new-tab' => false,
+            'module_name' => 'destinations',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'testimonials' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('testimonials'),
+            'root' => true,
+            'route' => 'system.testimonials.index',
+            'new-tab' => false,
+            'module_name' => 'testimonials',
+        ],
+        [
+            'title' => t('add_testimonial'),
+            'root' => true,
+            'route' => 'system.testimonials.create',
+            'new-tab' => false,
+            'module_name' => 'testimonials',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'images' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('images'),
+            'root' => true,
+            'route' => 'system.images.index',
+            'new-tab' => false,
+            'module_name' => 'images',
+        ],
+        [
+            'title' => t('add_image'),
+            'root' => true,
+            'route' => 'system.images.create',
+            'new-tab' => false,
+            'module_name' => 'images',
+            'module_action' => 'add',
+        ],
+    ],
+
+    'favorites' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('favorites'),
+            'root' => true,
+            'route' => 'system.favorites.index',
+            'new-tab' => false,
+            'module_name' => 'favorites',
+        ],
+        [
+            'title' => t('add_favorite'),
+            'root' => true,
+            'route' => 'system.favorites.create',
+            'new-tab' => false,
+            'module_name' => 'favorites',
+            'module_action' => 'add',
+        ],
+    ],
 
     'services' => [
         [
@@ -92,19 +187,34 @@ return [
             'module_name' => 'services',
         ]
     ],
-    'testimonials' => [
+    'accommodations' => [
         [
-            'title' => t('Our Clients'),
+            'title' => t('dashboard'),
             'root' => true,
             'route' => 'system_admin.dashboard',
             'new-tab' => false,
         ],
         [
-            'title' => t('testimonials'),
+            'title' => t('accommodations'),
             'root' => true,
-            'route' => 'system.testimonials.index',
+            'route' => 'system.accommodations.index',
             'new-tab' => false,
-            'module_name' => 'testimonials',
+            'module_name' => 'accommodations',
+        ]
+    ],
+    'tourevents' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('tourevents'),
+            'root' => true,
+            'route' => 'system.tourevents.index',
+            'new-tab' => false,
+            'module_name' => 'tourevents',
         ]
     ],
     'partners' => [
