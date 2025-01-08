@@ -27,7 +27,7 @@ class LoginRequest extends FormRequest
             'phone' => [
                 'required',
                 'string',
-                'exists:users,phone'
+//                'exists:users,phone'
             ],
         ];
     }
