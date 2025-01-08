@@ -19,6 +19,13 @@ return [
             'module_name' => 'admins',
         ],
         [
+            'title' => t('categories'),
+            'icon' => 'fas fa-list-alt',
+            'route' => 'system.categories.index',
+            'new-tab' => false,
+            'module_name' => 'categories',
+        ],
+        [
             'title' => t('settings'),
             'icon' => 'fas fa-cogs',
             'route' => 'system.settings.index',
