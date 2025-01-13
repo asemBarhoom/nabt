@@ -197,6 +197,63 @@ class TestimonialSeeder extends Seeder
                 'status' => true,
                 'testimonialsable_id' => 1, // ID of the related model
                 'testimonialsable_type' => 'App\Models\Accommodation', // Related model's class
+            ],
+            [
+                'name' => [
+                    'ar' => 'ليلى الزهراني',
+                    'en' => 'Layla Al-Zahrani'
+                ],
+                'position' => [
+                    'ar' => 'مسافرة',
+                    'en' => 'Traveler'
+                ],
+                'body' => [
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
+                    'en' => 'I loved every small detail of the trip.'
+                ],
+                'rating' => 4.7,
+                'image' => 'testimonials.png',
+                'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Tourevent', // Related model's class
+            ],
+            [
+                'name' => [
+                    'ar' => 'عبد العزيز المطيري',
+                    'en' => 'Abdulaziz Al-Mutairi'
+                ],
+                'position' => [
+                    'ar' => 'مسافر',
+                    'en' => 'Traveler'
+                ],
+                'body' => [
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
+                    'en' => 'The best travel experience for me and my family.'
+                ],
+                'rating' => 5.0,
+                'image' => 'testimonials.png',
+                'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Tourevent', // Related model's class
+            ],
+            [
+                'name' => [
+                    'ar' => 'ريم العنزي',
+                    'en' => 'Reem Al-Anazi'
+                ],
+                'position' => [
+                    'ar' => 'سائحة',
+                    'en' => 'Tourist'
+                ],
+                'body' => [
+                    'ar' => "كانت الرحلة رائعة بكل المقاييس! التنظيم كان ممتازًا، والمرشد السياحي كان محترفًا وودودًا للغاية. استمتعنا بالمناظر الطبيعية الخلابة والأنشطة المميزة التي أضافت طابعًا خاصًا للرحلة. بالتأكيد ستكون هذه التجربة في قائمة ذكرياتي المفضلة، وأتطلع لتكرارها قريبًا!",
+                    'en' => 'A great mix of comfort and adventure.'
+                ],
+                'rating' => 4.9,
+                'image' => 'testimonials.png',
+                'status' => true,
+                'testimonialsable_id' => 1, // ID of the related model
+                'testimonialsable_type' => 'App\Models\Tourevent', // Related model's class
             ]
         ];
 

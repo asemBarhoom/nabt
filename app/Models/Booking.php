@@ -2,18 +2,20 @@
 
 namespace App\Models;
 
+use App\Models\Traits\SharedTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
-    use HasFactory;
+    use HasFactory,SharedTrait;
 
-    public array $translatable = [];
+    public array $translatable = ['trip_duration'];
 
     protected $fillable = [
         'reservation_number',
+        'trip_duration',
         'user_id',
         'destination_id',
         'accommodation_id',

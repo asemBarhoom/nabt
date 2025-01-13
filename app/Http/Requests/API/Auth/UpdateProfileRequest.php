@@ -3,6 +3,7 @@
 namespace App\Http\Requests\API\Auth;
 
 use App\Http\Requests\BaseRequest as FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -27,13 +28,18 @@ class UpdateProfileRequest extends FormRequest
             'phone' => [
                 'required',
                 'string',
-                'unique:users,phone,' . $this->user()->id,
+                Rule::unique('users', 'phone')->ignore(auth()->guard('api')->user()->id),
+            ],
+            'prefix' => [
+                'required',
+                'string',
             ],
             'email' => [
                 'nullable',
                 'email',
                 'string',
-                'unique:users,email,' . $this->user()->id,
+                Rule::unique('users', 'email')->ignore(auth()->guard('api')->user()->id),
+
             ],
             'dob' => [
                 'nullable',
@@ -50,7 +56,7 @@ class UpdateProfileRequest extends FormRequest
                 'string',
                 'min:4',
                 'max:255',
-                'unique:users,name,' . $this->user()->id,
+                Rule::unique('users', 'name')->ignore(auth()->guard('api')->user()->id),
             ],
         ];
     }

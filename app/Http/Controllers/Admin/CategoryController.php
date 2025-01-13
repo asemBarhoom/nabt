@@ -22,9 +22,13 @@ class CategoryController
     public function index(Request $request)
     {
         $categories = Category::query()
+                        ->withCount('destinations')
             ->when($request->input('name'), function ($query, $name) {
                 $query->where('name->ar', 'LIKE', "%{$name}%")
                     ->orWhere('name->en', 'LIKE', "%{$name}%");
+            })
+            ->when($request->input('category_id'), function ($query, $category_id) {
+                $query->where('id', $category_id);
             })
             ->latest('id')
             ->paginate(15);
@@ -140,16 +144,28 @@ class CategoryController
      */
     public function delete(Request $request)
     {
-        if (is_array($request->id)) {
-            foreach ($request->id as $id) {
-                Category::destroy($id);
+        $ids = (array) $request->id; // Ensure $ids is always an array
+        $failedToDelete = [];
+
+        foreach ($ids as $id) {
+            $category = Category::find($id);
+            if ($category && $category->can_del) {
+                $category->delete();
+            } else {
+                $failedToDelete[] = $id; // Track IDs that couldn't be deleted
             }
-            return ['done' => 1];
-        } else {
-            $isDeleted = Category::destroy($request->id);
-            return ['done' => $isDeleted];
         }
+
+        return [
+            'done' => count($failedToDelete) < count($ids) ? 1 : 0, // Partial or full success
+            'failed' => $failedToDelete,
+            'message' => count($failedToDelete)
+                ? 'Some categories could not be deleted due to associated destinations.'
+                : 'Categories deleted successfully.',
+        ];
     }
+
+
 
     public function activate(Request $request)
     {

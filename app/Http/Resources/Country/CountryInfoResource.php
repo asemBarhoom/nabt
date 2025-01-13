@@ -21,6 +21,8 @@ class CountryInfoResource extends JsonResource
             'name' => object_get($this,'name'),
             'alpha_3' => object_get($this,'alpha_3'),
             'cities' => CityCollection::make($this->cities),
+            'flag' => !empty($this->flag) ? FileHelper::getFullPathSingleAsset(object_get($this , 'flag')) : null,
+            'prefix' => object_get($this,'prefix'),
         ];
     }
 }

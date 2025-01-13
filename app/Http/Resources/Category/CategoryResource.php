@@ -18,6 +18,7 @@ class CategoryResource extends JsonResource
         return [
             'id' => object_get($this,'id'),
             'name' => object_get($this,'name'),
+            'categoriable_type' => object_get($this,'categoriable_type'),
             'body' => object_get($this,'body'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
         ];

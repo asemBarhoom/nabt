@@ -18,6 +18,12 @@ use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DestinationController;
+use App\Http\Controllers\Admin\FavoriteController;
+use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\AccommodationController;
+use App\Http\Controllers\Admin\ToureventController;
 use App\Http\Controllers\Admin\MediaController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -25,10 +31,10 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 //======================================================================================================
 //                   Others ROUTES
 //======================================================================================================
-Route::post('uploadFile', [MediaController::class,'saveFileJson']);
-Route::post('uploadFile', [MediaController::class,'saveVideoJson']);
-Route::post('uploadFile', [MediaController::class,'saveMultiFileJson']);
-Route::post('uploadFile', [MediaController::class,'saveMultiFileJsonNew']);
+Route::post('uploadFile', [MediaController::class, 'saveFileJson']);
+Route::post('uploadVideo', [MediaController::class, 'saveVideoJson']);
+Route::post('uploadFiles', [MediaController::class, 'saveMultiFileJson']);
+Route::post('uploadFilesNew', [MediaController::class, 'saveMultiFileJsonNew']);
 
 
 Route::get('/lang/', [WebsiteController::class,'setLanguage'])->name('setLanguage');
@@ -40,11 +46,6 @@ Route::group([
     ]
     , function () {
 
-
-
-        Route::get('', 'WebsiteController@gotoIndex')->name('website.home2');
-
-        Route::get('home', 'WebsiteController@index')->name('website.home');
 
 
 
@@ -90,10 +91,10 @@ Route::group([
 
             });
 
-            Route::get('getNotifications', 'SettingController@getNotifications')->name('system_admin.get.notifications');
-            Route::get('quick-search', 'SystemAdminController@quick-search')->name('system_admin.quick-search');
+            Route::get('getNotifications', [SettingController::class,'getNotifications'])->name('system_admin.get.notifications');
+            Route::get('quick-search', [SystemAdminController::class,'quick-search'])->name('system_admin.quick-search');
 
-            Route::get('sh/{id}', 'WebsiteController@shortLink')->name('short_link');
+            Route::get('sh/{id}', [WebsiteController::class,'shortLink'])->name('short_link');
 
 
 //=====================================================================================================
@@ -107,18 +108,17 @@ Route::group([
                 Route::get('show_change_permission/{id}', [AdminsController::class,'showPermissionView'])->name('system.admin.permission');
                 Route::post('change_permission', [AdminsController::class,'changePermission'])->name('system.admin.do.permission');
                 Route::get('{id}/update', [AdminsController::class,'showUpdateView'])->name('system.admin.update');
-                Route::get('{id}/update', 'AdminsController@showUpdateView')->name('system.admin.update');
-                Route::post('update/{id}', 'AdminsController@Update')->name('system.admin.do.update');
-                Route::get('{id}/password', 'AdminsController@showPasswordView')->name('system.admin.password');
-                Route::post('password/{id}', 'AdminsController@password')->name('system.admin.do.password');
-                Route::post('delete', 'AdminsController@delete')->name('system.admin.delete');
+                Route::post('update/{id}', [AdminsController::class,'Update'])->name('system.admin.do.update');
+                 Route::get('{id}/password', [AdminsController::class,'showPasswordView'])->name('system.admin.password');
+                Route::post('password/{id}', [AdminsController::class,'password'])->name('system.admin.do.password');
+                Route::post('delete', [AdminsController::class,'delete'])->name('system.admin.delete');
             });
             Route::prefix('profile')->group(function () {
-                Route::get('', 'AdminsController@showProfileView')->name('system.admin.profile');
-                Route::get('showpassword', 'AdminsController@showProfilePasswordView')->name('system.admin.profile.password');
-                Route::post('updatepassword', 'AdminsController@profilePassword')->name('system.admin.do.profile.password');
+                Route::get('', [AdminsController::class,'showProfileView'])->name('system.admin.profile');
+                Route::get('showpassword', [AdminsController::class,'showProfilePasswordView'])->name('system.admin.profile.password');
+                Route::post('updatepassword', [AdminsController::class,'profilePassword'])->name('system.admin.do.profile.password');
 
-                Route::post('do_update', 'AdminsController@profile')->name('system.admin.do.profile');
+                Route::post('do_update', [AdminsController::class,'profile'])->name('system.admin.do.profile');
 
             });
 
@@ -136,6 +136,91 @@ Route::group([
         Route::post('deactivate', [CategoryController::class,'deactivate'])->name('system.categories.deactivate')->middleware(['checkRule:activate,categories']);
     });
 
+            //======================================================================================================
+
+            Route::prefix('destinations/')->middleware(['checkRule:view,destinations'])->group(function () {
+                Route::get('', [DestinationController::class,'index'])->name('system.destinations.index');
+                Route::get('create', [DestinationController::class,'create'])->name('system.destinations.create')->middleware(['checkRule:add,destinations']);
+                Route::post('store', [DestinationController::class,'store'])->name('system.destinations.store')->middleware(['checkRule:add,destinations']);//
+                Route::get('/{id}/edit', [DestinationController::class,'edit'])->name('system.destinations.edit')->middleware(['checkRule:edit,destinations']);
+                Route::post('update/{id}', [DestinationController::class,'update'])->name('system.destinations.update')->middleware(['checkRule:edit,destinations']);
+                Route::post('delete', [DestinationController::class,'delete'])->name('system.destinations.delete')->middleware(['checkRule:delete,destinations']);
+                Route::post('createJson', [DestinationController::class,'createJson'])->name('system.destinations.createJson')->middleware(['checkRule:add,destinations']);//
+                Route::post('activate', [DestinationController::class,'activate'])->name('system.destinations.activate')->middleware(['checkRule:activate,destinations']);
+                Route::post('deactivate', [DestinationController::class,'deactivate'])->name('system.destinations.deactivate')->middleware(['checkRule:activate,destinations']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('favorites/')->middleware(['checkRule:view,favorites'])->group(function () {
+                Route::get('', [FavoriteController::class,'index'])->name('system.favorites.index');
+                Route::get('create', [FavoriteController::class,'create'])->name('system.favorites.create')->middleware(['checkRule:add,favorites']);
+                Route::post('store', [FavoriteController::class,'store'])->name('system.favorites.store')->middleware(['checkRule:add,favorites']);//
+                Route::get('/{id}/edit', [FavoriteController::class,'edit'])->name('system.favorites.edit')->middleware(['checkRule:edit,favorites']);
+                Route::post('update/{id}', [FavoriteController::class,'update'])->name('system.favorites.update')->middleware(['checkRule:edit,favorites']);
+                Route::post('delete', [FavoriteController::class,'delete'])->name('system.favorites.delete')->middleware(['checkRule:delete,favorites']);
+                Route::post('createJson', [FavoriteController::class,'createJson'])->name('system.favorites.createJson')->middleware(['checkRule:add,favorites']);//
+                Route::post('activate', [FavoriteController::class,'activate'])->name('system.favorites.activate')->middleware(['checkRule:activate,favorites']);
+                Route::post('deactivate', [FavoriteController::class,'deactivate'])->name('system.favorites.deactivate')->middleware(['checkRule:activate,favorites']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('images/')->middleware(['checkRule:view,images'])->group(function () {
+                Route::get('', [ImageController::class,'index'])->name('system.images.index');
+                Route::get('create', [ImageController::class,'create'])->name('system.images.create')->middleware(['checkRule:add,images']);
+                Route::post('store', [ImageController::class,'store'])->name('system.images.store')->middleware(['checkRule:add,images']);//
+                Route::get('/{id}/edit', [ImageController::class,'edit'])->name('system.images.edit')->middleware(['checkRule:edit,images']);
+                Route::post('update/{id}', [ImageController::class,'update'])->name('system.images.update')->middleware(['checkRule:edit,images']);
+                Route::post('delete', [ImageController::class,'delete'])->name('system.images.delete')->middleware(['checkRule:delete,images']);
+                Route::post('createJson', [ImageController::class,'createJson'])->name('system.images.createJson')->middleware(['checkRule:add,images']);//
+                Route::post('activate', [ImageController::class,'activate'])->name('system.images.activate')->middleware(['checkRule:activate,images']);
+                Route::post('deactivate', [ImageController::class,'deactivate'])->name('system.images.deactivate')->middleware(['checkRule:activate,images']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('testimonials/')->middleware(['checkRule:view,testimonials'])->group(function () {
+                Route::get('', [TestimonialController::class,'index'])->name('system.testimonials.index');
+                Route::get('create', [TestimonialController::class,'create'])->name('system.testimonials.create')->middleware(['checkRule:add,testimonials']);
+                Route::post('store', [TestimonialController::class,'store'])->name('system.testimonials.store')->middleware(['checkRule:add,testimonials']);//
+                Route::get('/{id}/edit', [TestimonialController::class,'edit'])->name('system.testimonials.edit')->middleware(['checkRule:edit,testimonials']);
+                Route::post('update/{id}', [TestimonialController::class,'update'])->name('system.testimonials.update')->middleware(['checkRule:edit,testimonials']);
+                Route::post('delete', [TestimonialController::class,'delete'])->name('system.testimonials.delete')->middleware(['checkRule:delete,testimonials']);
+                Route::post('createJson', [TestimonialController::class,'createJson'])->name('system.testimonials.createJson')->middleware(['checkRule:add,testimonials']);//
+                Route::post('activate', [TestimonialController::class,'activate'])->name('system.testimonials.activate')->middleware(['checkRule:activate,testimonials']);
+                Route::post('deactivate', [TestimonialController::class,'deactivate'])->name('system.testimonials.deactivate')->middleware(['checkRule:activate,testimonials']);
+            });
+
+
+            //======================================================================================================
+
+            Route::prefix('accommodations/')->middleware(['checkRule:view,accommodations'])->group(function () {
+                Route::get('', [AccommodationController::class,'index'])->name('system.accommodations.index');
+                Route::get('create', [AccommodationController::class,'create'])->name('system.accommodations.create')->middleware(['checkRule:add,accommodations']);
+                Route::post('store', [AccommodationController::class,'store'])->name('system.accommodations.store')->middleware(['checkRule:add,accommodations']);//
+                Route::get('/{id}/edit', [AccommodationController::class,'edit'])->name('system.accommodations.edit')->middleware(['checkRule:edit,accommodations']);
+                Route::post('update/{id}', [AccommodationController::class,'update'])->name('system.accommodations.update')->middleware(['checkRule:edit,accommodations']);
+                Route::post('delete', [AccommodationController::class,'delete'])->name('system.accommodations.delete')->middleware(['checkRule:delete,accommodations']);
+                Route::post('createJson', [AccommodationController::class,'createJson'])->name('system.accommodations.createJson')->middleware(['checkRule:add,accommodations']);//
+                Route::post('activate', [AccommodationController::class,'activate'])->name('system.accommodations.activate')->middleware(['checkRule:activate,accommodations']);
+                Route::post('deactivate', [AccommodationController::class,'deactivate'])->name('system.accommodations.deactivate')->middleware(['checkRule:activate,accommodations']);
+            });
+
+
+            //======================================================================================================
+
+            Route::prefix('tourevents/')->middleware(['checkRule:view,tourevents'])->group(function () {
+                Route::get('', [ToureventController::class,'index'])->name('system.tourevents.index');
+                Route::get('create', [ToureventController::class,'create'])->name('system.tourevents.create')->middleware(['checkRule:add,tourevents']);
+                Route::post('store', [ToureventController::class,'store'])->name('system.tourevents.store')->middleware(['checkRule:add,tourevents']);//
+                Route::get('/{id}/edit', [ToureventController::class,'edit'])->name('system.tourevents.edit')->middleware(['checkRule:edit,tourevents']);
+                Route::post('update/{id}', [ToureventController::class,'update'])->name('system.tourevents.update')->middleware(['checkRule:edit,tourevents']);
+                Route::post('delete', [ToureventController::class,'delete'])->name('system.tourevents.delete')->middleware(['checkRule:delete,tourevents']);
+                Route::post('createJson', [ToureventController::class,'createJson'])->name('system.tourevents.createJson')->middleware(['checkRule:add,tourevents']);//
+                Route::post('activate', [ToureventController::class,'activate'])->name('system.tourevents.activate')->middleware(['checkRule:activate,tourevents']);
+                Route::post('deactivate', [ToureventController::class,'deactivate'])->name('system.tourevents.deactivate')->middleware(['checkRule:activate,tourevents']);
+            });
 
 
         });

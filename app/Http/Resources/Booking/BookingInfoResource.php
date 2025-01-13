@@ -22,6 +22,7 @@ class BookingInfoResource extends JsonResource
         return [
             'id' => $this->id,
             'reservation_number' => $this->reservation_number,
+            'trip_duration' => $this->trip_duration,
             'user' => UserProfileResource::make($this->user),
             'destination' => DestinationResource::make($this->destination),
             'accommodation' => AccommodationResource::make($this->accommodation),
@@ -40,6 +41,7 @@ class BookingInfoResource extends JsonResource
             'food_allergies' => $this->food_allergies,
             'vehicle_type' => $this->vehicle_type,
             'vehicle_description' => $this->vehicle_description,
+            'price' => 4000,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

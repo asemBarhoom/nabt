@@ -13,13 +13,14 @@ use App\Http\Resources\Destination\DestinationResource;
 use App\Http\Resources\Favorite\FavoriteInfoResource;
 use App\Http\Resources\Favorite\FavoriteCollection;
 use App\Models\Favorite;
+use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
-    public function index(FilterRequest $request){
+    public function index(Request $request){
         try{
             $favorites = Favorite::filter()->order()->paginate($request->header('perpage'));
-            return Response::respondSuccess(Response::SUCCESS, new DestinationCollection($favorites));
+            return Response::respondSuccess(Response::SUCCESS, new FavoriteCollection($favorites));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }
@@ -32,7 +33,7 @@ class FavoriteController extends Controller
             $user = auth()->user();
             $favorableModel = $request->favorable_type::findOrFail($request->favorable_id);
             $favorableModel->addFavorite($user);
-            return Response::respondSuccess(Response::ADDED_SUCCESSFULLY, new DestinationResource($favorableModel));
+            return Response::respondSuccess(Response::ADDED_SUCCESSFULLY, new FavoriteInfoResource($favorableModel));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }

@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Seeders;
+use App\Models\Booking;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -9,9 +10,10 @@ class BookingSeeder extends Seeder
 {
     public function run()
     {
-        DB::table('bookings')->insert([
+        $bookings = [
             [
                 'reservation_number' => 'T24-587',
+                'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
                 'user_id' => 1,
                 'destination_id' => 1,
                 'accommodation_id' => 1,
@@ -32,6 +34,7 @@ class BookingSeeder extends Seeder
             ],
             [
                 'reservation_number' => 'T24-588',
+                'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
                 'user_id' => 2,
                 'destination_id' => 2,
                 'accommodation_id' => 2,
@@ -52,6 +55,7 @@ class BookingSeeder extends Seeder
             ],
             [
                 'reservation_number' => 'T24-589',
+                'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
                 'user_id' => 3,
                 'destination_id' => 3,
                 'accommodation_id' => 3,
@@ -70,6 +74,10 @@ class BookingSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
-        ]);
+        ];
+
+        collect($bookings)->map(function ($item) {
+            Booking::query()->create($item);
+        });
     }
 }

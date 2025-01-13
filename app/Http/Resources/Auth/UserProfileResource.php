@@ -4,6 +4,8 @@ namespace App\Http\Resources\Auth;
 
 use App\Helpers\FileHelper;
 use App\Http\Resources\Country\CountryResource;
+use App\Models\Country;
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserProfileResource extends JsonResource
@@ -21,6 +23,8 @@ class UserProfileResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
+            'prefix'              => $this->prefix,
+            'flag'              => Country::getFlagByPrefix($this->prefix),
             'phone'              => $this->phone,
             'age'              => $this->age,
             'country_id'              => $this->country_id,
@@ -30,7 +34,7 @@ class UserProfileResource extends JsonResource
             'address'              => $this->address,
             'job'              => $this->job,
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleDefaultAsset(object_get($this , 'image')) : null,
-            'dob'             => $this->dob,
+            'dob' => $this->dob ? Carbon::parse($this->dob)->format('Y-m-d') : null,
             'email'             => $this->email,
         ];
     }

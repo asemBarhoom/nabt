@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+
       {{ Metronic::printAttrs('html') }}
       {{ Metronic::printClasses('html') }}
       dir="{{ get_layout_content()['self']['rtl'] ? 'rtl' : 'ltr' }}"
@@ -7,6 +8,7 @@
 
 <head>
     <meta charset="utf-8"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     {{-- Title Section --}}
     <title>{{ env('APP_NAME') }} | @yield('title', $page_title ?? '')</title>

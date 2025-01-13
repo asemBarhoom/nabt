@@ -27,6 +27,7 @@ class AccommodationResource extends JsonResource
             'cafes' => object_get($this,'cafes'),
             'wifi' => object_get($this,'wifi'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'isFavorited' => $this->resource->isFavoritedBy(auth()->guard('api')->user()),
         ];
     }
 }

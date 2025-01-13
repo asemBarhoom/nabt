@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'domain' => env('TELESCOPE_DOMAIN'),
+    'domain' => env('TELESCOPE_DOMAIN', '3sem.tech'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'path' => env('TELESCOPE_PATH', 'telescope'),
+    'path' => env('TELESCOPE_PATH', 'beta/public/telescope'), // Changed path
 
     /*
     |--------------------------------------------------------------------------

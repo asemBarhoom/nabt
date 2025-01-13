@@ -31,6 +31,7 @@ class AccommodationInfoResource extends JsonResource
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'images' => ImageCollection::make($this->images),
             'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),
+            'isFavorited' => $this->resource->isFavoritedBy(auth()->guard('api')->user()),
 
         ];
     }

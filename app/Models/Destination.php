@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Categoriable;
 use App\Models\Traits\Favorable;
 use App\Models\Traits\Imageable;
 use App\Models\Traits\Testimonialsable;
@@ -10,7 +11,7 @@ use App\Models\BaseModel as Model;
 
 class Destination extends Model
 {
-    use HasFactory,Favorable,Imageable,Testimonialsable;
+    use HasFactory,Favorable,Imageable,Testimonialsable,Categoriable;
     public array $translatable = [
         'name',
         'body',
@@ -38,10 +39,6 @@ class Destination extends Model
 
     protected $appends = ['rating'];
 
-    public function category()
-    {
-        return $this->belongsTo(Category::class);
-    }
 
     // Accessor to calculate average rating
     public function getRatingAttribute()

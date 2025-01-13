@@ -11,7 +11,6 @@ trait SharedTrait{
     public function scopeFilter($query, $filterName = null){
 
         $filters = request($filterName??Constant::FILTER, []);
-
         $filterOperator = request('filter_operator', '=');
         $query->when(is_numeric(request()->input('filters.is_active',null)), function ($q) {
             return $q->where('is_active',(int)request()->input('filters.is_active'));
@@ -22,7 +21,6 @@ trait SharedTrait{
             foreach ($filters as $field => $value) {
 
                 if ($value == Constant::NULL)
-
                     $query->whereNull($field);
                 elseif ($value == Constant::NOT_NULL)
                     $query->whereNotNull($field);

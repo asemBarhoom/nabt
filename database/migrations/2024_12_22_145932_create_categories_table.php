@@ -19,8 +19,11 @@ return new class extends Migration
             $table->json('body')->nullable();
             $table->string('image')->nullable();
             $table->boolean('status')->default(true);
+            $table->string('categoriable_type')->nullable();  // Type of model that belongs to this category
             $table->softDeletes();
             $table->timestamps();
+            $table->index(['categoriable_type']);
+
         });
     }
 

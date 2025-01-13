@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Tourevent;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Image\ImageCollection;
+use App\Http\Resources\Testimonial\TestimonialCollection;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ToureventResource extends JsonResource
@@ -25,6 +27,9 @@ class ToureventResource extends JsonResource
             'rating' => number_format(object_get($this, 'rating'), 2),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
+            'images' => ImageCollection::make($this->images),
+            'testimonials' => TestimonialCollection::make($this->testimonials()->paginate($request->header('perpage'))),
+            'isFavorited' => $this->resource->isFavoritedBy(auth()->guard('api')->user()),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Favorable;
 use App\Models\Traits\Imageable;
 use App\Models\Traits\SharedTrait;
 use App\Models\Traits\Testimonialsable;
@@ -10,7 +11,7 @@ use App\Models\BaseModel as Model;
 
 class Accommodation extends Model
 {
-    use HasFactory,SharedTrait,Imageable,Testimonialsable;
+    use HasFactory,SharedTrait,Imageable,Testimonialsable,Favorable;
     public array $translatable = ['title', 'body'];
     protected $appends = ['rating'];
 

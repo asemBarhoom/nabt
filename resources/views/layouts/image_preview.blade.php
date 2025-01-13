@@ -4,7 +4,7 @@
 
 <div class="form-group">
     <label for="image_input_{{ $id ?? 'default' }}" class="font-weight-bold">
-        {{$label}}
+        {{@$label}}
     </label>
     <small class="form-text text-muted">Click the image to upload a new one. Accepted formats: PNG, JPG, JPEG. Max size: 2MB.</small>
 

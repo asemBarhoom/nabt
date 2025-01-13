@@ -19,6 +19,8 @@ class CountryResource extends JsonResource
         return [
             'id' => object_get($this,'id'),
             'name' => object_get($this,'name'),
+            'flag' => !empty($this->flag) ? FileHelper::getFullPathSingleAsset(object_get($this , 'flag')) : null,
+            'prefix' => object_get($this,'prefix'),
             'alpha_3' => object_get($this,'alpha_3'),
 //            'cities' => CityCollection::make($this->cities),
         ];

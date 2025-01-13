@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use App\Helpers\Response;
+use App\Helpers\ResponseStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\API\Auth\LoginRequest;
 use App\Http\Requests\API\Auth\UpdateProfileRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\API\Auth\UpdateUserImageRequest;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\FileHelper;
@@ -18,17 +20,37 @@ use App\Helpers\FileHelper;
 class AuthController extends Controller
 {
 
-    public function login(LoginRequest $request){
-        try{
+    public function login(LoginRequest $request)
+    {
+        try {
             $data = $request->validated();
-            $user = User::where('phone', $data['phone'])->first();
+
+            // Check if the user with the provided phone exists
+            $user = User::query()
+            ->where('prefix', $data['prefix'])
+            ->where('phone', $data['phone'])
+                ->first();
+
+            // If the user does not exist, create a new user
+            if (!$user) {
+                $user = User::create([
+                    'name' => $data['phone'],
+                    'prefix' => $data['prefix'],
+                    'phone' => $data['phone'],
+                    'email' => $data['phone'],
+                    'country_id' => $data['country_id'],
+                    'password' => $data['phone'],
+                    // Add any other required fields, like password or name if necessary
+                ]);
+            }
 
             return Response::respondSuccess(Response::LOGIN_SUCCESSFULLY, new LoginResource($user));
-//            return Response::respondError(Response::LOGIN_FAILED, ResponseStatus::VALIDATION_ERROR);
         } catch (\Exception $e) {
+//            return Response::respondError(Response::LOGIN_FAILED, ResponseStatus::VALIDATION_ERROR);
             return Response::respondError($e->getMessage());
         }
     }
+
 
 
     /**
@@ -72,7 +94,7 @@ class AuthController extends Controller
             $user->update([
                 'phone'=>$request->phone ,
                 'email'=>$request->email ,
-                'dob'=>$request->dob ,
+                'dob' => $request->dob ? Carbon::parse($request->dob)->format('Y-m-d') : null,
                 'job'=>$request->job ,
                 'name'=>$request->name ,
             ]);

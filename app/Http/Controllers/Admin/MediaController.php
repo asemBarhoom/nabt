@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\FileHelper;
 use App\Models\ImageType;
 use Faker\Provider\File;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -88,44 +89,22 @@ class MediaController
     }
     public function saveFileJson(Request $request)
     {
+        $this->validate($request,['uploaded_files.*'=>'image']);
 
-        $this->validate($request,['uploaded_file'=>'image']);
 
-        $temp=session('tempImage');
-        if(! is_array($temp)){
-            $temp=[];
-        }
-        if($request->hasFile('uploaded_file')){
-            $file=$request->file('uploaded_file');
 
-            $name=time().'_'.rand(1,999999999).'.'.$file->getClientOriginalExtension();
-            try{
-                if (!file_exists('public/uploads')) {
-                    mkdir('public/uploads', 0777, true);
+            foreach ($request->uploaded_files as $file) {
+
+                if ($file->isValid()) {
+                    $uploadedFilePath = FileHelper::uploadFile($file, 'uploaded_file');
+                    $uploadedFilePath = str_replace('public/', '', $uploadedFilePath);
+                    return ['filelink' => FileHelper::getFullPathSingleAsset($uploadedFilePath), 'file_name' => $uploadedFilePath, 'status' => 1];
                 }
-                $file->move('public/uploads', $name);
-//                Storage::disk('public')->put('images/' . $name, $file);
-//            Storage::putFileAs('/uploads', $file, $fileNameToStore);
-//                Storage::disk('public')->put('uploads/' . $name, $file);
-            }catch (\Exception $e){
-                return $e->getMessage();
-            }
-
-//
-            $temp[] = $name;
-            session(['tempImage' => $temp]);
-            return ['filelink' => asset('uploads/' . $name), 'file_name' => $name, 'status' => 1];
-        }else {
-            if ($name = self::SaveFile($request->uploaded_file)) {
-                $temp[] = $name;
-                session(['tempImage' => $temp]);
-                return ['filelink' => asset('public/uploads/' . $name), 'file_name' => $name, 'status' => 1];
-            }
-        }
-
-            return ['status'=>0,'errors'=>'ERROR'];
+                }
 
 
+
+        return ['filelink' => null, 'file_name' => null, 'status' => 0];
     }
     public function saveVideoJson(Request $request)
     {
@@ -170,7 +149,7 @@ class MediaController
             foreach ($request->uploaded_files as $file){
                 if($name=self::SaveFile($file)){
                     $files[]=$name;
-                    $urls[]=asset('uploads/'.$name);
+                    $urls[]=FileHelper::getFullPathSingleAsset($name);
                     session(['tempMultiImage'=>$temp]);
                 }else{
                     return ['status'=>0,'errors'=>'ERROR'];
@@ -293,26 +272,21 @@ class MediaController
     {
         return Storage::disk('public')->put('images/' . $objectType, $image);
     }
-    public static function SaveFile($file){
-        if (isset($file)){
-            $name=time().'_'.rand(1,999999999).'.'.$file->getClientOriginalExtension();
-
-            $path=realpath('public/uploads')?realpath('public/uploads'):realpath('public/uploads');
-
-            $originalImage= $file;
-            $thumbnailImage = Image::make($originalImage);
-            $thumbnailPath = $path.'/thumbnail/';
-            $originalPath = $path.'/';
-            $thumbnailImage->save($originalPath.$name);
-//            $thumbnailImage->widen(150);;
-//            $thumbnailImage->save($thumbnailPath.$name);
-
-//            $file->move('public/uploads', $name);
-            return $name;
+    public static function saveFile($file)
+    {
+        if (!$file) {
+            return '';
         }
-        return '';
 
+        // Use FileHelper to upload the file and get the path
+        $uploadedPath = FileHelper::uploadFile($file, 'public/uploads');
+
+        // Remove 'public/' from the path
+        $relativePath = str_replace('public/', '', $uploadedPath);
+
+        return $relativePath;
     }
+
     public static function saveVideo($file){
         if (isset($file)){
             $name=time().'_'.rand(1,999999999).'.'.$file->getClientOriginalExtension();

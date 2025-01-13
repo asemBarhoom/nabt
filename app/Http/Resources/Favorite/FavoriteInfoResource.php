@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Favorite;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Destination\DestinationResource;
+use App\Http\Resources\Tourevent\ToureventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class FavoriteInfoResource extends JsonResource
@@ -15,13 +17,19 @@ class FavoriteInfoResource extends JsonResource
      */
     public function toArray($request)
     {
+        // Determine the appropriate resource based on favorable_type
+        $favorableResource = match ($this->favorable_type) {
+            'App\Models\Destination' => new DestinationResource($this->favorable),
+            'App\Models\Tourevent' => new ToureventResource($this->favorable),
+            default => null,
+        };
         return [
-            'id' => object_get($this,'id'),
-            'name' => object_get($this,'name'),
-            'position' => object_get($this,'position'),
-            'body' => object_get($this,'body'),
-            'rating' => object_get($this,'rating'),
-            'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'favorable_type' => $this->favorable_type,
+            'favorable' => $favorableResource, // Include the specific resource
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

@@ -29,6 +29,12 @@
                 'icon'=>config('layout.icons.deactivate_icon'),
                 'text'=>t('deactivate'),
                 'role'=>"deactivate",
+            ],
+            [
+                'route'=>'system.categories.delete',
+                'icon'=>config('layout.icons.delete_icon'),
+                'text'=>t('delete'),
+                'role'=>"delete",
             ]
         ]
     ])
@@ -59,8 +65,11 @@
                                 <span></span>
                             </label>
                         </th>
-                        <th class="text-center">{{ t('name') }}</th>
 
+                        <th class="text-center">{{ t('image') }}</th>
+                        <th class="text-center">{{ t('name') }}</th>
+                        <th class="text-center">{{ t('destinations') }}</th>
+                        <th class="text-center">{{ t('status') }}</th>
                         <th class="text-center">{{ t('settings') }}</th>
                     </tr>
                     </thead>
@@ -75,7 +84,21 @@
                                 </label>
                             </td>
                             <td class="text-center">
+                                <img src="{{ App\Helpers\FileHelper::getFullPathSingleAsset(object_get($category , 'image')) }}" alt="{{ $category->name }}" style="width: 50px; height: 50px; object-fit: cover;">
+                            </td>
+                            <td class="text-center">
                                 {{$category->name}}
+                            </td>
+                            <td class="text-center">
+                                <a href="{{route('system.destinations.index')}}?category_id={{$category->id}}">
+                                    {{$category->destinations_count}}
+                                </a>
+                            </td>
+
+                            <td class="text-center">
+                            <span class="badge {{ $category->status==1 ? 'badge-success' : 'badge-danger' }}">
+                                 {{ $category->status==1 ? 'Active' : 'Inactive' }}
+                            </span>
                             </td>
 
 
@@ -86,7 +109,7 @@
                                         <a href="{{ route('system.categories.edit', $category->id) }}"
                                            class="{{ config('layout.classes.edit') }}"
                                            data-toggle="tooltip" data-theme="dark" title="{{ t('edit') }}">
-                                            <i class="fas fa-shipping-fast"></i> {{ t('Edit') }}
+                                            <i class="{{ config('layout.icons.edit_icon') }}"></i> {{ t('Edit') }}
                                         </a>
                                     </li>
 

@@ -24,10 +24,27 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
+            'country_id' => [
+                'required',
+                'integer', // Assuming country_id is an integer
+                'exists:countries,id', // Ensure the country_id exists in the 'countries' table
+            ],
+            'prefix' => [
+                'required',
+                'string',
+                function ($attribute, $value, $fail) {
+                    $countryId = request('country_id'); // Get the country_id from the request
+                    $country = \App\Models\Country::find($countryId); // Fetch the country from the database
+
+                    if ($country && $country->prefix !== $value) {
+                        return $fail("The prefix does not match the country’s prefix.");
+                    }
+                },
+            ],
             'phone' => [
                 'required',
                 'string',
-//                'exists:users,phone'
+                'regex:/^[0-9]{6,14}$/', // Validate that the phone number contains 6 to 14 digits, adjust as needed
             ],
         ];
     }

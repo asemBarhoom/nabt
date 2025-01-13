@@ -16,6 +16,7 @@ use App\Http\Controllers\API\BookingController;
 use App\Http\Controllers\API\EventController;
 use App\Http\Controllers\API\FavoriteController;
 use App\Http\Controllers\API\LandmarkController;
+use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -55,6 +56,7 @@ Route::apiResource('accommodations' , AccommodationController::class);
 Route::apiResource('landmarks' , LandmarkController::class);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('events' , [EventController::class,'index']);
+Route::get('faqs' , [FaqController::class,'index']);
 
 Route::group([
     'middleware' => ['auth:api'],

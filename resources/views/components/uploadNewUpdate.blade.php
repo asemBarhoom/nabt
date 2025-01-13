@@ -1,8 +1,8 @@
+<?php
+use App\Helpers\FileHelper;
+?>
 
-@php
-    $optional=\App\Models\ImageType::where('is_required',0)->where('show_update',1)->get();
-    $all=\App\Models\ImageType::get();
-@endphp
+
 <div class="row">
 
     <div class="col-md-{{count($optional)?'10':'12'}}">
@@ -21,7 +21,12 @@
                        data-place="<?=$out->id?>" class="upload_image_multi2">
 
                 <div class="MultiImagePrev">
-                    @include($path)
+                    @include($path,[
+     'name' => 'user_image',
+    'text' => 'اختر صورة',
+    'hint' => 'أبعاد الصورة: 400x400',
+    'data' => null
+])
 
                 </div>
 
@@ -55,8 +60,8 @@
                 $iimagges[$type->id]=$srcImage;
 
             }else{
-                if($type_image=$out->all_images()->where('type',$type->id)->first()){
-                    $srcImage=$type_image->image;
+                if($type_image=$out->images()->first()){
+                    $srcImage=FileHelper::getFullPathSingleAsset($type_image->image_path);
                     $iimagges[$type->id]=$srcImage;
 
 

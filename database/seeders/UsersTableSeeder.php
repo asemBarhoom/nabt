@@ -21,6 +21,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => "asem",
+            'prefix' => "+966",
             'phone' => "0595341359",
             'age' => "24",
             'address' => "gaza stripe",
@@ -40,6 +41,7 @@ class UsersTableSeeder extends Seeder
         foreach (range(1, 10) as $index) {
             DB::table('users')->insert([
                 'name' => $faker->name,
+                'prefix' => "+966",
                 'phone' => $faker->unique()->phoneNumber,
                 'age' => $faker->numberBetween(18, 65),
                 'address' => $faker->address,

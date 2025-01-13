@@ -280,6 +280,7 @@ return [
         ],
     ],
     'icons'=>[
+        'edit_icon'=>'flaticon-edit-1 pr-3',
         'delete_icon'=>'flaticon-delete-1 pr-3',
         'activate_icon'=>'flaticon-user-settings pr-3',
         'deactivate_icon'=>'flaticon2-lock pr-3'

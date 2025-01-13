@@ -1,1 +1,225 @@
-<?phpnamespace App\Http\Controllers;use App\Mail\ContactUsMail;use App\Mail\NewStoreSignUp;use App\Models\About;use App\Models\Branch;use App\Models\Contact;use App\Models\Member;use App\Models\Package;use App\Models\Page;use App\Models\Partner;use App\Models\Post;use App\Models\Service;use App\Models\Settings;use App\Models\Slider;use App\Models\Testimonial;use App\Rules\ValidMobile;use Exception;use Hash;use Illuminate\Http\RedirectResponse;use Illuminate\Http\Request;use Illuminate\Notifications\Messages\MailMessage;use Illuminate\Support\Facades\Log;use Illuminate\Support\Facades\Redirect;use Illuminate\Validation\Rule;use Mail;use Mcamara\LaravelLocalization\Facades\LaravelLocalization;use App\Notifications\ContactUsNotification;use Illuminate\Support\Facades\Notification;use Swift_TransportException;class WebsiteController extends Controller{    public function gotoIndex()    {//        return view('website.soon');        return redirect()->route('website.home');    }    public function index(Request $request)    {        $data = [];        $data['services'] = Service::query()->where('status',1)->get();//        $data['abouts'] = About::query()->where('status',1)->get();        $data['testimonials'] = Testimonial::query()->where('status',1)->get();        $data['partners'] = Partner::query()->where('status',1)->get();//        $data['members'] = Member::query()->where('status',1)->get();        $data['parentBranch'] = Branch::query()            ->where('status',1)            ->where('is_parent',true)            ->first();        $data['branches'] = Branch::query()            ->where('status',1)            ->where('id','<>',@$data['parentBranch']['id'])            ->get();        return view('front.home.index', $data);    }    public function setLanguage(Request $request): RedirectResponse    {        $lange = $request->lange ?? 'ar';        $url = LaravelLocalization::getLocalizedURL($lange, url()->previous());        return Redirect::to($url);    }    public function aboutUs()    {       $data['page'] = Page::find(3);        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();        return view('front.pages.about',$data);    }    public function terms()    {        $data['page'] = Page::find(2);        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();        return view('front.pages.terms',$data);    }    public function privacy()    {        $data['page'] = Page::find(1);        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();        return view('front.pages.privacy',$data);    }    public function register(Request $request)    {        return view("website.register", ['register' => "activ"]);    }    public function contactUs(Request $request)    {        $this->validate($request, [            'email' => 'required|email',            'name' => 'required|string',            'msg' => 'required|string',        ]);        $data = $request->all();        unset($data['_token']);        Contact::create($data);        session()->flash('success','تم إرسال رسالتك  بنجاح');        $userData = [            'name' => $request->name,            'email' => $request->email,            'message' => $request->msg,        ];        try {            Mail::to("info@universe-e.com")->send(new ContactUsMail($userData));//            return response()->json(['message' => 'Email sent successfully']);        } catch (Swift_TransportException $exception) {           Log::info($exception->getMessage());        }        return redirect()->back();    }    public function designerSignup(Request $request)    {        $this->validate($request, [            'designer_name' => ['required', 'string', 'max:150'],            'designer_mobile' => ['required', 'numeric', 'unique:designers,mobile'],            'designer_email' => 'required|email|unique:designers,email',            'number_of_products' => 'required|integer',        ]);        $object = new Designer();        $object->name_ar = $request->designer_name;        $object->name_en = $request->designer_name;        $object->email = $request->designer_email;        $object->mobile = $request->designer_mobile;        $object->number_of_products = $request->number_of_products;        $object->status = 1;        $object->save();        return redirect()->back()->with('d_message', "تمت عملية التسجيل بنجاح");    }    public function storeSignup(Request $request)    {        $country = Country::find(2);        $this->validate($request, [            'store_name' => ['required', 'string', 'max:150'],            'store_address' => ['required', 'string', 'max:150'],            'gov_id' => ['required', 'exists:govs,id'],            'area_id' => ['required', 'exists:areas,id'],            'store_mobile' => [                'required',                Rule::unique('products', 'mobile'),                new ValidMobile()            ],            'store_email' => 'required|email|unique:stores,email',            'store_password' => ['required', 'string', 'min:6', 'confirmed'],        ]);        $object = new Product();        $object->name_ar = $request->store_name;        $object->name_en = $request->store_name;        $object->email = $request->store_email;        $object->mobile = $request->store_mobile;//        $object->whats_mobile=null;        $object->address = $request->store_address;        $object->password = Hash::make($request->store_password);//        $object->pne = str_random(2) . rand(10, 99) . $request->store_password;        $object->status = 3;//        $object->from_web = 1;//        $object->country_id = 2;//        $object->can_deliver_outside = 0;//        $object->activation_code = rand(1000, 9999);//        $user->activation_code = '1234';//        $last_login = Carbon::now()->toDateTimeString();//        $token = \Hash::make($last_login . $object->id . 'Abaya' . str_random(6));//        $object->token = $token;//        $object->last_login = Carbon::now();        $object->save();        $object->refresh();        try {            Mail::to($request->store_email)->send(new NewStoreSignUp($object, $request->password));        } catch (Exception $e) {        }        return redirect()->back()->with(['s_message' => "سيتم تفعيل التسجيل من قبل الإدارة", 'm_message' => "وارسال معلومات الحساب إلى البريد الالكتروني"]);    }    public function show_page($id)    {        $page = Page::findOrFail($id);        return view('website.page', compact('page'));    }    public function show_register(Request $request)    {        return view("website.register");    }    public function blocked()    {        flash('انت محظور', 'error');        return redirect('/');    }    public function do_activate()    {        flash('الرجاء تفعيل حسابك', 'error');        return view('website.active');    }}
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Mail\ContactUsMail;
+use App\Mail\NewStoreSignUp;
+use App\Models\About;
+use App\Models\Branch;
+use App\Models\Contact;
+use App\Models\Member;
+use App\Models\Package;
+use App\Models\Page;
+use App\Models\Partner;
+use App\Models\Post;
+use App\Models\Service;
+use App\Models\Settings;
+use App\Models\Slider;
+use App\Models\Testimonial;
+use App\Rules\ValidMobile;
+use Exception;
+use Hash;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\Rule;
+use Mail;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Notifications\ContactUsNotification;
+use Illuminate\Support\Facades\Notification;
+use Swift_TransportException;
+
+class WebsiteController extends Controller
+{
+
+    public function gotoIndex()
+    {
+//        return view('website.soon');
+
+        return redirect()->route('website.home');
+    }
+
+    public function index(Request $request)
+    {
+
+
+        $data = [];
+
+
+        return "aa";
+    }
+
+    public function setLanguage(Request $request): RedirectResponse
+    {
+        $lange = $request->lange ?? 'ar';
+        $url = LaravelLocalization::getLocalizedURL($lange, url()->previous());
+        return Redirect::to($url);
+
+    }
+    public function aboutUs()
+    {
+       $data['page'] = Page::find(3);
+        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();
+
+        return view('front.pages.about',$data);
+
+    }
+
+    public function terms()
+    {
+        $data['page'] = Page::find(2);
+        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();
+
+        return view('front.pages.terms',$data);
+
+    }
+
+    public function privacy()
+    {
+
+        $data['page'] = Page::find(1);
+        $data['settings'] = Settings::query()->get()->pluck('value','name')->toArray();
+
+        return view('front.pages.privacy',$data);
+
+    }
+
+
+    public function register(Request $request)
+    {
+        return view("website.register", ['register' => "activ"]);
+    }
+
+
+    public function contactUs(Request $request)
+    {
+
+
+        $this->validate($request, [
+            'email' => 'required|email',
+            'name' => 'required|string',
+            'msg' => 'required|string',
+
+        ]);
+        $data = $request->all();
+        unset($data['_token']);
+        Contact::create($data);
+        session()->flash('success','تم إرسال رسالتك  بنجاح');
+
+        $userData = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->msg,
+        ];
+
+
+        try {
+            Mail::to("info@universe-e.com")->send(new ContactUsMail($userData));
+//            return response()->json(['message' => 'Email sent successfully']);
+        } catch (Swift_TransportException $exception) {
+           Log::info($exception->getMessage());
+        }
+
+        return redirect()->back();
+    }
+
+    public function designerSignup(Request $request)
+    {
+        $this->validate($request, [
+            'designer_name' => ['required', 'string', 'max:150'],
+            'designer_mobile' => ['required', 'numeric', 'unique:designers,mobile'],
+            'designer_email' => 'required|email|unique:designers,email',
+            'number_of_products' => 'required|integer',
+        ]);
+
+        $object = new Designer();
+        $object->name_ar = $request->designer_name;
+        $object->name_en = $request->designer_name;
+        $object->email = $request->designer_email;
+        $object->mobile = $request->designer_mobile;
+        $object->number_of_products = $request->number_of_products;
+        $object->status = 1;
+        $object->save();
+        return redirect()->back()->with('d_message', "تمت عملية التسجيل بنجاح");
+    }
+
+    public function storeSignup(Request $request)
+    {
+        $country = Country::find(2);
+        $this->validate($request, [
+            'store_name' => ['required', 'string', 'max:150'],
+            'store_address' => ['required', 'string', 'max:150'],
+            'gov_id' => ['required', 'exists:govs,id'],
+            'area_id' => ['required', 'exists:areas,id'],
+            'store_mobile' => [
+                'required',
+                Rule::unique('products', 'mobile'),
+                new ValidMobile()
+            ],
+            'store_email' => 'required|email|unique:stores,email',
+            'store_password' => ['required', 'string', 'min:6', 'confirmed'],
+        ]);
+
+        $object = new Product();
+        $object->name_ar = $request->store_name;
+        $object->name_en = $request->store_name;
+        $object->email = $request->store_email;
+        $object->mobile = $request->store_mobile;
+//        $object->whats_mobile=null;
+        $object->address = $request->store_address;
+        $object->password = Hash::make($request->store_password);
+//        $object->pne = str_random(2) . rand(10, 99) . $request->store_password;
+        $object->status = 3;
+//        $object->from_web = 1;
+//        $object->country_id = 2;
+//        $object->can_deliver_outside = 0;
+//        $object->activation_code = rand(1000, 9999);
+//        $user->activation_code = '1234';
+//        $last_login = Carbon::now()->toDateTimeString();
+//        $token = \Hash::make($last_login . $object->id . 'Abaya' . str_random(6));
+//        $object->token = $token;
+//        $object->last_login = Carbon::now();
+        $object->save();
+        $object->refresh();
+        try {
+            Mail::to($request->store_email)->send(new NewStoreSignUp($object, $request->password));
+        } catch (Exception $e) {
+
+        }
+
+        return redirect()->back()->with(['s_message' => "سيتم تفعيل التسجيل من قبل الإدارة", 'm_message' => "وارسال معلومات الحساب إلى البريد الالكتروني"]);
+    }
+
+
+    public function show_page($id)
+    {
+        $page = Page::findOrFail($id);
+        return view('website.page', compact('page'));
+    }
+
+    public function show_register(Request $request)
+    {
+
+        return view("website.register");
+    }
+
+
+    public function blocked()
+    {
+        flash('انت محظور', 'error');
+        return redirect('/');
+
+    }
+
+    public function do_activate()
+    {
+        flash('الرجاء تفعيل حسابك', 'error');
+        return view('website.active');
+
+    }
+
+
+
+}

@@ -17,6 +17,7 @@ class BookingResource extends JsonResource
         return [
             'id' => $this->id,
             'reservation_number' => $this->reservation_number,
+            'trip_duration' => $this->trip_duration,
             'user_id' => $this->user_id,
             'destination_id' => $this->destination_id,
             'accommodation_id' => $this->accommodation_id,
@@ -33,6 +34,7 @@ class BookingResource extends JsonResource
             'food_allergies' => $this->food_allergies,
             'vehicle_type' => $this->vehicle_type,
             'vehicle_description' => $this->vehicle_description,
+            'price' => 4000,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

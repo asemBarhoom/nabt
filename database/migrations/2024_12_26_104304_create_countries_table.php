@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->json('name')->nullable();
             $table->string('alpha_3')->nullable();
+            $table->string('flag')->nullable(); // URL or path to the country's flag image
+            $table->string('prefix')->nullable(); // Country calling code prefix
             $table->timestamps();
         });
     }
