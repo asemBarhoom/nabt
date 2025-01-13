@@ -30,6 +30,16 @@ class FavorableIdExists implements Rule
         if ($favorableType === 'App\Models\Destination') {
             return \App\Models\Destination::find($value) !== null;
         }
+        if ($favorableType === 'App\Models\Booking') {
+            return \App\Models\Booking::find($value) !== null;
+        }
+        if ($favorableType === 'App\Models\Tourevent') {
+            return \App\Models\Tourevent::find($value) !== null;
+        }
+
+        if ($favorableType === 'App\Models\Accommodation') {
+            return \App\Models\Accommodation::find($value) !== null;
+        }
         // Add other elseif conditions for other favorable_type values
 
         return false; // Default to false if favorable_type is not recognized

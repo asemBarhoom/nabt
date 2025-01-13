@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Favorable;
 use App\Models\Traits\SharedTrait;
 use App\Models\Traits\Statusable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
-    use HasFactory,SharedTrait,Statusable;
+    use HasFactory,SharedTrait,Statusable,Favorable;
 
     public array $translatable = ['trip_duration'];
 

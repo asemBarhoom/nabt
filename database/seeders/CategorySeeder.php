@@ -262,9 +262,82 @@ class CategorySeeder extends Seeder
                     'body' => ['ar' => 'معلومات حول الطقس في العلا طوال العام.', 'en' => 'Information about the weather in Al-Ula throughout the year.'],
                     'image' => 'categories/weather_ula.jpg',
                     'status' => true,
-                    'categoriable_type' => 'App\Models\Faq',]
+                    'categoriable_type' => 'App\Models\Faq',],
 
-                 ];
+                [
+                    'name' => ['ar' => 'سياسة الإلغاء العامة', 'en' => 'General Cancellation Policy'],
+                    'body' => ['ar' => 'يمكن للعملاء إلغاء الحجز في أي وقت قبل موعد الرحلة بمدة لا تقل عن 24 ساعة للحصول على استرداد كامل.', 'en' => 'Customers can cancel bookings at any time at least 24 hours before the trip for a full refund.'],
+                    'image' => 'categories/cancellations1.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'الإلغاء خلال 48 ساعة', 'en' => 'Cancellation within 48 Hours'],
+                    'body' => ['ar' => 'إذا تم الإلغاء قبل 48 ساعة من الرحلة، سيتم خصم 20% من المبلغ المدفوع كرسوم إلغاء.', 'en' => 'If the cancellation is made within 48 hours of the trip, a 20% cancellation fee will be deducted from the paid amount.'],
+                    'image' => 'categories/cancellations2.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'الإلغاء بسبب الطقس', 'en' => 'Cancellation Due to Weather'],
+                    'body' => ['ar' => 'في حالة الطقس السيئ، سيتم إلغاء الرحلات وتعويض العملاء بالكامل.', 'en' => 'In case of bad weather, trips will be cancelled and customers will be fully refunded.'],
+                    'image' => 'categories/cancellations3.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء الرحلات الخاصة', 'en' => 'Private Trip Cancellations'],
+                    'body' => ['ar' => 'يمكن للعملاء إلغاء الرحلات الخاصة قبل 72 ساعة من الموعد المحدد، مع خصم 10% من المبلغ المدفوع كرسوم إلغاء.', 'en' => 'Customers can cancel private trips up to 72 hours before the scheduled time, with a 10% cancellation fee.'],
+                    'image' => 'categories/cancellations4.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'الإلغاء بسبب الطوارئ', 'en' => 'Cancellation Due to Emergencies'],
+                    'body' => ['ar' => 'في حالات الطوارئ، يمكن للعملاء إلغاء الحجز مع تقديم المستندات المطلوبة، وسيتم تعويضهم بالكامل.', 'en' => 'In emergencies, customers can cancel their booking with the required documentation and will be fully refunded.'],
+                    'image' => 'categories/cancellations5.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء الحجز بعد الدفع', 'en' => 'Cancellation After Payment'],
+                    'body' => ['ar' => 'إذا تم الدفع ولم يتم الإلغاء في الوقت المناسب، فقد لا يتم تعويض العميل وفقًا لسياسة الإلغاء الخاصة بنا.', 'en' => 'If payment is made and cancellation is not done within the allowed time, the customer may not be refunded according to our cancellation policy.'],
+                    'image' => 'categories/cancellations6.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'الإلغاء للرحلات الدولية', 'en' => 'International Trip Cancellations'],
+                    'body' => ['ar' => 'بالنسبة للرحلات الدولية، يجب على العملاء إلغاء الحجز قبل أسبوعين من تاريخ الرحلة للحصول على استرداد كامل.', 'en' => 'For international trips, customers must cancel the booking at least two weeks before the trip date to receive a full refund.'],
+                    'image' => 'categories/cancellations7.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء الحجز للأعضاء المميزين', 'en' => 'Premium Member Cancellations'],
+                    'body' => ['ar' => 'يتمتع الأعضاء المميزون بمرونة أكبر في سياسة الإلغاء، حيث يمكنهم إلغاء الحجوزات في أي وقت قبل 12 ساعة من الرحلة للحصول على استرداد جزئي.', 'en' => 'Premium members enjoy greater flexibility in the cancellation policy, allowing cancellations up to 12 hours before the trip for a partial refund.'],
+                    'image' => 'categories/cancellations8.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء الحجوزات للمجموعات', 'en' => 'Group Booking Cancellations'],
+                    'body' => ['ar' => 'لحجوزات المجموعات، يتم تطبيق رسوم إلغاء بنسبة 15% إذا تم الإلغاء قبل 5 أيام من الرحلة.', 'en' => 'For group bookings, a 15% cancellation fee applies if cancelled at least 5 days before the trip.'],
+                    'image' => 'categories/cancellations9.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء بسبب الحجز المزدوج', 'en' => 'Cancellation Due to Double Booking'],
+                    'body' => ['ar' => 'في حالة حدوث حجز مزدوج، سنقوم بإلغاء الحجز المكرر وإبلاغ العميل في أقرب وقت، مع تقديم استرداد كامل.', 'en' => 'In case of double booking, we will cancel the duplicate booking and notify the customer promptly, offering a full refund.'],
+                    'image' => 'categories/cancellations10.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Cancellation',
+                ]
+
+
+
+        ];
 
 
         collect($categories)->map(function ($item) {

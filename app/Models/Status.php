@@ -13,6 +13,7 @@ class Status extends Model
     protected $fillable = [
         'status',
         'user_id',
+        'color',
         'statusable_id',
         'statusable_type',
     ];

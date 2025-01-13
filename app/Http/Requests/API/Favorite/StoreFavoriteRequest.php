@@ -25,7 +25,7 @@ class StoreFavoriteRequest extends FormRequest
     {
         return [
             'favorable_id' => ['required', 'integer', new FavorableIdExists()],
-            'favorable_type' => 'required|string|in:App\Models\Destination',
+            'favorable_type' => 'required|string|in:App\Models\Destination,App\Models\Booking,App\Models\Tourevent,App\Models\Accommodation',
         ];
     }
 }

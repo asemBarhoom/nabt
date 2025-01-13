@@ -3,6 +3,8 @@
 namespace App\Http\Resources\Favorite;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Accommodation\AccommodationResource;
+use App\Http\Resources\Booking\BookingInfoResource;
 use App\Http\Resources\Destination\DestinationResource;
 use App\Http\Resources\Tourevent\ToureventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -17,10 +19,13 @@ class FavoriteInfoResource extends JsonResource
      */
     public function toArray($request)
     {
+
         // Determine the appropriate resource based on favorable_type
         $favorableResource = match ($this->favorable_type) {
             'App\Models\Destination' => new DestinationResource($this->favorable),
             'App\Models\Tourevent' => new ToureventResource($this->favorable),
+            'App\Models\Booking' => new BookingInfoResource($this->favorable),
+            'App\Models\Accommodation' => new AccommodationResource($this->favorable),
             default => null,
         };
         return [

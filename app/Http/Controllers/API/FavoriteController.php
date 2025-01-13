@@ -19,7 +19,7 @@ class FavoriteController extends Controller
 {
     public function index(Request $request){
         try{
-            $favorites = Favorite::filter()->order()->paginate($request->header('perpage'));
+            $favorites = Favorite::where('user_id',auth()->guard('api')->user()->id)->filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new FavoriteCollection($favorites));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
@@ -32,7 +32,7 @@ class FavoriteController extends Controller
 
             $user = auth()->user();
             $favorableModel = $request->favorable_type::findOrFail($request->favorable_id);
-            $favorableModel->addFavorite($user);
+            $favorableModel = $favorableModel->addFavorite($user);
             return Response::respondSuccess(Response::ADDED_SUCCESSFULLY, new FavoriteInfoResource($favorableModel));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

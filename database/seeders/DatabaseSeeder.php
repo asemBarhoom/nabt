@@ -37,5 +37,6 @@ class DatabaseSeeder extends Seeder
        $this->call(SystemAdminSeeder::class);
        $this->call(FaqSeeder::class);
        $this->call(StatusesTableSeeder::class);
+       $this->call(CancellationSeeder::class);
     }
 }

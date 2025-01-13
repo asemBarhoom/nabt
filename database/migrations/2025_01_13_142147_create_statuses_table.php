@@ -20,6 +20,12 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->morphs('statusable'); // Adds statusable_id and statusable_type
             $table->timestamps();
+
+            // Adding indexes to improve query performance
+            $table->index('status'); // Index for searching by status
+            $table->index('user_id'); // Index for searching by user
+            $table->index('statusable_id'); // Index for polymorphic relation's ID
+            $table->index('statusable_type'); // Index for polymorphic relation's type
         });
     }
 
