@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\Models\Traits\SharedTrait;
+use App\Models\Traits\Statusable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Booking extends Model
 {
-    use HasFactory,SharedTrait;
+    use HasFactory,SharedTrait,Statusable;
 
     public array $translatable = ['trip_duration'];
 
@@ -32,6 +33,15 @@ class Booking extends Model
         'food_allergies',
         'vehicle_type',
         'vehicle_description',
+    ];
+
+    // Define the status flow for a booking
+    public const STATUS_FLOW = [
+        'pending',     // Initial status
+        'confirmed',   // When booking is approved
+        'in_progress', // When booking is being fulfilled
+        'completed',   // When booking is completed
+        'cancelled',   // When booking is cancelled
     ];
 
     // Defining the relationships
