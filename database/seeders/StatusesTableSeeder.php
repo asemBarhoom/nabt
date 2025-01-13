@@ -27,6 +27,7 @@ class StatusesTableSeeder extends Seeder
                     'user_id' => $booking->user_id, // Assuming Booking has a user_id
                     'statusable_id' => $booking->id,
                     'statusable_type' => Booking::class,
+                    'color' => Booking::STATUS_COLORS[$status],
                     'created_at' => now()->addMinutes($index * 5), // Stagger timestamps for realism
                     'updated_at' => now()->addMinutes($index * 5),
                 ]);

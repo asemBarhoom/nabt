@@ -6,6 +6,7 @@ use App\Http\Resources\Accommodation\AccommodationResource;
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Http\Resources\Destination\DestinationResource;
 use App\Http\Resources\Event\EventCollection;
+use App\Http\Resources\Status\StatusResource;
 use App\Http\Resources\Tourevent\ToureventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -22,6 +23,7 @@ class BookingInfoResource extends JsonResource
         return [
             'id' => $this->id,
             'reservation_number' => $this->reservation_number,
+            'status' => StatusResource::make($this->currentStatus()),
             'trip_duration' => $this->trip_duration,
             'user' => UserProfileResource::make($this->user),
             'destination' => DestinationResource::make($this->destination),

@@ -31,8 +31,9 @@ class StatusResource extends JsonResource
         return [
                  'id' => $this->id,
                  'status' => $this->status,
-                 'user' => $this->user ? new UserProfileResource($this->user) : null,
-                 'statusable' => $statusableResource,
+                 'color' => $this->color,
+//                 'user' => $this->user ? new UserProfileResource($this->user) : null,
+//                 'statusable' => $statusableResource,
                  'created_at' => $this->created_at ? Carbon::parse($this->created_at)->toDateTimeString() : null,
                  'updated_at' => $this->updated_at ? Carbon::parse($this->updated_at)->toDateTimeString() : null,
          ];

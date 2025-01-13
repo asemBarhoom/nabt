@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('statuses', function (Blueprint $table) {
             $table->id();
             $table->string('status');
+            $table->string('color')->nullable(); // Add a nullable color column
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->morphs('statusable'); // Adds statusable_id and statusable_type
             $table->timestamps();

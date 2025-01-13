@@ -37,11 +37,24 @@ class Booking extends Model
 
     // Define the status flow for a booking
     public const STATUS_FLOW = [
-        'pending',     // Initial status
-        'confirmed',   // When booking is approved
-        'in_progress', // When booking is being fulfilled
-        'completed',   // When booking is completed
-        'cancelled',   // When booking is cancelled
+        'pending',              // الحجز في حالة الانتظار
+        'confirmed',            // تم تأكيد الحجز
+        'in_progress',          // الحجز قيد التنفيذ
+        'cancellation_requested', // طلب إلغاء الحجز في انتظار الموافقة
+        'cancellation_rejected',  // تم رفض طلب الإلغاء
+        'completed',            // تم إكمال الحجز
+        'cancelled',            // تم إلغاء الحجز
+    ];
+
+
+    public const STATUS_COLORS = [
+        'pending' => '#FFA500',               // Orange
+        'confirmed' => '#008000',             // Green
+        'in_progress' => '#0000FF',           // Blue
+        'cancellation_requested' => '#FFD700', // Yellow (Pending cancellation request)
+        'cancellation_rejected' => '#FF4500',  // Orange-Red (Cancellation request rejected)
+        'completed' => '#4CAF50',             // Dark Green
+        'cancelled' => '#FF0000',             // Red
     ];
 
     // Defining the relationships
