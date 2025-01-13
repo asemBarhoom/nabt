@@ -16,7 +16,7 @@ class BookingCollection extends ResourceCollection
     public function toArray($request)
     {
         return [
-            'content' => BookingResource::collection($this->collection),
+            'content' => BookingInfoResource::collection($this->collection),
             'pagination' => new PaginationResource($this->resource),
         ];
     }
