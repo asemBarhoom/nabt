@@ -14,19 +14,12 @@
         <div class="row justify-content-center">
 
             <div class="col-md-7">
-                <div class="row mb-3 image ">
-                    <label class="col-sm-2 col-form-label" for="basic-default-name">{{t('Image')}}</label>
-                    <div class="col-sm-10">
-                        <div class="mb-3">
-                            <input  class="form-control image_input d-none" type="file" name="image" id="image_preview">
-                            @include('layouts.image_preview',[
-                                        'image'=>isset($category)?App\Helpers\FileHelper::getFullPathSingleAsset(object_get($category , 'image')):'',
-                                        'id'=>'image_preview'
-                                        ])
 
-                        </div>
-                    </div>
-                </div>
+                @include('layouts.image_preview', [
+                        'id' => 'image',
+                        'label' => 'Select or Upload Image',
+                        'image'=>isset($category)?App\Helpers\FileHelper::getFullPathSingleAsset(object_get($category , 'image')):'',                 ])
+
             </div>
 
 
@@ -37,6 +30,17 @@
 
             <div class="col-md-6">
                 @component('components.input',['name'=>'name_en', 'data'=> @ isset($category) ? $category->getTranslation('name','en'):'' ,'text'=>'title','placeholder'=>'Enter the title','icon'=>'fa-circle'])
+                @endcomponent
+            </div>
+
+
+            <div class="col-md-6">
+                @component('components.area',['name'=>'body_ar', 'data'=> @ isset($category) ?$category->getTranslation('body','ar'):'' , 'text'=>'نص ','placeholder'=>'ادخل نص ','icon'=>'fa-quote-right'])
+                @endcomponent
+            </div>
+
+            <div class="col-md-6">
+                @component('components.area',['name'=>'body_en', 'data'=> @ isset($category) ? $category->getTranslation('body','en'):'' ,'text'=>'body','placeholder'=>'Enter the body','icon'=>'fa-quote-right'])
                 @endcomponent
             </div>
 
@@ -93,6 +97,33 @@
 
     </script>
 
+
+
+    <script>
+        $(document).ready(() => {
+            // Handle image input change
+            $('.image_input').change(function () {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (event) {
+                        // Find the corresponding preview image by ID
+                        const previewId = $(this).attr('id').replace('image_input_', 'image_preview_');
+                        $('#' + previewId).attr('src', event.target.result);
+                    }.bind(this);
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle image click to trigger file input
+            $('img[for]').click(function () {
+                const inputId = $(this).attr('for'); // Get the associated file input ID
+                $('#' + inputId).click(); // Trigger the file input click event
+            });
+        });
+
+
+    </script>
 @endsection
 
 

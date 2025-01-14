@@ -60,12 +60,19 @@ class CategoryController
             'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'body_ar' => 'nullable|string',
+            'body_en' => 'nullable|string',
         ]);
 
         $category = new Category();
         $category->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
+        ];
+
+        $category->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
         ];
 
         if ($request->image) {
@@ -96,6 +103,8 @@ class CategoryController
             'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'body_ar' => 'nullable|string',
+            'body_en' => 'nullable|string',
         ]);
 
         $category = Category::find($id);
@@ -103,6 +112,11 @@ class CategoryController
         $category->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
+        ];
+
+        $category->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
         ];
 
         // Handle image upload if a new image is provided
