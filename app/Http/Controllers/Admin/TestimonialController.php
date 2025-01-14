@@ -59,6 +59,11 @@ class TestimonialController
             'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'position_ar' => 'required|string|max:255',
+            'position_en' => 'required|string|max:255',
+            'body_ar' => 'required|string',
+            'body_en' => 'required|string',
+            'rating' => 'required|numeric|min:0|max:5',
         ]);
 
         $testimonial = new Testimonial();
@@ -66,6 +71,16 @@ class TestimonialController
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
         ];
+        $testimonial->position = [
+            'ar' => $validatedData['position_ar'],
+            'en' => $validatedData['position_en'],
+        ];
+        $testimonial->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
+        ];
+
+        $testimonial->rating = $validatedData['rating'];
 
         if ($request->image) {
             $image = FileHelper::uploadFile($request->image, 'public/testimonials');
@@ -95,14 +110,28 @@ class TestimonialController
             'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'position_ar' => 'required|string|max:255',
+            'position_en' => 'required|string|max:255',
+            'body_ar' => 'required|string',
+            'body_en' => 'required|string',
+            'rating' => 'required|numeric|min:0|max:5',
         ]);
 
-        $testimonial = Testimonial::find($id);
-        // Update localized names
+        $testimonial = Testimonial::findOrFail($id);
+
         $testimonial->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
         ];
+        $testimonial->position = [
+            'ar' => $validatedData['position_ar'],
+            'en' => $validatedData['position_en'],
+        ];
+        $testimonial->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
+        ];
+        $testimonial->rating = $validatedData['rating'];
 
         // Handle image upload if a new image is provided
         if ($request->image) {
@@ -118,6 +147,7 @@ class TestimonialController
         flash('تم التحديث بنجاح');
         return redirect()->route('system.testimonials.index');
     }
+
 
 
 
