@@ -20,6 +20,7 @@ use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\CancellationController;
 use App\Http\Controllers\API\StatusController;
 use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\ActivityController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -86,6 +87,8 @@ Route::group([
     Route::post('notifications/markAsRead', [NotificationController::class,'markAsRead']);
     Route::post('notifications/markAllAsRead', [NotificationController::class,'markAllAsRead']);
 
+
+    Route::apiResource('activities' , ActivityController::class);
 
 
 
