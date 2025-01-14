@@ -21,21 +21,7 @@ class Destination extends Model
         'recommended_visit_season',
     ];
 
-    protected $fillable = [
-        'name',
-        'body',
-        'description',
-        'slug',
-        'image',
-        'cover_image',
-        'weather_description',
-        'amenities',
-        'recommended_visit_season',
-        'category_id',
-        'annual_visitors_min',
-        'annual_visitors_max',
-        'status',
-    ];
+    protected $guarded = [];
 
     protected $appends = ['rating'];
 

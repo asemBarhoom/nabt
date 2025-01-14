@@ -62,16 +62,67 @@ class DestinationController
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'weather_description_ar' => 'nullable|string|max:500',
+            'weather_description_en' => 'nullable|string|max:500',
+            'amenities_ar' => 'nullable|string|max:500',
+            'amenities_en' => 'nullable|string|max:500',
+            'recommended_visit_season_ar' => 'nullable|string|max:255',
+            'recommended_visit_season_en' => 'nullable|string|max:255',
+            'category_id' => 'required|integer|exists:categories,id',
+            'lat' => 'nullable|numeric',
+            'lng' => 'nullable|numeric',
+            'annual_visitors_min' => 'nullable|numeric|min:0',
+            'annual_visitors_max' => 'nullable|numeric|min:0',
+            'body_ar' => 'required|string',
+            'body_en' => 'required|string',
+            'description_ar' => 'nullable|string',
+            'description_en' => 'nullable|string',
         ]);
+
 
         $destination = new Destination();
         $destination->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
         ];
+        $destination->slug = str_replace(' ','_',$validatedData['name_en']);
+
+        $destination->weather_description = [
+            'ar' => $validatedData['weather_description_ar'],
+            'en' => $validatedData['weather_description_en'],
+        ];
+
+        $destination->amenities = [
+            'ar' => $validatedData['amenities_ar'],
+            'en' => $validatedData['amenities_en'],
+        ];
+
+        $destination->recommended_visit_season = [
+            'ar' => $validatedData['recommended_visit_season_ar'],
+            'en' => $validatedData['recommended_visit_season_en'],
+        ];
+
+        $destination->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
+        ];
+
+        $destination->description = [
+            'ar' => $validatedData['description_ar'],
+            'en' => $validatedData['description_en'],
+        ];
+
+        // Update category and location
+        $destination->category_id = $validatedData['category_id'];
+        $destination->lat = $validatedData['lat'];
+        $destination->lng = $validatedData['lng'];
+
+        $destination->annual_visitors_min = $validatedData['annual_visitors_min'];
+        $destination->annual_visitors_max = $validatedData['annual_visitors_max'];
 
         if ($request->image) {
             $image = FileHelper::uploadFile($request->image, 'public/destinations');
@@ -104,17 +155,67 @@ class DestinationController
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'weather_description_ar' => 'nullable|string|max:500',
+            'weather_description_en' => 'nullable|string|max:500',
+            'amenities_ar' => 'nullable|string|max:500',
+            'amenities_en' => 'nullable|string|max:500',
+            'recommended_visit_season_ar' => 'nullable|string|max:255',
+            'recommended_visit_season_en' => 'nullable|string|max:255',
+            'category_id' => 'required|integer|exists:categories,id',
+            'lat' => 'nullable|numeric',
+            'lng' => 'nullable|numeric',
+            'annual_visitors_min' => 'nullable|numeric|min:0',
+            'annual_visitors_max' => 'nullable|numeric|min:0',
+            'body_ar' => 'required|string',
+            'body_en' => 'required|string',
+            'description_ar' => 'nullable|string',
+            'description_en' => 'nullable|string',
         ]);
 
-        $destination = Destination::find($id);
-        // Update localized names
+        $destination = Destination::findOrFail($id);
+
+        // Update localized fields
         $destination->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
         ];
+
+        $destination->weather_description = [
+            'ar' => $validatedData['weather_description_ar'],
+            'en' => $validatedData['weather_description_en'],
+        ];
+
+        $destination->amenities = [
+            'ar' => $validatedData['amenities_ar'],
+            'en' => $validatedData['amenities_en'],
+        ];
+
+        $destination->recommended_visit_season = [
+            'ar' => $validatedData['recommended_visit_season_ar'],
+            'en' => $validatedData['recommended_visit_season_en'],
+        ];
+
+        $destination->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
+        ];
+
+        $destination->description = [
+            'ar' => $validatedData['description_ar'],
+            'en' => $validatedData['description_en'],
+        ];
+
+        // Update category and location
+        $destination->category_id = $validatedData['category_id'];
+        $destination->lat = $validatedData['lat'];
+        $destination->lng = $validatedData['lng'];
+
+        $destination->annual_visitors_min = $validatedData['annual_visitors_min'];
+        $destination->annual_visitors_max = $validatedData['annual_visitors_max'];
 
         // Handle image upload if a new image is provided
         if ($request->image) {
@@ -126,13 +227,14 @@ class DestinationController
             $destination->image = str_replace('public/', '', $newImage);
         }
 
+        // Handle cover image upload if provided
         if ($request->cover_image) {
-            $newImage = FileHelper::updateFile(
+            $newCoverImage = FileHelper::updateFile(
                 'public/' . $destination->cover_image,
                 $request->cover_image,
                 'public/destinations'
             );
-            $destination->cover_image = str_replace('public/', '', $newImage);
+            $destination->cover_image = str_replace('public/', '', $newCoverImage);
         }
 
         $destination->save();
