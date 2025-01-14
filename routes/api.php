@@ -19,6 +19,7 @@ use App\Http\Controllers\API\LandmarkController;
 use App\Http\Controllers\API\FaqController;
 use App\Http\Controllers\API\CancellationController;
 use App\Http\Controllers\API\StatusController;
+use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -75,9 +76,15 @@ Route::group([
     Route::get('/favorites', [FavoriteController::class, 'index']);       // favorites
     Route::post('/favorites', [FavoriteController::class, 'store']);       // Add favorite
     Route::delete('/favorites', [FavoriteController::class, 'destroy']);  // Remove favorite
-    
+
     Route::get('cancellations' , [CancellationController::class,'index']);
     Route::post('/cancellations', [CancellationController::class, 'store']);       // Add cancellation
+
+    Route::get('notifications/seen', [NotificationController::class,'seen']);
+    Route::get('notifications/not-seen', [NotificationController::class,'notSeen']);
+    Route::apiResource('notifications', NotificationController::class);
+    Route::post('notifications/markAsRead', [NotificationController::class,'markAsRead']);
+    Route::post('notifications/markAllAsRead', [NotificationController::class,'markAllAsRead']);
 
 
 
