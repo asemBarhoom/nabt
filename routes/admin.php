@@ -27,6 +27,7 @@ use App\Http\Controllers\Admin\ToureventController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SubscribeController;
+use App\Http\Controllers\Admin\StepController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -251,6 +252,20 @@ Route::group([
                 Route::post('createJson', [SubscribeController::class,'createJson'])->name('system.subscribes.createJson')->middleware(['checkRule:add,subscribes']);//
                 Route::post('activate', [SubscribeController::class,'activate'])->name('system.subscribes.activate')->middleware(['checkRule:activate,subscribes']);
                 Route::post('deactivate', [SubscribeController::class,'deactivate'])->name('system.subscribes.deactivate')->middleware(['checkRule:activate,subscribes']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('steps/')->middleware(['checkRule:view,steps'])->group(function () {
+                Route::get('', [StepController::class,'index'])->name('system.steps.index');
+                Route::get('create', [StepController::class,'create'])->name('system.steps.create')->middleware(['checkRule:add,steps']);
+                Route::post('store', [StepController::class,'store'])->name('system.steps.store')->middleware(['checkRule:add,steps']);//
+                Route::get('/{id}/edit', [StepController::class,'edit'])->name('system.steps.edit')->middleware(['checkRule:edit,steps']);
+                Route::post('update/{id}', [StepController::class,'update'])->name('system.steps.update')->middleware(['checkRule:edit,steps']);
+                Route::post('delete', [StepController::class,'delete'])->name('system.steps.delete')->middleware(['checkRule:delete,steps']);
+                Route::post('createJson', [StepController::class,'createJson'])->name('system.steps.createJson')->middleware(['checkRule:add,steps']);//
+                Route::post('activate', [StepController::class,'activate'])->name('system.steps.activate')->middleware(['checkRule:activate,steps']);
+                Route::post('deactivate', [StepController::class,'deactivate'])->name('system.steps.deactivate')->middleware(['checkRule:activate,steps']);
             });
 
         });

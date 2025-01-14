@@ -249,6 +249,22 @@ return [
         ]
     ],
 
+    'steps' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('steps'),
+            'root' => true,
+            'route' => 'system.steps.index',
+            'new-tab' => false,
+            'module_name' => 'steps',
+        ]
+    ],
+
 
 
     'notifications' => [

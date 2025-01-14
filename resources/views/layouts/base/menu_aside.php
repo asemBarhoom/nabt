@@ -88,6 +88,14 @@ return [
             'new-tab' => false,
             'module_name' => 'subscribes',
         ],
+        [
+            'title' => t('steps'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for steps or process
+            'route' => 'system.steps.index',
+            'new-tab' => false,
+            'module_name' => 'steps',
+        ],
+
 
     ]
 ];
