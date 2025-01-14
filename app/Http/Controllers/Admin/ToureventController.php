@@ -55,22 +55,62 @@ class ToureventController
      */
     public function store(Request $request)
     {
+        // Validate the incoming request data
         $validatedData = $request->validate([
-            'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'cover_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'name_ar' => 'required|string|max:255',
             'name_en' => 'required|string|max:255',
+            'position_ar' => 'required|string|max:255',
+            'position_en' => 'required|string|max:255',
+            'body_ar' => 'required|string',
+            'body_en' => 'required|string',
+            'description_ar' => 'nullable|string',
+            'description_en' => 'nullable|string',
+            'at' => 'nullable|date',
+            'rating' => 'nullable|numeric', // Adjust if rating is numeric or a different type
+            'category_id' => 'required|integer|exists:categories,id',
         ]);
 
-        $tourevent = new Tourevent();
+        // Create a new TourEvent instance
+        $tourevent = new TourEvent();
+
+        // Fill the validated data into the model
         $tourevent->name = [
             'ar' => $validatedData['name_ar'],
             'en' => $validatedData['name_en'],
         ];
+        $tourevent->position = [
+            'ar' => $validatedData['position_ar'],
+            'en' => $validatedData['position_en'],
+        ];
+        $tourevent->body = [
+            'ar' => $validatedData['body_ar'],
+            'en' => $validatedData['body_en'],
+        ];
+        $tourevent->description = [
+            'ar' => $validatedData['description_ar'],
+            'en' => $validatedData['description_en'],
+        ];
+
+        // Convert the 'at' field to a valid date format if it's provided
+        if ($request->has('at') && $request->at) {
+            $validatedData['at'] = Carbon::createFromFormat('m/d/Y', $validatedData['at'])->format('Y-m-d');
+        }
+
+        $tourevent->rating = $validatedData['rating'];
+        $tourevent->category_id = $validatedData['category_id'];
 
         if ($request->image) {
             $image = FileHelper::uploadFile($request->image, 'public/tourevents');
             $image = str_replace('public/', '', $image);
             $tourevent->image = $image;
+        }
+
+
+        if ($request->cover_image) {
+            $coverImagePath = $request->file('cover_image')->store('public/tourevents');
+            $tourevent->cover_image = str_replace('public/', '', $coverImagePath);
         }
 
         $tourevent->save();

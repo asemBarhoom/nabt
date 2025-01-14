@@ -59,6 +59,7 @@
                                 <span></span>
                             </label>
                         </th>
+                        <th class="text-center">{{ t('image') }}</th>
                         <th class="text-center">{{ t('name') }}</th>
                         <th class="text-center">{{ t('settings') }}</th>
                     </tr>
@@ -72,6 +73,9 @@
                                     <input type="checkbox" value="{{ $tourevent->id }}" name="Item[]" class="CheckedItem" id="che_{{ $tourevent->id }}">
                                     <span></span>
                                 </label>
+                            </td>
+                            <td class="text-center">
+                                <img src="{{ App\Helpers\FileHelper::getFullPathSingleAsset(object_get($tourevent , 'image')) }}" alt="{{ $tourevent->name }}" style="width: 50px; height: 50px; object-fit: cover;">
                             </td>
                             <td class="text-center">
                                 {{$tourevent->name}}
