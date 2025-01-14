@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\Admin\AccommodationController;
 use App\Http\Controllers\Admin\ToureventController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\PartnerController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -222,6 +223,20 @@ Route::group([
                 Route::post('deactivate', [ToureventController::class,'deactivate'])->name('system.tourevents.deactivate')->middleware(['checkRule:activate,tourevents']);
             });
 
+
+            //======================================================================================================
+
+            Route::prefix('partners/')->middleware(['checkRule:view,partners'])->group(function () {
+                Route::get('', [PartnerController::class,'index'])->name('system.partners.index');
+                Route::get('create', [PartnerController::class,'create'])->name('system.partners.create')->middleware(['checkRule:add,partners']);
+                Route::post('store', [PartnerController::class,'store'])->name('system.partners.store')->middleware(['checkRule:add,partners']);//
+                Route::get('/{id}/edit', [PartnerController::class,'edit'])->name('system.partners.edit')->middleware(['checkRule:edit,partners']);
+                Route::post('update/{id}', [PartnerController::class,'update'])->name('system.partners.update')->middleware(['checkRule:edit,partners']);
+                Route::post('delete', [PartnerController::class,'delete'])->name('system.partners.delete')->middleware(['checkRule:delete,partners']);
+                Route::post('createJson', [PartnerController::class,'createJson'])->name('system.partners.createJson')->middleware(['checkRule:add,partners']);//
+                Route::post('activate', [PartnerController::class,'activate'])->name('system.partners.activate')->middleware(['checkRule:activate,partners']);
+                Route::post('deactivate', [PartnerController::class,'deactivate'])->name('system.partners.deactivate')->middleware(['checkRule:activate,partners']);
+            });
 
         });
 

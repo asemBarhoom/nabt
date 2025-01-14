@@ -74,5 +74,13 @@ return [
             'new-tab' => false,
             'module_name' => 'settings',
         ],
+        [
+            'title' => t('partners'),
+            'icon' => 'fas fa-handshake', // Suitable for partners or collaboration
+            'route' => 'system.partners.index',
+            'new-tab' => false,
+            'module_name' => 'partners',
+        ],
+
     ]
 ];
