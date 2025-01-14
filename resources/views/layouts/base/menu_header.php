@@ -233,6 +233,23 @@ return [
         ]
     ],
 
+    'subscribes' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('subscribes'),
+            'root' => true,
+            'route' => 'system.subscribes.index',
+            'new-tab' => false,
+            'module_name' => 'subscribes',
+        ]
+    ],
+
+
 
     'notifications' => [
         [

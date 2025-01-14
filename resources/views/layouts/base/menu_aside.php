@@ -81,6 +81,13 @@ return [
             'new-tab' => false,
             'module_name' => 'partners',
         ],
+        [
+            'title' => t('subscribes'),
+            'icon' => 'fas fa-envelope', // Suitable for email subscriptions
+            'route' => 'system.subscribes.index',
+            'new-tab' => false,
+            'module_name' => 'subscribes',
+        ],
 
     ]
 ];

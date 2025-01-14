@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AccommodationController;
 use App\Http\Controllers\Admin\ToureventController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\SubscribeController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -236,6 +237,20 @@ Route::group([
                 Route::post('createJson', [PartnerController::class,'createJson'])->name('system.partners.createJson')->middleware(['checkRule:add,partners']);//
                 Route::post('activate', [PartnerController::class,'activate'])->name('system.partners.activate')->middleware(['checkRule:activate,partners']);
                 Route::post('deactivate', [PartnerController::class,'deactivate'])->name('system.partners.deactivate')->middleware(['checkRule:activate,partners']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('subscribes/')->middleware(['checkRule:view,subscribes'])->group(function () {
+                Route::get('', [SubscribeController::class,'index'])->name('system.subscribes.index');
+                Route::get('create', [SubscribeController::class,'create'])->name('system.subscribes.create')->middleware(['checkRule:add,subscribes']);
+                Route::post('store', [SubscribeController::class,'store'])->name('system.subscribes.store')->middleware(['checkRule:add,subscribes']);//
+                Route::get('/{id}/edit', [SubscribeController::class,'edit'])->name('system.subscribes.edit')->middleware(['checkRule:edit,subscribes']);
+                Route::post('update/{id}', [SubscribeController::class,'update'])->name('system.subscribes.update')->middleware(['checkRule:edit,subscribes']);
+                Route::post('delete', [SubscribeController::class,'delete'])->name('system.subscribes.delete')->middleware(['checkRule:delete,subscribes']);
+                Route::post('createJson', [SubscribeController::class,'createJson'])->name('system.subscribes.createJson')->middleware(['checkRule:add,subscribes']);//
+                Route::post('activate', [SubscribeController::class,'activate'])->name('system.subscribes.activate')->middleware(['checkRule:activate,subscribes']);
+                Route::post('deactivate', [SubscribeController::class,'deactivate'])->name('system.subscribes.deactivate')->middleware(['checkRule:activate,subscribes']);
             });
 
         });
