@@ -484,4 +484,11 @@ return[
  	'shipment_location_map' => 'shipment_location_map',
  	'export_shipment_list' => 'export_shipment_list',
  	'shipment_tracking_number' => 'shipment_tracking_number',
+ 	'pending' => 'pending',
+ 	'confirmed' => 'confirmed',
+ 	'in_progress' => 'in_progress',
+ 	'cancellation_requested' => 'cancellation_requested',
+ 	'cancellation_rejected' => 'cancellation_rejected',
+ 	'completed' => 'completed',
+ 	'cancelled' => 'cancelled',
 ];

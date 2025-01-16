@@ -40,5 +40,6 @@ class DatabaseSeeder extends Seeder
        $this->call(CancellationSeeder::class);
        $this->call(NotificationsTableSeeder::class);
        $this->call(ActivitySeeder::class);
+       $this->call(FavoriteSeeder::class);
     }
 }

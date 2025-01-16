@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Accommodation;
+use App\Models\Booking;
 use App\Models\Destination;
 use App\Models\Favorite;
 use App\Models\Tourevent;
@@ -21,8 +23,10 @@ class FavoriteSeeder extends Seeder
         $users = User::all();
 
         foreach ($users as $user) {
-            $destinations = Destination::inRandomOrder()->limit(rand(1, 5))->get();
-            $tourevents = Tourevent::inRandomOrder()->limit(rand(1, 3))->get();
+            $destinations = Destination::inRandomOrder()->get();
+            $tourevents = Tourevent::inRandomOrder()->get();
+            $bookings = Booking::inRandomOrder()->get();
+            $accommodations = Accommodation::inRandomOrder()->get();
 
             foreach ($destinations as $destination) {
                 Favorite::query()->create([
@@ -37,6 +41,22 @@ class FavoriteSeeder extends Seeder
                     'user_id' => $user->id,
                     'favorable_id' => $tourevent->id,
                     'favorable_type' => Tourevent::class,
+                ]);
+            }
+
+            foreach ($bookings as $booking) {
+                Favorite::query()->create([
+                    'user_id' => $user->id,
+                    'favorable_id' => $booking->id,
+                    'favorable_type' => Booking::class,
+                ]);
+            }
+
+            foreach ($accommodations as $accommodation) {
+                Favorite::query()->create([
+                    'user_id' => $user->id,
+                    'favorable_id' => $accommodation->id,
+                    'favorable_type' => Accommodation::class,
                 ]);
             }
         }

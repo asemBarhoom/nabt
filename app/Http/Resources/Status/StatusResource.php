@@ -9,6 +9,7 @@ use App\Http\Resources\Destination\DestinationResource;
 use App\Http\Resources\Tourevent\ToureventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Carbon;
+use App\Models\Booking;
 
 class StatusResource extends JsonResource
 {
@@ -28,9 +29,19 @@ class StatusResource extends JsonResource
             default => null,
         };
 
+        $status = $this->status;
+        $statuses = array_map(function ($status) {
+            return [
+                'key' => $status,
+                'value' => t($status),
+                'color' => Booking::STATUS_COLORS[$status] ?? '#000000',
+            ];
+        }, [$this->status]);
+
+
         return [
                  'id' => $this->id,
-                 'status' => $this->status,
+                 'status' => $statuses,
                  'color' => $this->color,
 //                 'user' => $this->user ? new UserProfileResource($this->user) : null,
 //                 'statusable' => $statusableResource,

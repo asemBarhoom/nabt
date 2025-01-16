@@ -445,4 +445,11 @@ return [
  	'shipment_location_map' => 'shipment_location_map',
  	'export_shipment_list' => 'export_shipment_list',
  	'shipment_tracking_number' => 'shipment_tracking_number',
+    'pending' => 'الحجز في حالة الانتظار',
+    'confirmed' => 'تم تأكيد الحجز',
+    'in_progress' => 'الحجز قيد التنفيذ',
+    'cancellation_requested' => 'طلب إلغاء الحجز في انتظار الموافقة',
+    'cancellation_rejected' => 'تم رفض طلب الإلغاء',
+    'completed' => 'تم إكمال الحجز',
+    'cancelled' => 'تم إلغاء الحجز',
 ];

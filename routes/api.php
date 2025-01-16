@@ -61,6 +61,7 @@ Route::apiResource('landmarks' , LandmarkController::class);
 Route::post('login', [AuthController::class, 'login']);
 Route::get('events' , [EventController::class,'index']);
 Route::get('faqs' , [FaqController::class,'index']);
+Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
 
 Route::group([
     'middleware' => ['auth:api'],

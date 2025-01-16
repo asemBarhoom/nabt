@@ -47,16 +47,33 @@ class Booking extends Model
         'cancelled',            // تم إلغاء الحجز
     ];
 
-
     public const STATUS_COLORS = [
-        'pending' => '#FFA500',               // Orange
-        'confirmed' => '#008000',             // Green
-        'in_progress' => '#0000FF',           // Blue
-        'cancellation_requested' => '#FFD700', // Yellow (Pending cancellation request)
-        'cancellation_rejected' => '#FF4500',  // Orange-Red (Cancellation request rejected)
-        'completed' => '#4CAF50',             // Dark Green
-        'cancelled' => '#FF0000',             // Red
+        'pending' => '#FFE5B4',         // Light Peach (Pleasant Orange Tone)
+        'confirmed' => '#C8E6C9',       // Light Mint Green (Soft and Positive)
+        'in_progress' => '#BBDEFB',     // Light Sky Blue (Calm and Active)
+        'cancellation_requested' => '#FFF9C4', // Pale Yellow (Soft Attention)
+        'cancellation_rejected' => '#FFCCBC',  // Light Salmon (Gentle Warning)
+        'completed' => '#A5D6A7',       // Muted Green (Success and Calm)
+        'cancelled' => '#FFCDD2',       // Light Rose Red (Subtle Cancel Indicator)
     ];
+
+
+
+    public function getStatusFlow()
+    {
+        $statuses = array_map(function ($status) {
+            return [
+                'key' => $status,
+                'value' => t($status),
+                'color' => self::STATUS_COLORS[$status] ?? '#000000', // Default to black if color not found
+            ];
+        }, self::STATUS_FLOW);
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $statuses,
+        ]);
+    }
 
     // Defining the relationships
 
