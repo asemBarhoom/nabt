@@ -339,6 +339,40 @@ return [
         ],
     ],
 
+
+    'countries' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('countries'),
+            'root' => true,
+            'route' => 'system.countries.index',
+            'new-tab' => false,
+            'module_name' => 'countries',
+        ],
+    ],
+
+
+    'cities' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('cities'),
+            'root' => true,
+            'route' => 'system.cities.index',
+            'new-tab' => false,
+            'module_name' => 'cities',
+        ],
+    ],
+
     'products' => [
         [
             'title' => t('dashboard'),

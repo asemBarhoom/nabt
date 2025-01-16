@@ -101,7 +101,23 @@ return [
             'icon' => 'fas fa-clipboard-list', // Suitable for pages or process
             'route' => 'system.pages.index',
             'new-tab' => false,
-            'module_name' => 'steps',
+            'module_name' => 'pages',
+        ],
+
+        [
+            'title' => t('countries'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for countries or process
+            'route' => 'system.countries.index',
+            'new-tab' => false,
+            'module_name' => 'countries',
+        ],
+
+        [
+            'title' => t('cities'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for cities or process
+            'route' => 'system.cities.index',
+            'new-tab' => false,
+            'module_name' => 'cities',
         ],
 
         [

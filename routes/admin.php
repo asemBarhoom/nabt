@@ -32,6 +32,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\BookController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ActivityController;
+use App\Http\Controllers\Admin\CountryController;
+use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\PageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -341,6 +343,32 @@ Route::group([
                 Route::post('createJson', [ActivityController::class,'createJson'])->name('system.activities.createJson')->middleware(['checkRule:add,activities']);//
                 Route::post('activate', [ActivityController::class,'activate'])->name('system.activities.activate')->middleware(['checkRule:activate,activities']);
                 Route::post('deactivate', [ActivityController::class,'deactivate'])->name('system.activities.deactivate')->middleware(['checkRule:activate,activities']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('countries/')->middleware(['checkRule:view,countries'])->group(function () {
+                Route::get('', [CountryController::class,'index'])->name('system.countries.index');
+                Route::get('create', [CountryController::class,'create'])->name('system.countries.create')->middleware(['checkRule:add,countries']);
+                Route::post('store', [CountryController::class,'store'])->name('system.countries.store')->middleware(['checkRule:add,countries']);//
+                Route::get('/{id}/edit', [CountryController::class,'edit'])->name('system.countries.edit')->middleware(['checkRule:edit,countries']);
+                Route::post('update/{id}', [CountryController::class,'update'])->name('system.countries.update')->middleware(['checkRule:edit,countries']);
+                Route::post('delete', [CountryController::class,'delete'])->name('system.countries.delete')->middleware(['checkRule:delete,countries']);
+                Route::post('createJson', [CountryController::class,'createJson'])->name('system.countries.createJson')->middleware(['checkRule:add,countries']);//
+                Route::post('activate', [CountryController::class,'activate'])->name('system.countries.activate')->middleware(['checkRule:activate,countries']);
+                Route::post('deactivate', [CountryController::class,'deactivate'])->name('system.countries.deactivate')->middleware(['checkRule:activate,countries']);
+            });
+
+            Route::prefix('cities/')->middleware(['checkRule:view,cities'])->group(function () {
+                Route::get('', [CityController::class,'index'])->name('system.cities.index');
+                Route::get('create', [CityController::class,'create'])->name('system.cities.create')->middleware(['checkRule:add,cities']);
+                Route::post('store', [CityController::class,'store'])->name('system.cities.store')->middleware(['checkRule:add,cities']);//
+                Route::get('/{id}/edit', [CityController::class,'edit'])->name('system.cities.edit')->middleware(['checkRule:edit,cities']);
+                Route::post('update/{id}', [CityController::class,'update'])->name('system.cities.update')->middleware(['checkRule:edit,cities']);
+                Route::post('delete', [CityController::class,'delete'])->name('system.cities.delete')->middleware(['checkRule:delete,cities']);
+                Route::post('createJson', [CityController::class,'createJson'])->name('system.cities.createJson')->middleware(['checkRule:add,cities']);//
+                Route::post('activate', [CityController::class,'activate'])->name('system.cities.activate')->middleware(['checkRule:activate,cities']);
+                Route::post('deactivate', [CityController::class,'deactivate'])->name('system.cities.deactivate')->middleware(['checkRule:activate,cities']);
             });
 
         });
