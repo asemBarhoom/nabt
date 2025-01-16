@@ -104,6 +104,14 @@ return [
             'module_name' => 'steps',
         ],
 
+        [
+            'title' => t('users'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for users or process
+            'route' => 'system.users.index',
+            'new-tab' => false,
+            'module_name' => 'users',
+        ],
+
 
     ]
 ];

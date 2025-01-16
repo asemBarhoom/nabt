@@ -281,6 +281,22 @@ return [
         ]
     ],
 
+    'users' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('users'),
+            'root' => true,
+            'route' => 'system.users.index',
+            'new-tab' => false,
+            'module_name' => 'users',
+        ]
+    ],
+
 
 
     'notifications' => [
