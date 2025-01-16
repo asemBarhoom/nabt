@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SubscribeController;
 use App\Http\Controllers\Admin\StepController;
+use App\Http\Controllers\Admin\PageController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -266,6 +267,20 @@ Route::group([
                 Route::post('createJson', [StepController::class,'createJson'])->name('system.steps.createJson')->middleware(['checkRule:add,steps']);//
                 Route::post('activate', [StepController::class,'activate'])->name('system.steps.activate')->middleware(['checkRule:activate,steps']);
                 Route::post('deactivate', [StepController::class,'deactivate'])->name('system.steps.deactivate')->middleware(['checkRule:activate,steps']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('pages/')->middleware(['checkRule:view,pages'])->group(function () {
+                Route::get('', [PageController::class,'index'])->name('system.pages.index');
+                Route::get('create', [PageController::class,'create'])->name('system.pages.create')->middleware(['checkRule:add,pages']);
+                Route::post('store', [PageController::class,'store'])->name('system.pages.store')->middleware(['checkRule:add,pages']);//
+                Route::get('/{id}/edit', [PageController::class,'edit'])->name('system.pages.edit')->middleware(['checkRule:edit,pages']);
+                Route::post('update/{id}', [PageController::class,'update'])->name('system.pages.update')->middleware(['checkRule:edit,pages']);
+                Route::post('delete', [PageController::class,'delete'])->name('system.pages.delete')->middleware(['checkRule:delete,pages']);
+                Route::post('createJson', [PageController::class,'createJson'])->name('system.pages.createJson')->middleware(['checkRule:add,pages']);//
+                Route::post('activate', [PageController::class,'activate'])->name('system.pages.activate')->middleware(['checkRule:activate,pages']);
+                Route::post('deactivate', [PageController::class,'deactivate'])->name('system.pages.deactivate')->middleware(['checkRule:activate,pages']);
             });
 
         });

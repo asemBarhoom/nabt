@@ -265,6 +265,22 @@ return [
         ]
     ],
 
+    'pages' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('pages'),
+            'root' => true,
+            'route' => 'system.pages.index',
+            'new-tab' => false,
+            'module_name' => 'pages',
+        ]
+    ],
+
 
 
     'notifications' => [

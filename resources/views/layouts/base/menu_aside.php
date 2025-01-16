@@ -96,6 +96,14 @@ return [
             'module_name' => 'steps',
         ],
 
+        [
+            'title' => t('pages'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for pages or process
+            'route' => 'system.pages.index',
+            'new-tab' => false,
+            'module_name' => 'steps',
+        ],
+
 
     ]
 ];
