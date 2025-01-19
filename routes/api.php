@@ -21,6 +21,7 @@ use App\Http\Controllers\API\CancellationController;
 use App\Http\Controllers\API\StatusController;
 use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\ActivityController;
+use App\Http\Controllers\API\TicketController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -90,6 +91,7 @@ Route::group([
 
 
     Route::apiResource('activities' , ActivityController::class);
+    Route::apiResource('tickets' , TicketController::class);
 
 
 

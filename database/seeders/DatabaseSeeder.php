@@ -36,10 +36,11 @@ class DatabaseSeeder extends Seeder
        $this->call(LandmarksSeeder::class);
        $this->call(SystemAdminSeeder::class);
        $this->call(FaqSeeder::class);
-       $this->call(StatusesTableSeeder::class);
        $this->call(CancellationSeeder::class);
        $this->call(NotificationsTableSeeder::class);
        $this->call(ActivitySeeder::class);
        $this->call(FavoriteSeeder::class);
+       $this->call(TicketSeeder::class);
+       $this->call(StatusesTableSeeder::class);
     }
 }

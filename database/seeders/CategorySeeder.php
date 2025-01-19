@@ -333,7 +333,79 @@ class CategorySeeder extends Seeder
                     'image' => 'categories/cancellations10.jpg',
                     'status' => true,
                     'categoriable_type' => 'App\Models\Cancellation',
-                ]
+                ],
+
+                [
+                    'name' => ['ar' => 'إلغاء بسبب الحجز المزدوج', 'en' => 'Cancellation Due to Double Booking'],
+                    'body' => ['ar' => 'في حالة حدوث حجز مزدوج، سنقوم بإلغاء الحجز المكرر وإبلاغ العميل في أقرب وقت، مع تقديم استرداد كامل.', 'en' => 'In case of double booking, we will cancel the duplicate booking and notify the customer promptly, offering a full refund.'],
+                    'image' => 'categories/cancellations10.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'تأخير في الرحلة', 'en' => 'Flight Delay'],
+                    'body' => ['ar' => 'في حالة تأخير الرحلة، سنقوم بتوفير خيارات بديلة للعملاء وإبلاغهم بالتفاصيل في أسرع وقت.', 'en' => 'In case of flight delay, we will provide alternative options for customers and notify them promptly with details.'],
+                    'image' => 'categories/delays1.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'حجز مفقود', 'en' => 'Lost Booking'],
+                    'body' => ['ar' => 'في حال فقدان الحجز، سنتحقق من التفاصيل ونساعد العميل في استعادة الحجز بأسرع وقت ممكن.', 'en' => 'In case of lost booking, we will verify details and assist the customer in retrieving their booking promptly.'],
+                    'image' => 'categories/lost_bookings2.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء بسبب الطقس السيئ', 'en' => 'Cancellation Due to Bad Weather'],
+                    'body' => ['ar' => 'في حال حدوث ظروف جوية غير مواتية، سنقوم بإلغاء الحجز وتقديم تعويض للعملاء إذا لزم الأمر.', 'en' => 'In case of unfavorable weather conditions, we will cancel the booking and provide compensation if necessary.'],
+                    'image' => 'categories/weather_cancellations3.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'تغيير في الجدول الزمني', 'en' => 'Schedule Change'],
+                    'body' => ['ar' => 'في حالة تغيير الجدول الزمني للرحلة أو الخدمة، سيتم إبلاغ العملاء بالتغييرات وأي خيارات بديلة متاحة.', 'en' => 'In case of a schedule change for a flight or service, customers will be notified of the changes and any alternative options available.'],
+                    'image' => 'categories/schedule_changes4.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء بسبب ظروف الطوارئ', 'en' => 'Cancellation Due to Emergency'],
+                    'body' => ['ar' => 'في حالة حدوث ظروف طارئة، سيتم إلغاء الحجز وسيتم تقديم خيارات تعويض للعملاء. نتمنى لكم السلامة.', 'en' => 'In case of an emergency, the booking will be canceled, and compensation options will be provided to the customers. We wish you safety.'],
+                    'image' => 'categories/emergency_cancellations5.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'تأجيل بسبب الظروف الاستثنائية', 'en' => 'Postponement Due to Exceptional Circumstances'],
+                    'body' => ['ar' => 'في حالة تأجيل الرحلة أو الخدمة بسبب ظروف استثنائية، سنوافي العملاء بكل التفاصيل والتحديثات المتاحة.', 'en' => 'In case of postponement due to exceptional circumstances, customers will be updated with all details and available updates.'],
+                    'image' => 'categories/postponements6.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'مشكلة في الدفع', 'en' => 'Payment Issues'],
+                    'body' => ['ar' => 'في حال حدوث مشكلة في الدفع، سيتم مساعدة العملاء في حل المشكلة بأسرع وقت ممكن لاستكمال الحجز.', 'en' => 'In case of payment issues, we will assist the customers in resolving the issue as quickly as possible to complete their booking.'],
+                    'image' => 'categories/payment_issues7.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'تغيير في المقعد', 'en' => 'Seat Change'],
+                    'body' => ['ar' => 'في حال طلب تغيير المقعد، سيتم فحص التوافر والتأكيد للعملاء في أسرع وقت.', 'en' => 'In case of a seat change request, availability will be checked, and customers will be confirmed as soon as possible.'],
+                    'image' => 'categories/seat_changes8.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+                [
+                    'name' => ['ar' => 'إلغاء بسبب الحظر', 'en' => 'Cancellation Due to Ban'],
+                    'body' => ['ar' => 'في حال حدوث حظر على الخدمة أو الوجهة، سيتم إلغاء الحجز وتقديم تعويض مناسب للعملاء.', 'en' => 'In case of a ban on the service or destination, the booking will be canceled, and appropriate compensation will be offered to the customers.'],
+                    'image' => 'categories/banned_cancellations9.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Ticket',
+                ],
+
 
 
 

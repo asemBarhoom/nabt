@@ -24,7 +24,7 @@ class NotificationController
             $notifications = $request
                 ->user()
                 ->notifications()
-                ->paginate($request->per_page);
+                ->paginate($request->header('perpage'));
 
             $unread_notifications_count  = $request->user()->unreadNotifications()->count();
 
@@ -43,7 +43,7 @@ class NotificationController
                 ->user()
                 ->notifications()
                 ->read()
-                ->paginate($request->per_page);
+                ->paginate($request->header('perpage'));
 
             $unread_notifications_count = $request->user()->unreadNotifications()->count();
 
@@ -62,7 +62,7 @@ class NotificationController
                 ->user()
                 ->notifications()
                 ->unread()
-                ->paginate($request->per_page);
+                ->paginate($request->header('perpage'));
 
             $unread_notifications_count = $request->user()->unreadNotifications()->count();
 
@@ -128,7 +128,7 @@ class NotificationController
 
             $Notifications =
                 request()->user()->notifications()
-                    ->paginate($request->per_page);
+                    ->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new NotificationCollection($Notifications));
         } catch (Exception $e) {
             return Response::respondError($e->getMessage());
