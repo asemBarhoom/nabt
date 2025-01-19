@@ -29,7 +29,7 @@ use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SubscribeController;
 use App\Http\Controllers\Admin\StepController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\BookController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\CountryController;
@@ -306,15 +306,15 @@ Route::group([
             //======================================================================================================
 
             Route::prefix('bookings/')->middleware(['checkRule:view,bookings'])->group(function () {
-                Route::get('', [BookController::class,'index'])->name('system.bookings.index');
-                Route::get('create', [BookController::class,'create'])->name('system.bookings.create')->middleware(['checkRule:add,bookings']);
-                Route::post('store', [BookController::class,'store'])->name('system.bookings.store')->middleware(['checkRule:add,bookings']);//
-                Route::get('/{id}/edit', [BookController::class,'edit'])->name('system.bookings.edit')->middleware(['checkRule:edit,bookings']);
-                Route::post('update/{id}', [BookController::class,'update'])->name('system.bookings.update')->middleware(['checkRule:edit,bookings']);
-                Route::post('delete', [BookController::class,'delete'])->name('system.bookings.delete')->middleware(['checkRule:delete,bookings']);
-                Route::post('createJson', [BookController::class,'createJson'])->name('system.bookings.createJson')->middleware(['checkRule:add,bookings']);//
-                Route::post('activate', [BookController::class,'activate'])->name('system.bookings.activate')->middleware(['checkRule:activate,bookings']);
-                Route::post('deactivate', [BookController::class,'deactivate'])->name('system.bookings.deactivate')->middleware(['checkRule:activate,bookings']);
+                Route::get('', [BookingController::class,'index'])->name('system.bookings.index');
+                Route::get('create', [BookingController::class,'create'])->name('system.bookings.create')->middleware(['checkRule:add,bookings']);
+                Route::post('store', [BookingController::class,'store'])->name('system.bookings.store')->middleware(['checkRule:add,bookings']);//
+                Route::get('/{id}/edit', [BookingController::class,'edit'])->name('system.bookings.edit')->middleware(['checkRule:edit,bookings']);
+                Route::post('update/{id}', [BookingController::class,'update'])->name('system.bookings.update')->middleware(['checkRule:edit,bookings']);
+                Route::post('delete', [BookingController::class,'delete'])->name('system.bookings.delete')->middleware(['checkRule:delete,bookings']);
+                Route::post('createJson', [BookingController::class,'createJson'])->name('system.bookings.createJson')->middleware(['checkRule:add,bookings']);//
+                Route::post('activate', [BookingController::class,'activate'])->name('system.bookings.activate')->middleware(['checkRule:activate,bookings']);
+                Route::post('deactivate', [BookingController::class,'deactivate'])->name('system.bookings.deactivate')->middleware(['checkRule:activate,bookings']);
             });
 
             //======================================================================================================

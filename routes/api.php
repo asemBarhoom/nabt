@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('settings' , [SettingController::class,'index']);
 Route::get('testimonials' , [TestimonialController::class,'index']);
-Route::get('categories' , [CategoryController::class,'index']);
+Route::apiResource('categories' , CategoryController::class);
 Route::apiResource('destinations' , DestinationController::class);
 Route::apiResource('tourevents' , ToureventController::class);
 Route::get('partners' , [PartnerController::class,'index']);

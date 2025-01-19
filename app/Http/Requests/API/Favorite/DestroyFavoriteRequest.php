@@ -30,7 +30,7 @@ class DestroyFavoriteRequest extends FormRequest
     {
         return [
             'favorable_id' => 'required|integer',
-            'favorable_type' => 'required|string|in:App\Models\Destination',
+            'favorable_type' => 'required|string|in:App\Models\Destination,App\Models\Booking,App\Models\Tourevent,App\Models\Accommodation',
         ];
     }
 }

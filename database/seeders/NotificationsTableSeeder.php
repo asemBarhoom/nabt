@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Helpers\FileHelper;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,34 +18,38 @@ class NotificationsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Sample notification data
         DB::table('notifications')->insert([
             [
-                'id' => (string) Str::uuid(), // Generating UUID
-                'type' => 'App\\Notifications\\Booking', // Example notification type
-                'notifiable_type' => 'App\\Models\\User', // Notifiable model type
-                'notifiable_id' => 1, // Example user ID (adjust as needed)
+                'id' => (string) Str::uuid(), // إنشاء UUID فريد
+                'type' => 'App\Notifications\Booking', // نوع الإشعار (مثال)
+                'notifiable_type' => 'App\Models\User', // نوع النموذج الذي يستقبل الإشعار
+                'notifiable_id' => 1, // مثال على معرف المستخدم
                 'data' => json_encode([
-                    'message' => 'Welcome to the site!',
-                    'url' => 'https://example.com/dashboard',
-                ]), // Example notification data (usually in JSON format)
-                'read_at' => null, // Mark as unread
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
+                    'image' => FileHelper::getFullPathSingleAsset('post2.png'),
+                    'title' => 'أهلاً بك في موقع نبط السياحي!',
+                    'message' => 'استمتع بخدماتنا وتصفح المزيد عن الوجهات السياحية.',
+                    'url' => 'https://nabatsite.com/dashboard',
+                ]), // بيانات الإشعار بصيغة JSON
+                'read_at' => null, // الإشعار غير مقروء
+                'created_at' => Carbon::now(), // تاريخ الإنشاء
+                'updated_at' => Carbon::now(), // تاريخ التحديث
             ],
             [
                 'id' => (string) Str::uuid(),
-                'type' => 'App\\Notifications\\Booking', // Example notification type
-                'notifiable_type' => 'App\\Models\\User',
-                'notifiable_id' => 1, // Example user ID
+                'type' => 'App\Notifications\Booking',
+                'notifiable_type' => 'App\Models\User',
+                'notifiable_id' => 1,
                 'data' => json_encode([
-                    'message' => 'Your order has been shipped!',
-                    'order_id' => 12345,
+                    'image' => FileHelper::getFullPathSingleAsset('post2.png'),
+                    'title' => 'مرحبا بك!',
+                    'message' => 'اشترك الآن لاستكشاف المزيد من العروض السياحية.',
+                    'url' => 'https://nabatsite.com/offers',
                 ]),
                 'read_at' => null,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
         ]);
+
     }
 }

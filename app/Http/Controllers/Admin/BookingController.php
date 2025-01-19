@@ -19,7 +19,6 @@ class BookingController
     public function index(Request $request)
     {
         $bookings = Booking::query()
-            ->withCount('bookings')
             ->when($request->user_id, function ($query, $user_id) {
                 $query->where('user_id', "{$user_id}");
             })

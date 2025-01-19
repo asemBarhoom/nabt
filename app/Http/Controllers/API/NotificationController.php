@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Str;
 use App\Helpers\Response;
 use App\Http\Requests\FilterRequest;
@@ -86,8 +87,6 @@ class NotificationController
 
     public function markAsRead()
     {
-//        $this->authorize('notifications_markAsRead');
-
         try {
             $notificationId = request()->UUID;
 
@@ -96,12 +95,24 @@ class NotificationController
             }
 
             $notification = DatabaseNotification::findOrFail($notificationId);
-            $notification->markAsRead();
-            return Response::respondSuccess(Response::SUCCESS, new NotificationInfoResource($notification));
+            if (is_null($notification->read_at)) {
+                $notification->markAsRead();
+            } else {
+                $notification->markAsUnread();
+            }
+
+            // Return success response with the notification resource
+            return Response::respondSuccess(
+                Response::SUCCESS,
+                new NotificationInfoResource($notification)
+            );
+        } catch (ModelNotFoundException $e) {
+            return Response::respondError("Notification not found.");
         } catch (Exception $e) {
             return Response::respondError($e->getMessage());
         }
     }
+
 
     public function markAllAsRead(FilterRequest $request)
     {

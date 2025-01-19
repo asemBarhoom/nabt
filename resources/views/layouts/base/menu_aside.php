@@ -111,6 +111,13 @@ return [
             'new-tab' => false,
             'module_name' => 'countries',
         ],
+        [
+            'title' => t('bookings'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for bookings or process
+            'route' => 'system.bookings.index',
+            'new-tab' => false,
+            'module_name' => 'bookings',
+        ],
 
         [
             'title' => t('cities'),

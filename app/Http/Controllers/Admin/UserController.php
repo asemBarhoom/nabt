@@ -23,6 +23,9 @@ class UserController
             ->withCount('favorites')
             ->withCount('notifications')
             ->withCount('activities')
+            ->when($request->user_id, function ($query, $user_id) {
+                $query->where('id', "{$user_id}");
+            })
             ->when($request->input('name'), function ($query, $name) {
                 $query->where('name', "{$name}");
             })

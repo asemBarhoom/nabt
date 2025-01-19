@@ -18,4 +18,13 @@ class CategoryController extends Controller
             return Response::respondError($e->getMessage());
         }
     }
+
+    public function show($categoriable_type){
+        try{
+            $categoriess = Category::query()->where('categoriable_type','like','%'.$categoriable_type.'%')->paginate(\request()->header('perpage'));
+            return Response::respondSuccess(Response::SUCCESS, new CategoryCollection($categoriess));
+        } catch (\Exception $e) {
+            return Response::respondError($e->getMessage());
+        }
+    }
 }

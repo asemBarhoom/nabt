@@ -373,6 +373,22 @@ return [
         ],
     ],
 
+    'bookings' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('bookings'),
+            'root' => true,
+            'route' => 'system.bookings.index',
+            'new-tab' => false,
+            'module_name' => 'bookings',
+        ],
+    ],
+
     'products' => [
         [
             'title' => t('dashboard'),
