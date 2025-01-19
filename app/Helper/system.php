@@ -33,7 +33,7 @@ if (! function_exists('t')) {
      */
     function t($key, $placeholder = [], $locale = null)
     {
-        return trans($key, $placeholder, $locale);
+        return __($key,$placeholder);
         $group = 'admin';
         if (is_null($locale))
             $locale = config('app.locale');
