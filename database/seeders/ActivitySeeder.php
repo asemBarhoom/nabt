@@ -46,6 +46,7 @@ class ActivitySeeder extends Seeder
                     ],
                     'start_time' => $startTime->toTimeString(),
                     'end_time' => $endTime->toTimeString(),
+                    'read_at' => null,
                     'date' => $randomDate,
                     'activable_type' => 'App\Models\Tourevent',
                     'activable_id' => $tourevent->id,
@@ -78,6 +79,8 @@ class ActivitySeeder extends Seeder
                     'date' => $randomDate,
                     'activable_type' => 'App\Models\Tourevent',
                     'activable_id' => $tourevent->id,
+                    'read_at' => null,
+
                 ]);
             }
         }

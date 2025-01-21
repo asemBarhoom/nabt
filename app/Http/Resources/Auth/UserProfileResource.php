@@ -24,6 +24,7 @@ class UserProfileResource extends JsonResource
             'id'                => $this->id,
             'name'              => $this->name,
             'current_points'              => 1000,
+            'marketing_token'              => $this->marketing_token,
             'level'              => 'متوسط',
             'prefix'              => $this->prefix,
             'flag'              => Country::getFlagByPrefix($this->prefix),

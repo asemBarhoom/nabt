@@ -32,6 +32,7 @@ class Activity extends Model
         'date',
         'activable_id',
         'activable_type',
+        'read_at',
     ];
 
     /**

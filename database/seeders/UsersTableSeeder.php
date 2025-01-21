@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -56,6 +57,21 @@ class UsersTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
+        }
+
+        $users = User::query()->get();
+        foreach ($users as $user) {
+            if (!$user->marketing_token) {
+                $user->generateMarketingUrl(
+                    [
+                        'utm_source' => 'email',
+                        'utm_medium' => 'referral',
+                        'user_id' => $user->id,
+                    ],
+                    36,
+                    env('APP_URL')
+                );
+            }
         }
     }
 }

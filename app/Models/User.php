@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Str;
 
 class User extends Authenticatable
 {
@@ -28,7 +29,8 @@ class User extends Authenticatable
         'phone',
         'dob',
         'job',
-        'image'
+        'image',
+        'marketing_token'
     ];
 
     /**
@@ -72,5 +74,43 @@ class User extends Authenticatable
     public function activities()
     {
         return $this->hasMany(Activity::class);
+    }
+
+    public function generateMarketingUrl($queryParams = [], $tokenLength, $baseUrl = ''): string
+    {
+        // Generate a unique token
+
+        // Use provided base URL or default to application URL
+        $baseUrl = $baseUrl ?: url('/');
+        $token = Str::random($tokenLength);
+        $queryParams['token'] = $token;
+
+        // Build the query string
+        $queryString = http_build_query($queryParams);
+
+        // Construct the full URL
+        $url = $baseUrl . '/' . $this->marketing_token;
+        if (!empty($queryString)) {
+            $url .= '?' . $queryString;
+        }
+
+        $url = $this->update(['marketing_token' => $url]);
+
+        return $url;
+    }
+
+    protected static function booted()
+    {
+        static::created(function ($user) {
+            $user->generateMarketingUrl(
+                [
+                    'utm_source' => 'email',
+                    'utm_medium' => 'referral',
+                    'user_id' => $user->id,
+                ],
+                36,
+                env('APP_URL')
+            );
+        });
     }
 }

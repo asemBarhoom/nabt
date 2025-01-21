@@ -43,5 +43,6 @@ class DatabaseSeeder extends Seeder
        $this->call(TicketSeeder::class);
        $this->call(StatusesTableSeeder::class);
        $this->call(RewardSeeder::class);
+       $this->call(PointSeeder::class);
     }
 }

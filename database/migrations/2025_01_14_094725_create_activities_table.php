@@ -25,6 +25,7 @@ return new class extends Migration
             $table->morphs('activable'); // // Adds activable_id and activable_type
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamp('read_at')->nullable();
 
             // Add indexes
             $table->index('user_id');

@@ -23,6 +23,7 @@ use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\ActivityController;
 use App\Http\Controllers\API\TicketController;
 use App\Http\Controllers\API\RewardController;
+use App\Http\Controllers\API\PointController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -91,9 +92,12 @@ Route::group([
     Route::post('notifications/markAsRead', [NotificationController::class,'markAsRead']);
     Route::post('notifications/markAllAsRead', [NotificationController::class,'markAllAsRead']);
 
+    Route::post('activities/markAsRead', [ActivityController::class,'markAsRead']);
+    Route::post('activities/markAllAsRead', [ActivityController::class,'markAllAsRead']);
 
     Route::apiResource('activities' , ActivityController::class);
     Route::apiResource('tickets' , TicketController::class);
+    Route::apiResource('points' , PointController::class);
 
 
 
