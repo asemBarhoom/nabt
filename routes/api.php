@@ -23,7 +23,9 @@ use App\Http\Controllers\API\NotificationController;
 use App\Http\Controllers\API\ActivityController;
 use App\Http\Controllers\API\TicketController;
 use App\Http\Controllers\API\RewardController;
+use App\Http\Controllers\API\FormController;
 use App\Http\Controllers\API\PointController;
+use App\Http\Controllers\API\InboxController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -66,6 +68,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::get('events' , [EventController::class,'index']);
 Route::get('faqs' , [FaqController::class,'index']);
 Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
+Route::post('/inboxes', [InboxController::class, 'store']);
 
 Route::group([
     'middleware' => ['auth:api'],
@@ -98,6 +101,9 @@ Route::group([
     Route::apiResource('activities' , ActivityController::class);
     Route::apiResource('tickets' , TicketController::class);
     Route::apiResource('points' , PointController::class);
+
+    Route::post('/forms', [FormController::class, 'store']);
+
 
 
 

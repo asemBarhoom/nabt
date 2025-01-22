@@ -44,5 +44,7 @@ class DatabaseSeeder extends Seeder
        $this->call(StatusesTableSeeder::class);
        $this->call(RewardSeeder::class);
        $this->call(PointSeeder::class);
+       $this->call(FormSeeder::class);
+       $this->call(InboxSeeder::class);
     }
 }
