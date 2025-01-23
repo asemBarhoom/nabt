@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -15,13 +14,11 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
-            $table->json('name')->nullable();
-            $table->json('position')->nullable();
             $table->json('body')->nullable();
             $table->float('rating', 2, 1)->default(0);
-            $table->string('image')->nullable();
             $table->boolean('status')->default(true);
 
+            $table->unsignedBigInteger('user_id')->nullable();
             // Polymorphic relation fields
             // Manually define nullable polymorphic relationship fields
             $table->unsignedBigInteger('testimonialsable_id')->nullable();  // Make the ID nullable
@@ -29,8 +26,11 @@ return new class extends Migration
 
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
         });
-
     }
 
     /**

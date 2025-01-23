@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 //use App\Models\AdminRule;
+use App\Models\Traits\SharedTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 /**
@@ -39,7 +40,7 @@ use Illuminate\Notifications\Notifiable;
 class SystemAdmin extends Authenticatable
 {
     //
-    use Notifiable;
+    use Notifiable,SharedTrait;
     protected $table = "system_admins";
     /**
      * The attributes that are mass assignable.

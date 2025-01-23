@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -405,6 +406,78 @@ class CategorySeeder extends Seeder
                     'status' => true,
                     'categoriable_type' => 'App\Models\Ticket',
                 ],
+
+                 [
+                    'name' => ['ar' => 'أخبار السفر', 'en' => 'Travel News'],
+                    'body' => ['ar' => 'آخر التحديثات والأخبار المتعلقة بالسفر حول العالم.', 'en' => 'The latest updates and news about travel worldwide.'],
+                    'image' => 'categories/travel_news.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'نصائح السفر', 'en' => 'Travel Tips'],
+                    'body' => ['ar' => 'أفضل النصائح لجعل تجربتك في السفر مريحة وسلسة.', 'en' => 'The best tips to make your travel experience smooth and comfortable.'],
+                    'image' => 'categories/travel_tips.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'وجهات سياحية', 'en' => 'Tourist Destinations'],
+                    'body' => ['ar' => 'اكتشف أجمل الوجهات السياحية في العالم.', 'en' => 'Discover the most beautiful tourist destinations in the world.'],
+                    'image' => 'categories/tourist_destinations.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'ثقافات وعادات', 'en' => 'Cultures and Traditions'],
+                    'body' => ['ar' => 'تعرف على الثقافات والعادات المختلفة حول العالم.', 'en' => 'Learn about different cultures and traditions around the world.'],
+                    'image' => 'categories/cultures_traditions.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'مطاعم ومأكولات', 'en' => 'Food and Restaurants'],
+                    'body' => ['ar' => 'استمتع بتجارب تناول الطعام في أفضل المطاعم العالمية.', 'en' => 'Enjoy dining experiences in the best international restaurants.'],
+                    'image' => 'categories/food_restaurants.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'الأنشطة والمغامرات', 'en' => 'Activities and Adventures'],
+                    'body' => ['ar' => 'استمتع بأروع الأنشطة والمغامرات في وجهاتك.', 'en' => 'Enjoy the best activities and adventures at your destinations.'],
+                    'image' => 'categories/activities_adventures.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'إرشادات السفر', 'en' => 'Travel Guidelines'],
+                    'body' => ['ar' => 'إرشادات وقوانين السفر في مختلف الدول.', 'en' => 'Travel guidelines and regulations in different countries.'],
+                    'image' => 'categories/travel_guidelines.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'السفر الاقتصادي', 'en' => 'Budget Travel'],
+                    'body' => ['ar' => 'دليلك للسفر الاقتصادي بتكاليف منخفضة.', 'en' => 'Your guide to budget travel at low costs.'],
+                    'image' => 'categories/budget_travel.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'السفر الفاخر', 'en' => 'Luxury Travel'],
+                    'body' => ['ar' => 'أفضل تجارب السفر الفاخرة حول العالم.', 'en' => 'The best luxury travel experiences around the world.'],
+                    'image' => 'categories/luxury_travel.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+                [
+                    'name' => ['ar' => 'أخبار العروض', 'en' => 'Deals and Offers'],
+                    'body' => ['ar' => 'احصل على أحدث العروض والخصومات للسفر.', 'en' => 'Get the latest travel deals and discounts.'],
+                    'image' => 'categories/deals_offers.jpg',
+                    'status' => true,
+                    'categoriable_type' => 'App\Models\Post',
+                ],
+
 
 
 

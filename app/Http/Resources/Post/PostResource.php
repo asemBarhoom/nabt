@@ -3,6 +3,9 @@
 namespace App\Http\Resources\Post;
 
 use App\Helpers\FileHelper;
+use App\Http\Resources\Category\CategoryResource;
+use App\Http\Resources\Comment\CommentResource;
+use App\Http\Resources\SystemAdmin\SystemAdminResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class PostResource extends JsonResource
@@ -22,6 +25,9 @@ class PostResource extends JsonResource
             'body' => object_get($this,'body'),
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'image')) : null,
             'cover_image' => !empty($this->cover_image) ? FileHelper::getFullPathSingleAsset(object_get($this , 'cover_image')) : null,
+            'categories' => CategoryResource::collection($this->whenLoaded('categories')),
+            'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            'systemAdmin'=>SystemAdminResource::make(object_get($this,'systemAdmin')),
         ];
     }
 }

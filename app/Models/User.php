@@ -113,4 +113,19 @@ class User extends Authenticatable
             );
         });
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function wheelies()
+    {
+        return $this->hasMany(Wheely::class) ;
+    }
+
+    public function restaurants()
+    {
+        return $this->hasMany(Restaurant::class);
+    }
 }

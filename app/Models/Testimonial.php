@@ -9,20 +9,34 @@ use App\Models\BaseModel as Model;
 class Testimonial extends Model
 {
     use HasFactory,Testimonialsable;
-    public array $translatable = ['name', 'position', 'body'];
+    public array $translatable = ['body'];
+    protected $appends = ['can_del','name','position','image'];
 
-    protected $fillable = [
-        'name',
-        'position',
-        'body',
-        'rating',
-        'image',
-        'status',
-    ];
+    protected $guarded = [];
 
     // Polymorphic relationship
     public function testimonialsable()
     {
         return $this->morphTo();
+    }
+
+    public function user()
+    {
+       return $this->belongsTo(User::class);
+    }
+
+    public function getnameAttribute()
+    {
+        return $this->user->name;
+    }
+
+    public function getPositionAttribute()
+    {
+        return $this->user->job;
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->user->image;
     }
 }

@@ -26,6 +26,10 @@ use App\Http\Controllers\API\RewardController;
 use App\Http\Controllers\API\FormController;
 use App\Http\Controllers\API\PointController;
 use App\Http\Controllers\API\InboxController;
+use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\WheelyController;
+use App\Http\Controllers\API\RestaurantController;
+use App\Http\Controllers\API\SystemAdminController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -69,6 +73,7 @@ Route::get('events' , [EventController::class,'index']);
 Route::get('faqs' , [FaqController::class,'index']);
 Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
 Route::post('/inboxes', [InboxController::class, 'store']);
+Route::get('/system_admins', [SystemAdminController::class, 'index']);
 
 Route::group([
     'middleware' => ['auth:api'],
@@ -103,8 +108,9 @@ Route::group([
     Route::apiResource('points' , PointController::class);
 
     Route::post('/forms', [FormController::class, 'store']);
+    Route::post('/wheelies', [WheelyController::class, 'store']);
+    Route::post('/comments', [CommentController::class, 'store']);
+    Route::post('/restaurants', [RestaurantController::class, 'store']);
 
-
-
-
+    Route::post('testimonials' , [TestimonialController::class,'store']);
 });

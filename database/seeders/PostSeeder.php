@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -23,6 +24,7 @@ class PostSeeder extends Seeder
             ],
             'image' => 'post2.png',
             'cover_image' => 'postcover.png',
+            'system_admin_id' => 1,
             'status' => true,
         ]);
 
@@ -34,6 +36,7 @@ class PostSeeder extends Seeder
             ],
             'image' => 'post1.png',
             'cover_image' => 'postcover.png',
+            'system_admin_id' => 1,
             'status' => true,
         ]);
 
@@ -44,6 +47,7 @@ class PostSeeder extends Seeder
                 'ar' => '<p>هذا هو نص المقال 3 مع <em>المزيد</em> من <strong>HTML معقدة</strong>. يحتوي على <ul><li>القوائم</li><li>الصور</li><li>الروابط</li></ul> و <table><tr><th>عنوان</th><th>المحتوى</th></tr><tr><td>الصف 1</td><td>البيانات 1</td></tr></table>.</p>'
             ],
             'image' => 'post2.png',
+             'system_admin_id' => 1,
             'status' => true,
         ]);
 
@@ -55,7 +59,38 @@ class PostSeeder extends Seeder
             ],
             'image' => 'post1.png',
             'cover_image' => 'postcover.png',
+             'system_admin_id' => 1,
             'status' => true,
         ]);
+
+
+        // جلب جميع الفئات
+        $categories = Category::where('categoriable_type', 'App\Models\Post')->get();
+
+        // تحقق من وجود فئات
+        if ($categories->isEmpty()) {
+            $this->command->warn('No categories found. Please create categories first.');
+            return;
+        }
+
+        // جلب جميع المنشورات
+        $posts = Post::all();
+
+        // تحقق من وجود منشورات
+        if ($posts->isEmpty()) {
+            $this->command->warn('No posts found. Please create posts first.');
+            return;
+        }
+
+        // ربط كل منشور بفئتين أو ثلاث فئات بشكل عشوائي
+        foreach ($posts as $post) {
+            // اختيار عشوائي لفئتين أو ثلاث فئات
+            $randomCategories = $categories->random(rand(2, 3))->pluck('id');
+
+            // مزامنة المنشور مع الفئات
+            $post->categories()->sync($randomCategories);
+        }
+
+        $this->command->info('Posts have been successfully synced with categories.');
     }
 }

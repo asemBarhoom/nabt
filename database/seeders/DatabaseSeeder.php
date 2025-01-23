@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+       $this->call(SystemAdminSeeder::class);
        $this->call(SettingSeeder::class);
        $this->call(TestimonialSeeder::class);
        $this->call(CategorySeeder::class);
@@ -34,7 +35,6 @@ class DatabaseSeeder extends Seeder
        $this->call(BookingEventSeeder::class);
        $this->call(ImagesSeeder::class);
        $this->call(LandmarksSeeder::class);
-       $this->call(SystemAdminSeeder::class);
        $this->call(FaqSeeder::class);
        $this->call(CancellationSeeder::class);
        $this->call(NotificationsTableSeeder::class);
@@ -46,5 +46,7 @@ class DatabaseSeeder extends Seeder
        $this->call(PointSeeder::class);
        $this->call(FormSeeder::class);
        $this->call(InboxSeeder::class);
+       $this->call(CommentSeeder::class);
+       $this->call(RestaurantSeeder::class);
     }
 }
