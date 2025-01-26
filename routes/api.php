@@ -30,6 +30,7 @@ use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\WheelyController;
 use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\SystemAdminController;
+use App\Http\Controllers\API\NumberController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -74,6 +75,7 @@ Route::get('faqs' , [FaqController::class,'index']);
 Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
 Route::post('/inboxes', [InboxController::class, 'store']);
 Route::get('/system_admins', [SystemAdminController::class, 'index']);
+Route::get('/numbers', [NumberController::class, 'index']);
 
 Route::group([
     'middleware' => ['auth:api'],
