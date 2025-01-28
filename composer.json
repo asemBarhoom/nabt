@@ -10,7 +10,9 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
+        "laravel/telescope": "^5.3",
         "laravel/tinker": "^2.7",
+        "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.10",
         "spatie/laravel-translatable": "^6.9"
     },
