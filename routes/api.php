@@ -31,6 +31,7 @@ use App\Http\Controllers\API\WheelyController;
 use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\SystemAdminController;
 use App\Http\Controllers\API\NumberController;
+use App\Http\Controllers\API\InvoiceController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -115,4 +116,5 @@ Route::group([
     Route::post('/restaurants', [RestaurantController::class, 'store']);
 
     Route::post('testimonials' , [TestimonialController::class,'store']);
+    Route::apiResource('invoices' , InvoiceController::class);
 });

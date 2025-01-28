@@ -49,5 +49,6 @@ class DatabaseSeeder extends Seeder
        $this->call(CommentSeeder::class);
        $this->call(RestaurantSeeder::class);
        $this->call(NumberSeeder::class);
+       $this->call(InvoiceSeeder::class);
     }
 }
