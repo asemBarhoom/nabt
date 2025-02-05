@@ -51,7 +51,7 @@ Route::get('/lang/', [WebsiteController::class,'setLanguage'])->name('setLanguag
 
 
 Route::group([
-//        'prefix' => LaravelLocalization::setLocale(),
+        'prefix' => LaravelLocalization::setLocale(),
 //        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ]
     , function () {

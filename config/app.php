@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'debug' => (bool) env('APP_DEBUG', false),
+    'debug' => (bool)env('APP_DEBUG', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\MetronicServiceProvider::class,
+        Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
+
 
     ],
 
@@ -193,11 +195,12 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // ...
-        'HELPER'=> App\Providers\MYHelperServiceProvider::class,
-        // Metronic Aliases
-        'Metronic' => App\Classes\Theme\Metronic::class,
-        'Menu' => App\Classes\Theme\Menu::class,
-    ])->toArray(),
+                     // ...
+                     'HELPER' => App\Providers\MYHelperServiceProvider::class,
+                     // Metronic Aliases
+                     'Metronic' => App\Classes\Theme\Metronic::class,
+                     'Menu' => App\Classes\Theme\Menu::class,
+                     'LaravelLocalization' => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
+                                                 ])->toArray(),
 
 ];

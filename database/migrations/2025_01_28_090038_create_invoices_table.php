@@ -39,6 +39,7 @@ return new class extends Migration
             $table->decimal('tax_rate', 5, 2)->default(15.00); // نسبة الضريبة المضافة (مثلاً 15%)
             $table->decimal('tax_amount', 15, 2); // قيمة الضريبة المضافة
             $table->decimal('total', 15, 2); // الإجمالي النهائي بعد الخصم والضريبة
+            $table->string('pdf_path')->nullable(); // Add PDF path column
 
             // حالة الفاتورة والدفع
             $table->enum('payment_status', [

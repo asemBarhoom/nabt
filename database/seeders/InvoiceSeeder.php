@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Invoice;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -39,7 +40,7 @@ class InvoiceSeeder extends Seeder
             $tax_amount = ($subtotal - $discount) * ($tax_rate / 100);
             $total = $subtotal - $discount + $tax_amount;
 
-            DB::table('invoices')->insert([
+            $invoice = Invoice::create([
                                               'invoice_number' => 'INV-' . strtoupper(Str::random(8)),
                                               'invoice_type' => 'standard',
                                               'issue_date' => now()->subDays(rand(1, 30)),
@@ -116,6 +117,9 @@ class InvoiceSeeder extends Seeder
                                               'created_at' => now(),
                                               'updated_at' => now(),
                                           ]);
+
+            $pdfPath = $invoice->generatePdf();
+            $invoice->update(['pdf_path' => $pdfPath]);
         }
     }
 }

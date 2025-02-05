@@ -34,10 +34,12 @@ class InvoiceInfoResource extends JsonResource
             ],
             'items' => $this->items, // Assuming this is stored as JSON and cast to array
             'subtotal' => $this->subtotal,
+            'total_before_tax' => $this->subtotal,
             'discount' => $this->discount,
             'tax_rate' => $this->tax_rate,
             'tax_amount' => $this->tax_amount,
             'total' => $this->total,
+            'total_with_tax' => $this->subtotal+$this->tax_amount,
             'payment_status' => $this->payment_status,
             'invoice_status' => $this->invoice_status,
             'amount_paid' => $this->amount_paid,
@@ -66,6 +68,9 @@ class InvoiceInfoResource extends JsonResource
             }),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'commercial_number' => 'commercial_number',
+            'tax_number' => 'tax_number',
+            'business_address' => 'business_address',
         ];
     }
 }

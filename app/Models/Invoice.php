@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Mpdf\Mpdf;
 
 class Invoice extends Model
 {
@@ -152,4 +154,52 @@ class Invoice extends Model
     {
         return $this->due_date ? $this->due_date->format('d M Y') : 'N/A';
     }
+
+    public function generatePdf(): string
+    {
+        // Get data for the invoice
+        $data = [
+            'invoice_number' => $this->invoice_number,
+            'issue_date' => $this->issue_date,
+            'due_date' => $this->due_date,
+            'customer' => [
+                'name' => $this->customer_name,
+                'phone' => $this->customer_phone,
+            ],
+            'items' => $this->items,
+            'total' => $this->total,
+        ];
+
+        // Generate the HTML using Blade
+        $html = view('invoice-template', $data)->render();
+
+        // Create an instance of Mpdf
+        $mpdf = new Mpdf([
+                             'default_font' => 'dejavusans', // Default font that supports Arabic
+                         ]);
+
+        // Write the HTML content to PDF
+        $mpdf->WriteHTML($html);
+
+        // Define the file path
+        $filePath = 'invoices/invoice-' . $this->id . '.pdf';
+
+        // Save the PDF in storage
+        Storage::put($filePath, $mpdf->Output('', 'S')); // 'S' outputs the PDF as a string
+
+        return $filePath;
+    }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($invoice) {
+            // Generate PDF and save the file path
+            $pdfPath = $invoice->generatePdf();
+            $invoice->update(['pdf_path' => $pdfPath]);
+        });
+    }
+
 }

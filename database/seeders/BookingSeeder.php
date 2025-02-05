@@ -14,7 +14,7 @@ class BookingSeeder extends Seeder
             [
                 'reservation_number' => 'T24-587',
                 'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
-                'user_id' => 1,
+                'user_id' => 11,
                 'destination_id' => 1,
                 'accommodation_id' => 1,
                 'booking_date' => Carbon::parse('2024-12-12'),
@@ -35,7 +35,7 @@ class BookingSeeder extends Seeder
             [
                 'reservation_number' => 'T24-588',
                 'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
-                'user_id' => 2,
+                'user_id' => 11,
                 'destination_id' => 2,
                 'accommodation_id' => 2,
                 'booking_date' => Carbon::parse('2024-12-15'),
@@ -56,7 +56,7 @@ class BookingSeeder extends Seeder
             [
                 'reservation_number' => 'T24-589',
                 'trip_duration' => ['en' => 'Three days and two nights', 'ar' => 'ثلاثة أيام وليلتين'],
-                'user_id' => 3,
+                'user_id' => 11,
                 'destination_id' => 3,
                 'accommodation_id' => 3,
                 'booking_date' => Carbon::parse('2024-12-20'),

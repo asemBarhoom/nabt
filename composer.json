@@ -8,10 +8,13 @@
         "php": "^8.0",
         "fruitcake/laravel-cors": "^2.0.5",
         "guzzlehttp/guzzle": "^7.2",
+        "laracasts/flash": "^3.2",
         "laravel/framework": "^9.0",
         "laravel/sanctum": "^2.14",
         "laravel/telescope": "^5.3",
         "laravel/tinker": "^2.7",
+        "mcamara/laravel-localization": "^2.0",
+        "mpdf/mpdf": "^8.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^6.10",
         "spatie/laravel-translatable": "^6.9"
