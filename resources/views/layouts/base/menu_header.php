@@ -696,4 +696,19 @@ return [
             'module_name' => 'flight_cargos',
         ]
     ],
+    'activities' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('activities'),
+            'root' => true,
+            'route' => 'system.activities.index',
+            'new-tab' => false,
+            'module_name' => 'activities',
+        ]
+    ],
 ];

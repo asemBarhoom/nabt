@@ -134,6 +134,20 @@ return [
             'new-tab' => false,
             'module_name' => 'users',
         ],
+        [
+            'title' => t('activities'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for users or process
+            'route' => 'system.activities.index',
+            'new-tab' => false,
+            'module_name' => 'activities',
+        ],
+        [
+            'title' => t('notifications'),
+            'icon' => 'fas fa-clipboard-list', // Suitable for users or process
+            'route' => 'system.notifications.index',
+            'new-tab' => false,
+            'module_name' => 'notifications',
+        ],
 
 
     ]

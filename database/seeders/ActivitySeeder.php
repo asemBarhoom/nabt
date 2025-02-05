@@ -21,7 +21,6 @@ class ActivitySeeder extends Seeder
         // Get all users
         $users = User::all();
 
-        // Take only 20 Tourevents
         $tourevents = Tourevent::all()->take(20);
 
         foreach ($users as $user) {
