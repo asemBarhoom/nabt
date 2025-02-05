@@ -35,6 +35,16 @@ use App\Http\Controllers\Admin\ActivityController;
 use App\Http\Controllers\Admin\CountryController;
 use App\Http\Controllers\Admin\CityController;
 use App\Http\Controllers\Admin\PageController;
+use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\RewardController;
+use App\Http\Controllers\Admin\PointController;
+use App\Http\Controllers\Admin\FormController;
+use App\Http\Controllers\Admin\InboxController;
+use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\RestaurantController;
+use App\Http\Controllers\Admin\NumberController;
+use App\Http\Controllers\Admin\InvoiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -369,6 +379,146 @@ Route::group([
                 Route::post('createJson', [CityController::class,'createJson'])->name('system.cities.createJson')->middleware(['checkRule:add,cities']);//
                 Route::post('activate', [CityController::class,'activate'])->name('system.cities.activate')->middleware(['checkRule:activate,cities']);
                 Route::post('deactivate', [CityController::class,'deactivate'])->name('system.cities.deactivate')->middleware(['checkRule:activate,cities']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('tickets/')->middleware(['checkRule:view,tickets'])->group(function () {
+                Route::get('', [TicketController::class,'index'])->name('system.tickets.index');
+                Route::get('create', [TicketController::class,'create'])->name('system.tickets.create')->middleware(['checkRule:add,tickets']);
+                Route::post('store', [TicketController::class,'store'])->name('system.tickets.store')->middleware(['checkRule:add,tickets']);//
+                Route::get('/{id}/edit', [TicketController::class,'edit'])->name('system.tickets.edit')->middleware(['checkRule:edit,tickets']);
+                Route::post('update/{id}', [TicketController::class,'update'])->name('system.tickets.update')->middleware(['checkRule:edit,tickets']);
+                Route::post('delete', [TicketController::class,'delete'])->name('system.tickets.delete')->middleware(['checkRule:delete,tickets']);
+                Route::post('createJson', [TicketController::class,'createJson'])->name('system.tickets.createJson')->middleware(['checkRule:add,tickets']);//
+                Route::post('activate', [TicketController::class,'activate'])->name('system.tickets.activate')->middleware(['checkRule:activate,tickets']);
+                Route::post('deactivate', [TicketController::class,'deactivate'])->name('system.tickets.deactivate')->middleware(['checkRule:activate,tickets']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('rewards/')->middleware(['checkRule:view,rewards'])->group(function () {
+                Route::get('', [RewardController::class,'index'])->name('system.rewards.index');
+                Route::get('create', [RewardController::class,'create'])->name('system.rewards.create')->middleware(['checkRule:add,rewards']);
+                Route::post('store', [RewardController::class,'store'])->name('system.rewards.store')->middleware(['checkRule:add,rewards']);//
+                Route::get('/{id}/edit', [RewardController::class,'edit'])->name('system.rewards.edit')->middleware(['checkRule:edit,rewards']);
+                Route::post('update/{id}', [RewardController::class,'update'])->name('system.rewards.update')->middleware(['checkRule:edit,rewards']);
+                Route::post('delete', [RewardController::class,'delete'])->name('system.rewards.delete')->middleware(['checkRule:delete,rewards']);
+                Route::post('createJson', [RewardController::class,'createJson'])->name('system.rewards.createJson')->middleware(['checkRule:add,rewards']);//
+                Route::post('activate', [RewardController::class,'activate'])->name('system.rewards.activate')->middleware(['checkRule:activate,rewards']);
+                Route::post('deactivate', [RewardController::class,'deactivate'])->name('system.rewards.deactivate')->middleware(['checkRule:activate,rewards']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('points/')->middleware(['checkRule:view,points'])->group(function () {
+                Route::get('', [PointController::class,'index'])->name('system.points.index');
+                Route::get('create', [PointController::class,'create'])->name('system.points.create')->middleware(['checkRule:add,points']);
+                Route::post('store', [PointController::class,'store'])->name('system.points.store')->middleware(['checkRule:add,points']);//
+                Route::get('/{id}/edit', [PointController::class,'edit'])->name('system.points.edit')->middleware(['checkRule:edit,points']);
+                Route::post('update/{id}', [PointController::class,'update'])->name('system.points.update')->middleware(['checkRule:edit,points']);
+                Route::post('delete', [PointController::class,'delete'])->name('system.points.delete')->middleware(['checkRule:delete,points']);
+                Route::post('createJson', [PointController::class,'createJson'])->name('system.points.createJson')->middleware(['checkRule:add,points']);//
+                Route::post('activate', [PointController::class,'activate'])->name('system.points.activate')->middleware(['checkRule:activate,points']);
+                Route::post('deactivate', [PointController::class,'deactivate'])->name('system.points.deactivate')->middleware(['checkRule:activate,points']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('forms/')->middleware(['checkRule:view,forms'])->group(function () {
+                Route::get('', [FormController::class,'index'])->name('system.forms.index');
+                Route::get('create', [FormController::class,'create'])->name('system.forms.create')->middleware(['checkRule:add,forms']);
+                Route::post('store', [FormController::class,'store'])->name('system.forms.store')->middleware(['checkRule:add,forms']);//
+                Route::get('/{id}/edit', [FormController::class,'edit'])->name('system.forms.edit')->middleware(['checkRule:edit,forms']);
+                Route::post('update/{id}', [FormController::class,'update'])->name('system.forms.update')->middleware(['checkRule:edit,forms']);
+                Route::post('delete', [FormController::class,'delete'])->name('system.forms.delete')->middleware(['checkRule:delete,forms']);
+                Route::post('createJson', [FormController::class,'createJson'])->name('system.forms.createJson')->middleware(['checkRule:add,forms']);//
+                Route::post('activate', [FormController::class,'activate'])->name('system.forms.activate')->middleware(['checkRule:activate,forms']);
+                Route::post('deactivate', [FormController::class,'deactivate'])->name('system.forms.deactivate')->middleware(['checkRule:activate,forms']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('inboxs/')->middleware(['checkRule:view,inboxs'])->group(function () {
+                Route::get('', [InboxController::class,'index'])->name('system.inboxs.index');
+                Route::get('create', [InboxController::class,'create'])->name('system.inboxs.create')->middleware(['checkRule:add,inboxs']);
+                Route::post('store', [InboxController::class,'store'])->name('system.inboxs.store')->middleware(['checkRule:add,inboxs']);//
+                Route::get('/{id}/edit', [InboxController::class,'edit'])->name('system.inboxs.edit')->middleware(['checkRule:edit,inboxs']);
+                Route::post('update/{id}', [InboxController::class,'update'])->name('system.inboxs.update')->middleware(['checkRule:edit,inboxs']);
+                Route::post('delete', [InboxController::class,'delete'])->name('system.inboxs.delete')->middleware(['checkRule:delete,inboxs']);
+                Route::post('createJson', [InboxController::class,'createJson'])->name('system.inboxs.createJson')->middleware(['checkRule:add,inboxs']);//
+                Route::post('activate', [InboxController::class,'activate'])->name('system.inboxs.activate')->middleware(['checkRule:activate,inboxs']);
+                Route::post('deactivate', [InboxController::class,'deactivate'])->name('system.inboxs.deactivate')->middleware(['checkRule:activate,inboxs']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('posts/')->middleware(['checkRule:view,posts'])->group(function () {
+                Route::get('', [PostController::class,'index'])->name('system.posts.index');
+                Route::get('create', [PostController::class,'create'])->name('system.posts.create')->middleware(['checkRule:add,posts']);
+                Route::post('store', [PostController::class,'store'])->name('system.posts.store')->middleware(['checkRule:add,posts']);//
+                Route::get('/{id}/edit', [PostController::class,'edit'])->name('system.posts.edit')->middleware(['checkRule:edit,posts']);
+                Route::post('update/{id}', [PostController::class,'update'])->name('system.posts.update')->middleware(['checkRule:edit,posts']);
+                Route::post('delete', [PostController::class,'delete'])->name('system.posts.delete')->middleware(['checkRule:delete,posts']);
+                Route::post('createJson', [PostController::class,'createJson'])->name('system.posts.createJson')->middleware(['checkRule:add,posts']);//
+                Route::post('activate', [PostController::class,'activate'])->name('system.posts.activate')->middleware(['checkRule:activate,posts']);
+                Route::post('deactivate', [PostController::class,'deactivate'])->name('system.posts.deactivate')->middleware(['checkRule:activate,posts']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('comments/')->middleware(['checkRule:view,comments'])->group(function () {
+                Route::get('', [CommentController::class,'index'])->name('system.comments.index');
+                Route::get('create', [CommentController::class,'create'])->name('system.comments.create')->middleware(['checkRule:add,comments']);
+                Route::post('store', [CommentController::class,'store'])->name('system.comments.store')->middleware(['checkRule:add,comments']);//
+                Route::get('/{id}/edit', [CommentController::class,'edit'])->name('system.comments.edit')->middleware(['checkRule:edit,comments']);
+                Route::post('update/{id}', [CommentController::class,'update'])->name('system.comments.update')->middleware(['checkRule:edit,comments']);
+                Route::post('delete', [CommentController::class,'delete'])->name('system.comments.delete')->middleware(['checkRule:delete,comments']);
+                Route::post('createJson', [CommentController::class,'createJson'])->name('system.comments.createJson')->middleware(['checkRule:add,comments']);//
+                Route::post('activate', [CommentController::class,'activate'])->name('system.comments.activate')->middleware(['checkRule:activate,comments']);
+                Route::post('deactivate', [CommentController::class,'deactivate'])->name('system.comments.deactivate')->middleware(['checkRule:activate,comments']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('restaurants/')->middleware(['checkRule:view,restaurants'])->group(function () {
+                Route::get('', [RestaurantController::class,'index'])->name('system.restaurants.index');
+                Route::get('create', [RestaurantController::class,'create'])->name('system.restaurants.create')->middleware(['checkRule:add,restaurants']);
+                Route::post('store', [RestaurantController::class,'store'])->name('system.restaurants.store')->middleware(['checkRule:add,restaurants']);//
+                Route::get('/{id}/edit', [RestaurantController::class,'edit'])->name('system.restaurants.edit')->middleware(['checkRule:edit,restaurants']);
+                Route::post('update/{id}', [RestaurantController::class,'update'])->name('system.restaurants.update')->middleware(['checkRule:edit,restaurants']);
+                Route::post('delete', [RestaurantController::class,'delete'])->name('system.restaurants.delete')->middleware(['checkRule:delete,restaurants']);
+                Route::post('createJson', [RestaurantController::class,'createJson'])->name('system.restaurants.createJson')->middleware(['checkRule:add,restaurants']);//
+                Route::post('activate', [RestaurantController::class,'activate'])->name('system.restaurants.activate')->middleware(['checkRule:activate,restaurants']);
+                Route::post('deactivate', [RestaurantController::class,'deactivate'])->name('system.restaurants.deactivate')->middleware(['checkRule:activate,restaurants']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('numbers/')->middleware(['checkRule:view,numbers'])->group(function () {
+                Route::get('', [NumberController::class,'index'])->name('system.numbers.index');
+                Route::get('create', [NumberController::class,'create'])->name('system.numbers.create')->middleware(['checkRule:add,numbers']);
+                Route::post('store', [NumberController::class,'store'])->name('system.numbers.store')->middleware(['checkRule:add,numbers']);//
+                Route::get('/{id}/edit', [NumberController::class,'edit'])->name('system.numbers.edit')->middleware(['checkRule:edit,numbers']);
+                Route::post('update/{id}', [NumberController::class,'update'])->name('system.numbers.update')->middleware(['checkRule:edit,numbers']);
+                Route::post('delete', [NumberController::class,'delete'])->name('system.numbers.delete')->middleware(['checkRule:delete,numbers']);
+                Route::post('createJson', [NumberController::class,'createJson'])->name('system.numbers.createJson')->middleware(['checkRule:add,numbers']);//
+                Route::post('activate', [NumberController::class,'activate'])->name('system.numbers.activate')->middleware(['checkRule:activate,numbers']);
+                Route::post('deactivate', [NumberController::class,'deactivate'])->name('system.numbers.deactivate')->middleware(['checkRule:activate,numbers']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('invoices/')->middleware(['checkRule:view,invoices'])->group(function () {
+                Route::get('', [InvoiceController::class,'index'])->name('system.invoices.index');
+                Route::get('create', [InvoiceController::class,'create'])->name('system.invoices.create')->middleware(['checkRule:add,invoices']);
+                Route::post('store', [InvoiceController::class,'store'])->name('system.invoices.store')->middleware(['checkRule:add,invoices']);//
+                Route::get('/{id}/edit', [InvoiceController::class,'edit'])->name('system.invoices.edit')->middleware(['checkRule:edit,invoices']);
+                Route::post('update/{id}', [InvoiceController::class,'update'])->name('system.invoices.update')->middleware(['checkRule:edit,invoices']);
+                Route::post('delete', [InvoiceController::class,'delete'])->name('system.invoices.delete')->middleware(['checkRule:delete,invoices']);
+                Route::post('createJson', [InvoiceController::class,'createJson'])->name('system.invoices.createJson')->middleware(['checkRule:add,invoices']);//
+                Route::post('activate', [InvoiceController::class,'activate'])->name('system.invoices.activate')->middleware(['checkRule:activate,invoices']);
+                Route::post('deactivate', [InvoiceController::class,'deactivate'])->name('system.invoices.deactivate')->middleware(['checkRule:activate,invoices']);
             });
 
         });
