@@ -634,21 +634,6 @@ return [
         ]
     ],
 
-    'posts' => [
-        [
-            'title' => t('dashboard'),
-            'root' => true,
-            'route' => 'system_admin.dashboard',
-            'new-tab' => false,
-        ],
-        [
-            'title' => t('blog'),
-            'root' => true,
-            'route' => 'system.posts.index',
-            'new-tab' => false,
-            'module_name' => 'posts',
-        ]
-    ],
 
     'colors' => [
         [
@@ -711,4 +696,165 @@ return [
             'module_name' => 'activities',
         ]
     ],
+
+    'tickets' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('ticket'),
+            'root' => true,
+            'route' => 'system.tickets.index',
+            'new-tab' => false,
+            'module_name' => 'tickets',
+        ],
+    ],
+
+    'rewards' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('reward'),
+            'root' => true,
+            'route' => 'system.rewards.index',
+            'new-tab' => false,
+            'module_name' => 'rewards',
+        ],
+    ],
+
+    'points' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('point'),
+            'root' => true,
+            'route' => 'system.points.index',
+            'new-tab' => false,
+            'module_name' => 'points',
+        ],
+    ],
+
+    'forms' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('form'),
+            'root' => true,
+            'route' => 'system.forms.index',
+            'new-tab' => false,
+            'module_name' => 'forms',
+        ],
+    ],
+
+    'inboxes' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('inbox'),
+            'root' => true,
+            'route' => 'system.inbox.index',
+            'new-tab' => false,
+            'module_name' => 'inboxes',
+        ],
+    ],
+
+    'posts' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('post'),
+            'root' => true,
+            'route' => 'system.posts.index',
+            'new-tab' => false,
+            'module_name' => 'posts',
+        ],
+    ],
+
+    'comments' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('comment'),
+            'root' => true,
+            'route' => 'system.comments.index',
+            'new-tab' => false,
+            'module_name' => 'comments',
+        ],
+    ],
+
+    'restaurants' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('restaurant'),
+            'root' => true,
+            'route' => 'system.restaurants.index',
+            'new-tab' => false,
+            'module_name' => 'restaurants',
+        ],
+    ],
+
+    'numbers' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('number'),
+            'root' => true,
+            'route' => 'system.numbers.index',
+            'new-tab' => false,
+            'module_name' => 'numbers',
+        ],
+    ],
+
+    'invoices' => [
+        [
+            'title' => t('dashboard'),
+            'root' => true,
+            'route' => 'system_admin.dashboard',
+            'new-tab' => false,
+        ],
+        [
+            'title' => t('invoice'),
+            'root' => true,
+            'route' => 'system.invoices.index',
+            'new-tab' => false,
+            'module_name' => 'invoices',
+        ],
+    ],
+
 ];
