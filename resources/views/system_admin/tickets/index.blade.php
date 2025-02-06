@@ -66,35 +66,64 @@
                             </label>
                         </th>
 
-                        <th class="text-center">{{ t('name') }}</th>
-                        <th class="text-center">{{ t('order') }}</th>
+                        <th class="text-center">{{ t('ticket') }}</th>
+                        <th class="text-center">{{ t('category') }}</th>
+                        <th class="text-center">{{ t('booking') }}</th>
+                        <th class="text-center">{{ t('user') }}</th>
+                        <th class="text-center">{{ t('currentStatus') }}</th>
+                        <th class="text-center">{{ t('attachment_path') }}</th>
                         <th class="text-center">{{ t('status') }}</th>
                         <th class="text-center">{{ t('settings') }}</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($tickets as $step)
+                    @foreach($tickets as $ticket)
                         <tr>
                             <td class="LOOPIDS">{{ ($tickets->currentpage() - 1) * $tickets->perpage() + $loop->iteration }}</td>
                             <td style="text-align: center;vertical-align: middle;">
                                 <label class="checkbox checkbox-outline checkbox-success justify-content-center">
-                                    <input type="checkbox" value="{{ $step->id }}" name="Item[]" class="CheckedItem" id="che_{{ $step->id }}">
+                                    <input type="checkbox" value="{{ $ticket->id }}" name="Item[]" class="CheckedItem" id="che_{{ $ticket->id }}">
                                     <span></span>
                                 </label>
                             </td>
 
                             <td class="text-center">
-                                {{$step->name}}
-                            </td>
-
-                            <td class="text-center">
-                                {{$step->order}}
+                                {{$ticket->ticket_id}}
                             </td>
 
 
                             <td class="text-center">
-                            <span class="badge {{ $step->status==1 ? 'badge-success' : 'badge-danger' }}">
-                                 {{ $step->status==1 ? 'Active' : 'Inactive' }}
+                                <a href="{{route('system.categories.index')}}?category_id={{$ticket->category_id}}">
+                                    {{$ticket->category->name}}
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{route('system.bookings.index')}}?booking_id={{$ticket->booking_id}}">
+                                    {{$ticket->booking->reservation_number}}
+                                </a>
+                            </td>
+
+                            <td class="text-center">
+                                <a href="{{route('system.users.index')}}?user_id={{$ticket->user_id}}">
+                                    {{$ticket->user->name}}
+                                </a>
+                            </td>
+
+                            <td class="text-center">
+                            <span class="badge" style="background-color:{{ $ticket->currentStatus()->color }} ">
+                                 {{ $ticket->currentStatus()->status }}
+                            </span>
+                            </td>
+                            <td class="text-center">
+                                <a href="{{$ticket->attachment_path}}">
+                                    {{$ticket->attachment_path}}
+                                </a>
+                            </td>
+
+
+                            <td class="text-center">
+                            <span class="badge {{ $ticket->status==1 ? 'badge-success' : 'badge-danger' }}">
+                                 {{ $ticket->status==1 ? 'Active' : 'Inactive' }}
                             </span>
                             </td>
 
@@ -103,7 +132,7 @@
                                 <ul class="list-inline">
                                     @cando('edit', 'tickets')
                                     <li>
-                                        <a href="{{ route('system.tickets.edit', $step->id) }}"
+                                        <a href="{{ route('system.tickets.edit', $ticket->id) }}"
                                            class="{{ config('layout.classes.edit') }}"
                                            data-toggle="tooltip" data-theme="dark" title="{{ t('edit') }}">
                                             <i class="{{ config('layout.icons.edit_icon') }}"></i> {{ t('Edit') }}
@@ -112,10 +141,10 @@
 
                                     @endcando
                                     @cando('delete', 'tickets')
-                                    @if($step->can_del)
+                                    @if($ticket->can_del)
                                         <li>
                                             <button type="button"
-                                                    data-id="{{ $step->id }}"
+                                                    data-id="{{ $ticket->id }}"
                                                     data-url="{{ route('system.tickets.delete') }}"
                                                     data-token="{{ csrf_token() }}"
                                                     data-skin="dark"
