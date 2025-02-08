@@ -45,6 +45,11 @@ use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\RestaurantController;
 use App\Http\Controllers\Admin\NumberController;
 use App\Http\Controllers\Admin\InvoiceController;
+use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\LandmarkController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\CancellationController;
+use App\Http\Controllers\Admin\StatusController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -521,6 +526,75 @@ Route::group([
                 Route::post('deactivate', [InvoiceController::class,'deactivate'])->name('system.invoices.deactivate')->middleware(['checkRule:activate,invoices']);
             });
 
+            //======================================================================================================
+
+            Route::prefix('events/')->middleware(['checkRule:view,events'])->group(function () {
+                Route::get('', [EventController::class,'index'])->name('system.events.index');
+                Route::get('create', [EventController::class,'create'])->name('system.events.create')->middleware(['checkRule:add,events']);
+                Route::post('store', [EventController::class,'store'])->name('system.events.store')->middleware(['checkRule:add,events']);//
+                Route::get('/{id}/edit', [EventController::class,'edit'])->name('system.events.edit')->middleware(['checkRule:edit,events']);
+                Route::post('update/{id}', [EventController::class,'update'])->name('system.events.update')->middleware(['checkRule:edit,events']);
+                Route::post('delete', [EventController::class,'delete'])->name('system.events.delete')->middleware(['checkRule:delete,events']);
+                Route::post('createJson', [EventController::class,'createJson'])->name('system.events.createJson')->middleware(['checkRule:add,events']);//
+                Route::post('activate', [EventController::class,'activate'])->name('system.events.activate')->middleware(['checkRule:activate,events']);
+                Route::post('deactivate', [EventController::class,'deactivate'])->name('system.events.deactivate')->middleware(['checkRule:activate,events']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('landmarks/')->middleware(['checkRule:view,landmarks'])->group(function () {
+                Route::get('', [LandmarkController::class,'index'])->name('system.landmarks.index');
+                Route::get('create', [LandmarkController::class,'create'])->name('system.landmarks.create')->middleware(['checkRule:add,landmarks']);
+                Route::post('store', [LandmarkController::class,'store'])->name('system.landmarks.store')->middleware(['checkRule:add,landmarks']);//
+                Route::get('/{id}/edit', [LandmarkController::class,'edit'])->name('system.landmarks.edit')->middleware(['checkRule:edit,landmarks']);
+                Route::post('update/{id}', [LandmarkController::class,'update'])->name('system.landmarks.update')->middleware(['checkRule:edit,landmarks']);
+                Route::post('delete', [LandmarkController::class,'delete'])->name('system.landmarks.delete')->middleware(['checkRule:delete,landmarks']);
+                Route::post('createJson', [LandmarkController::class,'createJson'])->name('system.landmarks.createJson')->middleware(['checkRule:add,landmarks']);//
+                Route::post('activate', [LandmarkController::class,'activate'])->name('system.landmarks.activate')->middleware(['checkRule:activate,landmarks']);
+                Route::post('deactivate', [LandmarkController::class,'deactivate'])->name('system.landmarks.deactivate')->middleware(['checkRule:activate,landmarks']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('faqs/')->middleware(['checkRule:view,faqs'])->group(function () {
+                Route::get('', [FaqController::class,'index'])->name('system.faqs.index');
+                Route::get('create', [FaqController::class,'create'])->name('system.faqs.create')->middleware(['checkRule:add,faqs']);
+                Route::post('store', [FaqController::class,'store'])->name('system.faqs.store')->middleware(['checkRule:add,faqs']);//
+                Route::get('/{id}/edit', [FaqController::class,'edit'])->name('system.faqs.edit')->middleware(['checkRule:edit,faqs']);
+                Route::post('update/{id}', [FaqController::class,'update'])->name('system.faqs.update')->middleware(['checkRule:edit,faqs']);
+                Route::post('delete', [FaqController::class,'delete'])->name('system.faqs.delete')->middleware(['checkRule:delete,faqs']);
+                Route::post('createJson', [FaqController::class,'createJson'])->name('system.faqs.createJson')->middleware(['checkRule:add,faqs']);//
+                Route::post('activate', [FaqController::class,'activate'])->name('system.faqs.activate')->middleware(['checkRule:activate,faqs']);
+                Route::post('deactivate', [FaqController::class,'deactivate'])->name('system.faqs.deactivate')->middleware(['checkRule:activate,faqs']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('cancellations/')->middleware(['checkRule:view,cancellations'])->group(function () {
+                Route::get('', [CancellationController::class,'index'])->name('system.cancellations.index');
+                Route::get('create', [CancellationController::class,'create'])->name('system.cancellations.create')->middleware(['checkRule:add,cancellations']);
+                Route::post('store', [CancellationController::class,'store'])->name('system.cancellations.store')->middleware(['checkRule:add,cancellations']);//
+                Route::get('/{id}/edit', [CancellationController::class,'edit'])->name('system.cancellations.edit')->middleware(['checkRule:edit,cancellations']);
+                Route::post('update/{id}', [CancellationController::class,'update'])->name('system.cancellations.update')->middleware(['checkRule:edit,cancellations']);
+                Route::post('delete', [CancellationController::class,'delete'])->name('system.cancellations.delete')->middleware(['checkRule:delete,cancellations']);
+                Route::post('createJson', [CancellationController::class,'createJson'])->name('system.cancellations.createJson')->middleware(['checkRule:add,cancellations']);//
+                Route::post('activate', [CancellationController::class,'activate'])->name('system.cancellations.activate')->middleware(['checkRule:activate,cancellations']);
+                Route::post('deactivate', [CancellationController::class,'deactivate'])->name('system.cancellations.deactivate')->middleware(['checkRule:activate,cancellations']);
+            });
+
+            //======================================================================================================
+
+            Route::prefix('statuses/')->middleware(['checkRule:view,statuses'])->group(function () {
+                Route::get('', [StatusController::class,'index'])->name('system.statuses.index');
+                Route::get('create', [StatusController::class,'create'])->name('system.statuses.create')->middleware(['checkRule:add,statuses']);
+                Route::post('store', [StatusController::class,'store'])->name('system.statuses.store')->middleware(['checkRule:add,statuses']);//
+                Route::get('/{id}/edit', [StatusController::class,'edit'])->name('system.statuses.edit')->middleware(['checkRule:edit,statuses']);
+                Route::post('update/{id}', [StatusController::class,'update'])->name('system.statuses.update')->middleware(['checkRule:edit,statuses']);
+                Route::post('delete', [StatusController::class,'delete'])->name('system.statuses.delete')->middleware(['checkRule:delete,statuses']);
+                Route::post('createJson', [StatusController::class,'createJson'])->name('system.statuses.createJson')->middleware(['checkRule:add,statuses']);//
+                Route::post('activate', [StatusController::class,'activate'])->name('system.statuses.activate')->middleware(['checkRule:activate,statuses']);
+                Route::post('deactivate', [StatusController::class,'deactivate'])->name('system.statuses.deactivate')->middleware(['checkRule:activate,statuses']);
+            });
         });
 
     });

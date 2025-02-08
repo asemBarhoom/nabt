@@ -857,4 +857,51 @@ return [
         ],
     ],
 
+    'events' => [
+        [
+            'title' => t('events'),
+            'root' => true,
+            'route' => 'system.events.index',
+            'new-tab' => false,
+            'module_name' => 'events',
+        ],
+    ],
+    'landmarks' => [
+        [
+            'title' => t('landmark'),
+            'root' => true,
+            'route' => 'system.landmarks.index',
+            'new-tab' => false,
+            'module_name' => 'landmarks',
+        ],
+    ],
+    'faqs' => [
+        [
+            'title' => t('faq'),
+            'root' => true,
+            'route' => 'system.faqs.index',
+            'new-tab' => false,
+            'module_name' => 'faqs',
+        ],
+    ],
+    'cancellations' => [
+        [
+            'title' => t('cancellation'),
+            'root' => true,
+            'route' => 'system.cancellations.index',
+            'new-tab' => false,
+            'module_name' => 'cancellations',
+        ],
+    ],
+    'statuses' => [
+        [
+            'title' => t('status'),
+            'root' => true,
+            'route' => 'system.statuses.index',
+            'new-tab' => false,
+            'module_name' => 'statuses',
+        ],
+    ],
+
+
 ];

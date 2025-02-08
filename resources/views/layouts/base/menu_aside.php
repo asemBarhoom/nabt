@@ -219,6 +219,47 @@ return [
             'module_name' => 'invoice',
         ],
 
+        [
+            'title' => t('events'),
+            'icon' => 'fas fa-calendar-alt',
+            'route' => 'system.events.index',
+            'new-tab' => false,
+            'module_name' => 'events',
+        ],
+
+        [
+            'title' => t('landmarks'),
+            'icon' => 'fas fa-map-marker-alt',
+            'route' => 'system.landmarks.index',
+            'new-tab' => false,
+            'module_name' => 'landmarks',
+        ],
+
+        [
+            'title' => t('faqs'),
+            'icon' => 'fas fa-question-circle',
+            'route' => 'system.faqs.index',
+            'new-tab' => false,
+            'module_name' => 'faqs',
+        ],
+
+        [
+            'title' => t('cancellations'),
+            'icon' => 'fas fa-times-circle',
+            'route' => 'system.cancellations.index',
+            'new-tab' => false,
+            'module_name' => 'cancellations',
+        ],
+
+        [
+            'title' => t('statuses'),
+            'icon' => 'fas fa-info-circle',
+            'route' => 'system.statuses.index',
+            'new-tab' => false,
+            'module_name' => 'statuses',
+        ],
+
+
 
     ]
 ];
