@@ -112,7 +112,7 @@ class InvoiceSeeder extends Seeder
                                               'notes' => 'This is a sample note for invoice ' . $i,
                                               'created_by' => 'Admin',
                                               'approved_by' => rand(0, 1) ? 'Manager' : null,
-                                              'user_id' => rand(1, 3), // Assuming `users` table has IDs from 1 to 5
+                                              'user_id' => 11, // Assuming `users` table has IDs from 1 to 5
                                               'booking_id' => rand(1, 3), // Assuming `bookings` table has IDs from 1 to 10
                                               'created_at' => now(),
                                               'updated_at' => now(),

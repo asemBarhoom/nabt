@@ -11,4 +11,11 @@ class Reward extends Model
     public array $translatable = [];
 
     protected $guarded = [];
+
+    public function redemptions()
+    {
+        return $this->hasMany(Redemption::class);
+    }
+
+
 }

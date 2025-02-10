@@ -26,7 +26,7 @@ class ActivityResource extends JsonResource
             'start_time' => $this->start_time,
             'end_time' => $this->end_time,
             'date' => $this->date,
-            'read_at' => is_null($this->read_at)?null:$this->read_at->diffForHumans(),
+            'read_at' => $this->read_at,
         ];
     }
 }

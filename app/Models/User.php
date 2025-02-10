@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -127,5 +128,26 @@ class User extends Authenticatable
     public function restaurants()
     {
         return $this->hasMany(Restaurant::class);
+    }
+
+
+    public function redemptions()
+    {
+        return $this->hasMany(Redemption::class);
+    }
+
+    public function points()
+    {
+        return $this->hasMany(Point::class);
+    }
+
+    public function totalPoints(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->points()
+                ->where('status', 'approved') // Only approved points
+                ->where('redeemable', true)
+                ->sum('points_earned')
+        );
     }
 }

@@ -34,7 +34,7 @@ class ActivityController extends Controller
 
 
             $activity = Activity::findOrFail($activityId);
-            $activity->read_at = $activity->read_at ? null : now();
+            $activity->read_at = $activity->read_at ? $activity->read_at : now();
             $activity->save();
 
 
@@ -59,7 +59,8 @@ class ActivityController extends Controller
                 request()->user()->activities()
                     ->get();
             foreach ($Activities as $activity) {
-                $activity->markAsRead();
+                $activity->read_at = $activity->read_at ? $activity->read_at : now();
+                $activity->save();
             }
 
             $Activities =

@@ -23,7 +23,7 @@ class UserProfileResource extends JsonResource
         return [
             'id'                => $this->id,
             'name'              => $this->name,
-            'current_points'              => 1000,
+            'current_points'              => $this->total_points,
             'marketing_token'              => $this->marketing_token,
             'level'              => 'متوسط',
             'prefix'              => $this->prefix,

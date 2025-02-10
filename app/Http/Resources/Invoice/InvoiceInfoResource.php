@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Invoice;
 
+use App\Helpers\FileHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class InvoiceInfoResource extends JsonResource
@@ -71,6 +72,8 @@ class InvoiceInfoResource extends JsonResource
             'commercial_number' => 'commercial_number',
             'tax_number' => 'tax_number',
             'business_address' => 'business_address',
+            'pdf_path' => url('storage/' . object_get($this,'pdf_path')),
+
         ];
     }
 }

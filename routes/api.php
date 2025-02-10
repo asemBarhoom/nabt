@@ -32,6 +32,7 @@ use App\Http\Controllers\API\RestaurantController;
 use App\Http\Controllers\API\SystemAdminController;
 use App\Http\Controllers\API\NumberController;
 use App\Http\Controllers\API\InvoiceController;
+use App\Http\Controllers\API\RedemptionController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -112,9 +113,13 @@ Route::group([
 
     Route::post('/forms', [FormController::class, 'store']);
     Route::post('/wheelies', [WheelyController::class, 'store']);
+    Route::get('/comments', [CommentController::class, 'index']);
     Route::post('/comments', [CommentController::class, 'store']);
     Route::post('/restaurants', [RestaurantController::class, 'store']);
 
     Route::post('testimonials' , [TestimonialController::class,'store']);
     Route::apiResource('invoices' , InvoiceController::class);
+
+    Route::post('/redemptions/auto-redeem', [RedemptionController::class, 'autoRedeem'])->name('redemptions.autoRedeem');
+
 });

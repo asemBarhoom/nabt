@@ -13,15 +13,16 @@ class PostController extends Controller
 {
     public function index(FilterRequest $request){
         try{
-            $posts = Post::with(['categories','comments'])->filter()->order()->paginate($request->header('perpage'));
+            $posts = Post::with(['categories'])->filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new PostCollection($posts));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }
     }
 
-    public function show(Post $post){
+    public function show($id){
         try{
+            $post = Post::query()->with(['categories'])->find($id);
             return Response::respondSuccess(Response::SUCCESS, new PostResource($post));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
