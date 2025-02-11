@@ -20,7 +20,9 @@ trait SharedTrait{
         if (!empty($filters) && is_array($filters)) {
             foreach ($filters as $field => $value) {
 
-                if ($value == Constant::NULL)
+                if ($field == 'rating_number')
+                    continue;
+                elseif ($value == Constant::NULL)
                     $query->whereNull($field);
                 elseif ($value == Constant::NOT_NULL)
                     $query->whereNotNull($field);

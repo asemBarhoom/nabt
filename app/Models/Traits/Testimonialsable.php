@@ -41,4 +41,14 @@ trait Testimonialsable
     {
         return $this->testimonials()->delete();
     }
+
+    /**
+     * Scope for filtering models based on average rating.
+     */
+    public function scopeFilterByRating($query, ?float $rateNumber)
+    {
+        return $query->withAvg('testimonials', 'rating')
+            ->when($rateNumber, fn($q) => $q->having('testimonials_avg_rating', '=', $rateNumber));
+    }
+
 }
