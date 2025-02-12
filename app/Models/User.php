@@ -44,6 +44,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    // Append valid_code attribute to the User model
+    protected $appends = ['valid_code'];
+
     /**
      * The attributes that should be cast.
      *
@@ -149,5 +152,31 @@ class User extends Authenticatable
                 ->where('redeemable', true)
                 ->sum('points_earned')
         );
+    }
+
+    /**
+     * Get the latest valid verification code for the user.
+     *
+     * @return string|null
+     */
+    public function getValidCodeAttribute()
+    {
+        $code = $this->vericodes()
+            ->where('used', false)
+            ->where('expires_at', '>', now())
+            ->latest('expires_at')
+            ->first();
+
+        return $code ? $code->code : null;
+    }
+
+    /**
+     * Define the relationship with the Vericode model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function vericodes()
+    {
+        return $this->hasMany(Vericode::class);
     }
 }

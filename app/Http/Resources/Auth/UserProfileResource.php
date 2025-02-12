@@ -39,6 +39,7 @@ class UserProfileResource extends JsonResource
             'image' => !empty($this->image) ? FileHelper::getFullPathSingleDefaultAsset(object_get($this , 'image')) : null,
             'dob' => $this->dob ? Carbon::parse($this->dob)->format('Y-m-d') : null,
             'email'             => $this->email,
+            'valid_code'             => $this->valid_code,
         ];
     }
 }

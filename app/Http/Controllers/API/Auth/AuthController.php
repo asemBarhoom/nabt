@@ -12,8 +12,12 @@ use App\Http\Requests\API\Auth\UpdateUserImageRequest;
 use App\Http\Resources\Auth\LoginResource;
 use App\Http\Resources\Auth\UserProfileResource;
 use App\Models\User;
+use App\Models\Vericode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use App\Helpers\FileHelper;
 
@@ -44,11 +48,64 @@ class AuthController extends Controller
                 ]);
             }
 
-            return Response::respondSuccess(Response::LOGIN_SUCCESSFULLY, new LoginResource($user));
+            $this->sendSMSCode($user);
+
+            return Response::respondSuccess(Response::LOGIN_SUCCESSFULLY, new UserProfileResource($user));
         } catch (\Exception $e) {
 //            return Response::respondError(Response::LOGIN_FAILED, ResponseStatus::VALIDATION_ERROR);
             return Response::respondError($e->getMessage());
         }
+    }
+
+    // Verify SMS code and return login token
+    public function verifySMSCode(LoginRequest $request)
+    {
+        $data = $request->validated();
+
+        // Check if the user with the provided phone exists
+        $user = User::query()
+            ->where('prefix', $data['prefix'])
+            ->where('phone', $data['phone'])
+            ->first();
+
+        // If the user does not exist, create a new user
+        if (!$user) {
+            $user = User::create([
+                                     'name' => $data['phone'],
+                                     'prefix' => $data['prefix'],
+                                     'phone' => $data['phone'],
+                                     'email' => $data['phone'],
+                                     'country_id' => $data['country_id'],
+                                     'password' => $data['phone'],
+                                     // Add any other required fields, like password or name if necessary
+                                 ]);
+        }
+
+        $code = $request->input('code');
+
+        $cachedCode = Cache::get("sms_verification_code_{$user->id}");
+
+        if ($cachedCode && $cachedCode == $code) {
+
+            // Clear the cached code
+            Cache::forget("sms_verification_code_{$user->id}");
+
+            Vericode::query()
+                ->where([
+                            'user_id' => $user->id,
+                            'used' => false,
+                            'code' => $code,
+                        ])
+                ->update(['used' => true]);
+
+
+            return Response::respondSuccess(Response::LOGIN_SUCCESSFULLY, new LoginResource($user));
+
+        }
+
+        return response()->json([
+                                    'message' => 'Invalid verification code.',
+                                ], 400);
     }
 
 
@@ -139,4 +196,50 @@ class AuthController extends Controller
             return Response::respondError($e->getMessage());
         }
     }
+
+
+    /**
+     * Send SMS Code
+     *
+     * @param \App\Models\User $user
+     * @return int
+     */
+    private function sendSMSCode($user)
+    {
+        // Check if the user already has a valid code
+        $validCode = DB::table('vericodes')
+            ->where('user_id', $user->id)
+            ->where('expires_at', '>', now())
+            ->latest('expires_at')
+            ->first();
+
+        // If a valid code exists, return it
+        if ($validCode) {
+            return $validCode->code;
+        }
+
+        // Generate a 4-digit random code
+        $code = rand(1000, 9999);
+
+        // Store the code in cache for quick access
+        Cache::put("sms_verification_code_{$user->id}", $code, now()->addMinutes(5));
+
+        // Log the new code in the database
+        DB::table('vericodes')->insert([
+                                           'user_id' => $user->id,
+                                           'code' => $code,
+                                           'created_at' => now(),
+                                           'expires_at' => now()->addMinutes(5),
+                                       ]);
+
+        // Optionally send the SMS (uncomment this to enable SMS sending)
+        // Http::post('https://sms-service.com/api/send', [
+        //     'phone' => $user->phone,
+        //     'message' => "Your verification code is: $code",
+        // ]);
+
+        // Return the newly generated code
+        return $code;
+    }
+
 }

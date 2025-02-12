@@ -33,6 +33,7 @@ use App\Http\Controllers\API\SystemAdminController;
 use App\Http\Controllers\API\NumberController;
 use App\Http\Controllers\API\InvoiceController;
 use App\Http\Controllers\API\RedemptionController;
+use App\Http\Controllers\API\StatisticsController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -72,6 +73,7 @@ Route::apiResource('accommodations' , AccommodationController::class);
 Route::apiResource('landmarks' , LandmarkController::class);
 Route::apiResource('rewards' , RewardController::class);
 Route::post('login', [AuthController::class, 'login']);
+Route::post('verify', [AuthController::class, 'verifySMSCode']);
 Route::get('events' , [EventController::class,'index']);
 Route::get('faqs' , [FaqController::class,'index']);
 Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
@@ -122,4 +124,5 @@ Route::group([
 
     Route::post('/redemptions/auto-redeem', [RedemptionController::class, 'autoRedeem'])->name('redemptions.autoRedeem');
 
+    Route::get('/user/statistics', [StatisticsController::class, 'index']);
 });
