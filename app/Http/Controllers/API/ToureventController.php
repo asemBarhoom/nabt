@@ -13,7 +13,9 @@ class ToureventController extends Controller
 {
     public function index(FilterRequest $request){
         try{
-            $tourevents = Tourevent::filter()->order()->paginate($request->header('perpage'));
+            $rateNumber = $request->input('filters.rating_number');
+
+            $tourevents = Tourevent::filterByRating($rateNumber)->filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new ToureventCollection($tourevents));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

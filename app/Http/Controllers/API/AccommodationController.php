@@ -14,7 +14,9 @@ class AccommodationController
 {
     public function index(FilterRequest $request){
         try{
-            $accommodations = Accommodation::filter()->order()->paginate($request->header('perpage'));
+            $rateNumber = $request->input('filters.rating_number');
+
+            $accommodations = Accommodation::filterByRating($rateNumber)->filter()->order()->paginate($request->header('perpage'));
             return Response::respondSuccess(Response::SUCCESS, new AccommodationCollection($accommodations));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
