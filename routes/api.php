@@ -80,6 +80,7 @@ Route::get('status-flow', [\App\Models\Booking::class, 'getStatusFlow']);
 Route::post('/inboxes', [InboxController::class, 'store']);
 Route::get('/system_admins', [SystemAdminController::class, 'index']);
 Route::get('/numbers', [NumberController::class, 'index']);
+Route::post('bookings' , [BookingController::class,'store']);
 
 Route::group([
     'middleware' => ['auth:api'],
@@ -90,7 +91,8 @@ Route::group([
     Route::post('profile', [AuthController::class, 'updateProfile']);
     Route::post('profile/image', [AuthController::class, 'updateImage']);
     Route::post('update_user_address', [AuthController::class, 'update_address']);
-    Route::apiResource('bookings' , BookingController::class);
+    Route::get('bookings/{categorization}' , [BookingController::class,'index']);
+    Route::get('bookings' , [BookingController::class,'index']);
     Route::apiResource('statuses' , StatusController::class);
 
     Route::get('/favorites', [FavoriteController::class, 'index']);       // favorites

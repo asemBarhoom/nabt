@@ -44,6 +44,7 @@ class BookingInfoResource extends JsonResource
             'vehicle_type' => $this->vehicle_type,
             'vehicle_description' => $this->vehicle_description,
             'price' => 4000,
+            'generateQrCode' => $this->generateQrCode(),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

@@ -6,5 +6,12 @@
     "cancellation_rejected" : "Cancellation Denied",
     "completed" : "Booking Completed",
     "cancelled" : "Booking Cancelled",
-    "reward_text" : "الحصول على مبلغ مبالي مقداره :money ريال"
+    "reward_text" : "الحصول على مبلغ مبالي مقداره :money ريال",
+    "Total Bookings": "Total Bookings",
+    "Favorites": "Favorites",
+    "Activities Joined": "Activities Joined",
+    "Comments Posted": "Comments Posted",
+    "Wheelies Performed": "Private Car Requests",
+    "Restaurants Visited": "Restaurants Visited",
+    "Rewards Redeemed": "Rewards Redeemed"
 }

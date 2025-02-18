@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 
+use Illuminate\Support\Facades\DB;
+
 class General
 {
 
@@ -21,17 +23,25 @@ class General
         return $text;
     }
 
-    /**
-     * Generate a unique reservation number.
-     *
-     * @return string
-     */
     public static function generateReservationNumber(): string
     {
         $prefix = 'ULA2030'; // Prefix representing AlUla and Vision 2030
-        $uniqueId = strtoupper(uniqid()); // Generate a unique identifier
-        $randomNumber = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT); // Generate a random 4-digit number
 
-        return $prefix . '-' . $randomNumber . '-' . substr($uniqueId, -5); // Combine all parts
+        // Retrieve the last reservation number from the database
+        $lastNumber = DB::table('bookings')->max('reservation_number');
+
+        // Extract the numeric part and increment
+        if ($lastNumber) {
+            // Extract the number part after the prefix (ULA2030-XXXX)
+            preg_match('/ULA2030-(\d+)/', $lastNumber, $matches);
+            $nextNumber = isset($matches[1]) ? intval($matches[1]) + 1 : 1;
+        } else {
+            $nextNumber = 1; // Start from 1 if no records exist
+        }
+
+        // Ensure it is always 6 digits (e.g., ULA2030-000001)
+        $formattedNumber = str_pad($nextNumber, 6, '0', STR_PAD_LEFT);
+
+        return $prefix . '-' . $formattedNumber;
     }
 }

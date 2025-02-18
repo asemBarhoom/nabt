@@ -31,20 +31,20 @@ class AuthController extends Controller
 
             // Check if the user with the provided phone exists
             $user = User::query()
+            ->where('country_id', $data['country_id'])
             ->where('prefix', $data['prefix'])
             ->where('phone', $data['phone'])
                 ->first();
 
             // If the user does not exist, create a new user
             if (!$user) {
-                $user = User::create([
-                    'name' => $data['phone'],
+                 $user = User::create([
+                    'name' => $data['prefix'].$data['phone'],
                     'prefix' => $data['prefix'],
                     'phone' => $data['phone'],
-                    'email' => $data['phone'],
+                    'email' => $data['prefix'].$data['phone'],
                     'country_id' => $data['country_id'],
                     'password' => $data['phone'],
-                    // Add any other required fields, like password or name if necessary
                 ]);
             }
 

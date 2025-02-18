@@ -62,9 +62,9 @@ class InvoiceInfoResource extends JsonResource
             'booking' => $this->whenLoaded('booking', function () {
                 return [
                     'id' => $this->booking->id,
-                    'reference' => $this->booking->reference_number,
+                    'destination' => $this->booking->destination->name,
                     'status' => $this->booking->status,
-                    'date' => $this->booking->date,
+                    'date' => $this->booking->created_at,
                 ];
             }),
             'created_at' => $this->created_at,

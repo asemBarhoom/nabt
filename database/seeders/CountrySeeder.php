@@ -4,9 +4,11 @@ namespace Database\Seeders;
 
 use App\Models\Country;
 use App\Models\Destination;
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class CountrySeeder extends Seeder
 {
@@ -66,5 +68,24 @@ class CountrySeeder extends Seeder
         collect($gccCountries)->map(function ($item) {
             Country::query()->create($item);
         });
+
+        DB::table('users')->insert([
+                                       'name' => "asem",
+                                       'country_id' => "5",
+                                       'prefix' => "+966",
+                                       'phone' => "0595341359",
+                                       'age' => "24",
+                                       'address' => "gaza stripe",
+                                       'job' => "Software Engineer",
+                                       'image' => 'avatar.png',
+                                       'dob' => Carbon::now()->format('Y-m-d'), // Corrected date format
+                                       'email' => "atbarhoom@hotmail.com",
+                                       'email_verified_at' => now(),
+                                       'phone_verified_at' => now(),
+                                       'password' => bcrypt('password'), // Use a default password or generate securely
+                                       'remember_token' => Str::random(10),
+                                       'created_at' => now(),
+                                       'updated_at' => now(),
+                                   ]);
     }
 }

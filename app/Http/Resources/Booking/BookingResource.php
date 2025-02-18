@@ -2,6 +2,9 @@
 
 namespace App\Http\Resources\Booking;
 
+use App\Http\Resources\Accommodation\AccommodationResource;
+use App\Http\Resources\Destination\DestinationResource;
+use App\Http\Resources\Tourevent\ToureventResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class BookingResource extends JsonResource
@@ -19,8 +22,9 @@ class BookingResource extends JsonResource
             'reservation_number' => $this->reservation_number,
             'trip_duration' => $this->trip_duration,
             'user_id' => $this->user_id,
-            'destination_id' => $this->destination_id,
-            'accommodation_id' => $this->accommodation_id,
+            'destination' => DestinationResource::make($this->destination),
+            'accommodation' => AccommodationResource::make($this->accommodation),
+            'tourevent' => ToureventResource::make($this->tourevent),
             'booking_date' => $this->booking_date,
             'arrival_time' => $this->arrival_time,
             'num_adults' => $this->num_adults,

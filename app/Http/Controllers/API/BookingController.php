@@ -11,6 +11,7 @@ use App\Http\Resources\Booking\BookingCollection;
 use App\Http\Resources\Booking\BookingInfoResource;
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class BookingController extends Controller
 {
@@ -19,15 +20,43 @@ class BookingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FilterRequest $request){
-        try{
-            $user = auth()->id();
-            $bookings = Booking::query()->where('user_id',$user)->filter()->order()->paginate($request->header('perpage'));
+    public function index(FilterRequest $request, $categorization = null)
+    {
+        try {
+            $user = auth()->guard('api')->user()->id;
+            $statuses = [];
+            if ($categorization == 'current') {
+                $statuses = ['pending', 'confirmed', 'in_progress', 'cancellation_requested', 'cancellation_rejected'];
+            } elseif ($categorization == 'previous') {
+                $statuses = ['completed', 'cancelled'];
+            }
+
+            $bookings = Booking::query()
+                ->where('user_id', $user)
+                ->when($categorization!=null,function ($query) use($statuses)
+                {
+                    $query->whereHas('statuses', function ($query) use ($statuses) {
+                        $query->whereIn('status', $statuses)
+                            ->whereRaw("
+                        created_at = (
+                            SELECT MAX(created_at)
+                            FROM statuses
+                            WHERE statusable_id = bookings.id
+                            AND statusable_type = ?
+                        )
+                    ", [Booking::class]);
+                    });
+                })
+                ->filter()
+                ->order()
+                ->paginate($request->header('perpage'));
+
             return Response::respondSuccess(Response::SUCCESS, new BookingCollection($bookings));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());
         }
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -49,12 +78,21 @@ class BookingController extends Controller
     {
         try {
             $user = auth()->id();
-            $data = $request->all();
+            $data = $request->except('events');
             $data['user_id'] = $user;
-            $data['reservation_number'] = General::generateReservationNumber();
-            unset($data['events']);
-            $booking = Booking::create($data);
-            $booking->events()->sync($request->events);
+
+            $conditions = [
+                'destination_id' => $data['destination_id'],
+                'accommodation_id' => $data['accommodation_id'],
+                'tourevent_id' => $data['tourevent_id'],
+                'booking_date' => $data['booking_date'],
+                'arrival_time' => $data['arrival_time'],
+            ];
+
+            $booking = Booking::query()->updateOrCreate($conditions,$data);
+            if ($request->has('events')) {
+                $booking->events()->sync($request->events);
+            }
             return Response::respondSuccess(Response::SUCCESS, new BookingInfoResource($booking));
         } catch (\Exception $e) {
             return Response::respondError($e->getMessage());

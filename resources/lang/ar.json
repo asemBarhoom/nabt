@@ -6,5 +6,12 @@
     "cancellation_rejected" : "تم رفض طلب الإلغاء",
     "completed" : "تم إكمال الحجز",
     "cancelled" : "تم إلغاء الحجز",
-    "reward_text" : "الحصول على مبلغ مبالي مقداره :money ريال"
+    "reward_text" : "الحصول على مبلغ مبالي مقداره :money ريال",
+    "Total Bookings": "إجمالي الحجوزات",
+    "Favorites": "المفضلة",
+    "Activities Joined": "الأنشطة التي انضممتُ لها",
+    "Comments Posted": "التعليقات المنشورة",
+    "Wheelies Performed": "طلبات السيارات الخاصة",
+    "Restaurants Visited": "المطاعم التي تمت زيارتها",
+    "Rewards Redeemed": "المكافآت المستبدلة"
 }

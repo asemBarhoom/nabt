@@ -21,7 +21,7 @@ class InvoiceController extends Controller
     public function index(FilterRequest $request)
     {
         try {
-            $user = auth()->id();
+            $user = auth()->guard('api')->user()->id;
             $invoices = Invoice::query()->where('user_id', $user)->with(['booking','user'])->filter()->order()->paginate(
                 $request->header('perpage')
             );

@@ -20,23 +20,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        DB::table('users')->insert([
-            'name' => "asem",
-            'prefix' => "+966",
-            'phone' => "0595341359",
-            'age' => "24",
-            'address' => "gaza stripe",
-            'job' => "Software Engineer",
-            'image' => $faker->imageUrl(640, 480, 'people'),
-            'dob' => $faker->date('Y-m-d'), // Corrected date format
-            'email' => $faker->unique()->safeEmail,
-            'email_verified_at' => now(),
-            'phone_verified_at' => now(),
-            'password' => bcrypt('password'), // Use a default password or generate securely
-            'remember_token' => Str::random(10),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+
 
         // Create 10 users
         foreach (range(1, 10) as $index) {

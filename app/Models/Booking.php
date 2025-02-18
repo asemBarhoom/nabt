@@ -2,12 +2,17 @@
 
 namespace App\Models;
 
+use App\Helpers\General;
 use App\Models\Traits\Favorable;
 use App\Models\Traits\SharedTrait;
 use App\Models\Traits\Statusable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\BaseModel as Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+//use chillerlan\QRCode\QRCode;
+//use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use chillerlan\QRCode\QRCode;
+
 
 class Booking extends Model
 {
@@ -112,5 +117,51 @@ class Booking extends Model
     public function tourevent(): BelongsTo
     {
         return $this->belongsTo(Tourevent::class);
+    }
+
+
+
+
+
+    public function generateQrCode()
+    {
+        // Fetch related data
+        $bookingData = [
+            "reservation_number" => $this->reservation_number,
+            "status" => $this->status,
+            "trip_duration" => $this->trip_duration,
+//            "user" => [
+//                "name" => $this->user->name ?? "Unknown",
+//                "phone" => $this->user->prefix . ' ' . $this->user->phone,
+//                "email" => $this->user->email ?? "No Email",
+//                "job" => $this->user->job ?? "No Job",
+//                "address" => $this->user->address ?? "No Address",
+//            ],
+            "destination" => $this->destination->name ?? "Unknown Destination",
+            "accommodation" => $this->accommodation->title ?? "No Accommodation",
+            "booking_date" => $this->booking_date,
+            "arrival_time" => $this->arrival_time,
+            "num_adults" => $this->num_adults,
+            "num_children" => $this->num_children,
+            "num_rooms" => $this->num_rooms,
+            "room_type" => $this->room_type,
+            "price" => $this->price,
+        ];
+
+        // Convert booking data to JSON
+        $qrData = json_encode($bookingData, JSON_UNESCAPED_UNICODE);
+
+        // Generate QR Code
+        return (new QRCode)->render($qrData);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Listen for the 'creating' event to generate reservation_number
+        static::creating(function ($booking) {
+            $booking->reservation_number = General::generateReservationNumber();
+        });
     }
 }
