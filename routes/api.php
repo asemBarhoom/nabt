@@ -34,6 +34,7 @@ use App\Http\Controllers\API\NumberController;
 use App\Http\Controllers\API\InvoiceController;
 use App\Http\Controllers\API\RedemptionController;
 use App\Http\Controllers\API\StatisticsController;
+use App\Http\Controllers\API\ModificationController;
 use App\Http\Controllers\API\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -122,6 +123,7 @@ Route::group([
     Route::post('/restaurants', [RestaurantController::class, 'store']);
 
     Route::post('testimonials' , [TestimonialController::class,'store']);
+    Route::post('modifications' , [ModificationController::class,'store']);
     Route::apiResource('invoices' , InvoiceController::class);
 
     Route::post('/redemptions/auto-redeem', [RedemptionController::class, 'autoRedeem'])->name('redemptions.autoRedeem');

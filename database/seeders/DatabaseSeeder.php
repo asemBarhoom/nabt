@@ -50,5 +50,6 @@ class DatabaseSeeder extends Seeder
        $this->call(RestaurantSeeder::class);
        $this->call(NumberSeeder::class);
        $this->call(InvoiceSeeder::class);
+       $this->call(ModificationSeeder::class);
     }
 }
